@@ -1,80 +1,81 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TvContext } from "../../contexts/tvContext";
 import "./Header.css";
 
-class Header extends React.Component {
-  static contextType = TvContext;
+function Header() {
+  const { isLoaded, data } = useContext(TvContext);
 
-  render() {
-    const {
-      isLoaded,
-      headerLink1,
-      headerImage1,
-      headerLink2,
-      headerImage2,
-      headerLink3,
-      headerImage3,
-      headerLink4,
-      headerImage4
-    } = this.context;
-
-    return (
-      <div className="flex-container">
-        {isLoaded === false ? (
-          <div
-            className="spinner-grow text-dark"
-            role="status"
-            style={{ margin: "0 auto" }}
-          >
-            <span className="sr-only">Loading...</span>
+  return (
+    <div className="flex-container">
+      {isLoaded === false ? (
+        <div
+          className="spinner-grow text-dark"
+          role="status"
+          style={{ margin: "0 auto" }}
+        >
+          <span className="sr-only">Loading...</span>
+        </div>
+      ) : (
+        <React.Fragment>
+          <div className="header1" key={data[54].id}>
+            <a
+              href={data[54]._links.self.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                alt="loading"
+                src={data[54].image.original}
+                className="img-thumbnail"
+                id="box"
+              />
+            </a>
           </div>
-        ) : (
-          <React.Fragment>
-            <div className="header1">
-              <a href={headerLink1} target="_blank" rel="noopener noreferrer">
-                header
-                <img
-                  alt="loading"
-                  src={headerImage1.original}
-                  className="img-thumbnail"
-                  id="box"
-                />
-              </a>
-            </div>
-            <div className="header2">
-              <a href={headerLink2} target="_blank" rel="noopener noreferrer">
-                <img
-                  alt="loading"
-                  src={headerImage2.original}
-                  className="img-thumbnail"
-                  id="box"
-                />
-              </a>
-            </div>
-            <div className="header3">
-              <a href={headerLink3} target="_blank" rel="noopener noreferrer">
-                <img
-                  alt="loading"
-                  src={headerImage3.original}
-                  className="img-thumbnail"
-                  id="box"
-                />
-              </a>
-            </div>
-            <div className="header4">
-              <a href={headerLink4} target="_blank" rel="noopener noreferrer">
-                <img
-                  alt="loading"
-                  src={headerImage4.original}
-                  className="img-thumbnail"
-                  id="box"
-                />
-              </a>
-            </div>
-          </React.Fragment>
-        )}
-      </div>
-    );
-  }
+          <div className="header2" key={data[11].id}>
+            <a
+              href={data[11]._links.self.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                alt="loading"
+                src={data[11].image.original}
+                className="img-thumbnail"
+                id="box"
+              />
+            </a>
+          </div>
+          <div className="header3" key={data[52].id}>
+            <a
+              href={data[52]._links.self.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                alt="loading"
+                src={data[52].image.original}
+                className="img-thumbnail"
+                id="box"
+              />
+            </a>
+          </div>
+          <div className="header4" key={data[7].id}>
+            <a
+              href={data[7]._links.self.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                alt="loading"
+                src={data[7].image.original}
+                className="img-thumbnail"
+                id="box"
+              />
+            </a>
+          </div>
+        </React.Fragment>
+      )}
+    </div>
+  );
 }
-export default Header;
+export default React.memo(Header);

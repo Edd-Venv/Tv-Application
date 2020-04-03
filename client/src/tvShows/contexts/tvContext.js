@@ -1,119 +1,33 @@
-import React, { createContext } from "react";
-import axios from "axios";
+import React, { createContext, useReducer, useEffect } from "react";
+import { tvReducer } from "./tvReducers.js";
 
-export const TvContext = createContext();
+const initialState = {
+  isLoaded: false,
+  data: {}
+};
+export const TvContext = createContext(initialState);
 
-class TvContextProvider extends React.Component {
-  state = {
-    isLoaded: false,
-    headerData: [],
-    headerImage1: [],
-    headerImage2: [],
-    headerImage3: [],
-    headerImage4: [],
-    headerLink1: [],
-    headerLink2: [],
-    headerLink3: [],
-    headerLink4: [],
-    BodyData: [],
-    BodyImage: [],
-    BodyImage1: [],
-    BodyImage2: [],
-    BodyImage3: [],
-    BodyLink: [],
-    BodyLink1: [],
-    BodyLink2: [],
-    BodyLink3: []
-  };
-  async componentDidMount() {
-    document.title = "Home Page";
-    const url = `https://api.tvmaze.com/shows/54`;
-    await axios.get(url).then(response => {
-      this.setState({
-        headerData: response.data,
-        headerImage1: response.data.image,
-        isLoaded: true,
-        headerLink1: response.data.officialSite
-      });
-    });
-    const url2 = `https://api.tvmaze.com/shows/11`;
-    await axios.get(url2).then(response => {
-      this.setState({
-        headerData: response.data,
-        headerImage2: response.data.image,
-        isLoaded: true,
-        headerLink2: response.data.officialSite
-      });
-    });
-    const url3 = `https://api.tvmaze.com/shows/52`;
-    await axios.get(url3).then(response => {
-      this.setState({
-        headerData: response.data,
-        headerImage3: response.data.image,
-        isLoaded: true,
-        headerLink3: response.data.officialSite
-      });
-    });
-    const url4 = `https://api.tvmaze.com/shows/7`;
-    await axios.get(url4).then(response => {
-      this.setState({
-        headerData: response.data,
-        headerImage4: response.data.image,
-        isLoaded: true,
-        headerLink4: response.data.officialSite
-      });
-    });
+export const TvContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(tvReducer, initialState);
 
-    /*BODY CONTEXT API BELOW */
+  useEffect(() => {
+    document.title = "Tv Shows";
+    fetch("https://api.tvmaze.com/shows")
+      .then(result => {
+        return result.json();
+      })
+      .then(Data => {
+        dispatch({
+          type: "GET",
+          isLoaded: true,
+          data: Data.slice(0, 128)
+        });
+      });
+  }, []);
 
-    const url11 = `https://api.tvmaze.com/shows/30`;
-    await axios.get(url11).then(response => {
-      this.setState({
-        isLoaded: true,
-        BodyData: response.data,
-        BodyImage: response.data.image,
-        BodyLink: response.data.officialSite
-      });
-    });
-    const url12 = `https://api.tvmaze.com/shows/128`;
-    await axios.get(url12).then(response => {
-      this.setState({
-        isLoaded: true,
-        BodyData: response.data,
-        BodyImage1: response.data.image,
-        BodyLink1: response.data.officialSite
-      });
-    });
-    const url13 = `https://api.tvmaze.com/shows/50`;
-    await axios.get(url13).then(response => {
-      this.setState({
-        isLoaded: true,
-        BodyData: response.data,
-        BodyImage2: response.data.image,
-        BodyLink2: response.data.officialSite
-      });
-    });
-    const url14 = `https://api.tvmaze.com/shows/58`;
-    await axios.get(url14).then(response => {
-      this.setState({
-        isLoaded: true,
-        BodyData: response.data,
-        BodyImage3: response.data.image,
-        BodyLink3: response.data.officialSite
-      });
-    });
-  }
-  //https://cors-anywhere.herokuapp.com/
-  render() {
-    return (
-      <TvContext.Provider
-        value={{
-          ...this.state
-        }}
-      >
-        {this.props.children}
-      </TvContext.Provider>
-    );
-  }
-}
-export default TvContextProvider;
+  return (
+    <TvContext.Provider value={{ isLoaded: state.isLoaded, data: state.data }}>
+      {children}
+    </TvContext.Provider>
+  );
+};
