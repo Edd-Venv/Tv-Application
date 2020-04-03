@@ -1,0 +1,215 @@
+.error-div {
+  width: 75%;
+}
+.error-paragraph {
+  color: white;
+  margin-left: 32%;
+  font-size: 1.2rem;
+}
+#error-close-button {
+  color: red;
+  font-weight: bold;
+  font-size: 2.2em;
+  margin-top: 87.5%;
+  margin-right: 38%;
+  z-index: 1;
+}
+
+img {
+  width: 100%;
+}
+
+.error-movie-not-in-data-base-paragraph {
+  color: black;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 3%;
+}
+.MovieInputStyle {
+  border: 2px solid grey;
+  border-left: none;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 0.8%;
+  padding-bottom: 0.8%;
+  outline: 0;
+  font-size: 1em;
+  width: 30%;
+}
+#input:hover {
+  animation-name: borderEffect;
+  animation-duration: 1.5s;
+  animation-delay: -0.5s;
+  animation-iteration-count: 2;
+  animation-timing-function: ease-in-out;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: rgb(185, 184, 184);
+  transition: 0.3s;
+}
+@keyframes borderEffect {
+  0% {
+    border-top-style: solid;
+    border-top-color: whitesmoke;
+  }
+  25% {
+    border-right-style: solid;
+    border-right-color: whitesmoke;
+  }
+  50% {
+    border-bottom-style: solid;
+    border-bottom-color: whitesmoke;
+  }
+  100% {
+    border-left-style: solid;
+    border-left-color: whitesmoke;
+  }
+}
+#MovieSearchButton {
+  background-color: rgba(0, 0, 0, 0);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border: 2.01px solid grey;
+  border-right: none;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  outline: 0;
+}
+.movie-center-form {
+  margin-left: 30%;
+}
+/*From a minimum width and bigger*/
+@media (min-width: 320px) {
+  .MovieInputStyle {
+    width: 50%;
+    font-size: 1.4rem;
+    padding-top: 1%;
+  }
+  .error-paragraph {
+    margin-left: 30%;
+    font-size: 1.2rem;
+  }
+  #error-close-button {
+    color: red;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 270%;
+    margin-right: 5%;
+    z-index: 1;
+  }
+}
+@media (min-width: 375px) {
+  .MovieInputStyle {
+    width: 50%;
+    font-size: 1.4rem;
+    padding-bottom: 1%;
+  }
+  #error-close-button {
+    color: red;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 235%;
+    margin-right: 15%;
+    z-index: 1;
+  }
+}
+@media (min-width: 425px) {
+  .MovieInputStyle {
+    font-size: 1.5rem;
+    padding-top: 0.7%;
+  }
+  #error-close-button {
+    color: red;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 214%;
+    margin-right: 23%;
+    z-index: 1;
+  }
+}
+@media (min-width: 768px) {
+  .MovieInputStyle {
+    font-size: 1.75rem;
+    padding-bottom: 0.9%;
+  }
+  #MovieSearchButton {
+    font-size: 1.2em;
+  }
+  .error-paragraph {
+    margin-left: 45%;
+    font-size: 1.8rem;
+  }
+  #error-close-button {
+    color: red;
+    font-weight: bold;
+    font-size: 2.5em;
+    margin-top: 165%;
+    margin-right: 25%;
+    z-index: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .MovieInputStyle {
+    font-size: 1.75rem;
+    padding-top: 0.75%;
+  }
+  #MovieSearchButton {
+    font-size: 1.2em;
+  }
+  .error-paragraph {
+    margin-left: 45%;
+    font-size: 2rem;
+  }
+  #error-close-button {
+    color: red;
+    font-weight: bold;
+    font-size: 3em;
+    margin-top: 132%;
+    margin-right: 33%;
+    z-index: 1;
+  }
+}
+@media (min-width: 1440px) {
+  .MovieInputStyle {
+    font-size: 1.75rem;
+    padding-top: 0.75%;
+  }
+  #MovieSearchButton {
+    font-size: 1.2em;
+  }
+  .error-paragraph {
+    margin-left: 45%;
+    font-size: 2.5rem;
+  }
+  #error-close-button {
+    color: red;
+    font-weight: bold;
+    font-size: 3em;
+    margin-top: 94%;
+    margin-right: 33%;
+    z-index: 1;
+  }
+}
+@media (min-width: 2560px) {
+  .MovieInputStyle {
+    font-size: 1.75rem;
+    padding-top: 0.8%;
+  }
+  #MovieSearchButton {
+    font-size: 1.2em;
+  }
+  .error-paragraph {
+    margin-left: 45%;
+    font-size: 2.8rem;
+  }
+  #error-close-button {
+    color: red;
+    font-weight: bold;
+    font-size: 4em;
+    margin-top: 61%;
+    margin-right: 40%;
+    z-index: 1;
+  }
+}

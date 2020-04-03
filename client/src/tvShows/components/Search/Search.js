@@ -1,0 +1,63 @@
+import React from "react";
+import "./Search.css";
+import { TvSearchContext } from "../../contexts/tvSearchContext";
+import SearchResult from "./SearchResult";
+
+class Search extends React.Component {
+  static contextType = TvSearchContext;
+  render() {
+    const {
+      data,
+      isLoaded,
+      image,
+      display,
+      summary,
+      Test,
+      ShowTrailer,
+      handleSubmit,
+      handleChange,
+      handleClick,
+      value
+    } = this.context;
+    return (
+      <React.Fragment>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div className="center-form">
+          <form onSubmit={handleSubmit}>
+            <span className="form-inline">
+              <button id="SearchButton" type="submit">
+                <i className="fas fa-search" />
+              </button>
+              tvSeach
+              <input
+                className="InputStyle"
+                type="text/number"
+                onChange={handleChange}
+                value={value}
+                placeholder="Show Title"
+                id="input"
+              />
+            </span>
+          </form>
+        </div>
+        <br />
+        <br />
+        <SearchResult
+          data={data}
+          isLoaded={isLoaded}
+          image={image}
+          display={display}
+          summary={summary}
+          Test={Test}
+          ShowTrailer={ShowTrailer}
+          handleClick={handleClick}
+        />
+      </React.Fragment>
+    );
+  }
+}
+
+export default Search;

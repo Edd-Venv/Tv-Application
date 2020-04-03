@@ -1,0 +1,101 @@
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 80%;
+  min-width: 50%;
+}
+.header1 {
+  animation-name: first;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: -0.5s;
+  min-width: 60px;
+  position: sticky;
+  width: 20.5%;
+  z-index: 1;
+}
+.header2 {
+  animation-name: second;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: -0.5s;
+  min-width: 60px;
+  position: sticky;
+  width: 20.5%;
+  z-index: 1;
+}
+.header3 {
+  animation-name: third;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: -0.5s;
+  min-width: 60px;
+  position: sticky;
+  width: 20.5%;
+  z-index: 1;
+}
+.header4 {
+  animation-name: fouth;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: -0.5s;
+  min-width: 60px;
+  position: sticky;
+  width: 20.5%;
+  z-index: 1;
+}
+@keyframes first {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 51%;
+  }
+}
+@keyframes second {
+  from {
+    right: 0%;
+  }
+  to {
+    right: 49%;
+  }
+}
+@keyframes third {
+  from {
+    right: 0px;
+  }
+  to {
+    right: 1175px;
+  }
+}
+@keyframes fouth {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 53%;
+  }
+}
+img {
+  width: 100%;
+}
+
+@media (min-width: 2560px) {
+  @keyframes third {
+    from {
+      right: 0px;
+    }
+    to {
+      right: 1800px;
+    }
+  }
+}

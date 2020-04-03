@@ -1,0 +1,135 @@
+#error-close-button {
+  color: red;
+  font-weight: bolder;
+  font-size: 4.2em;
+  margin-top: 48.3%;
+  margin-right: 20%;
+  z-index: 1;
+}
+
+.error-paragraph {
+  color: white;
+  font-size: 2.2rem;
+  margin-left: 38%;
+}
+
+img {
+  width: 100%;
+}
+
+.InputStyle {
+  border: 2px solid grey;
+  border-left: none;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 0.8%;
+  padding-bottom: 0.8%;
+  outline: 0;
+  width: 30%;
+  font-size: 1.2em;
+}
+#input:hover {
+  animation-name: borderEffect;
+  animation-duration: 1.5s;
+  animation-delay: -0.5s;
+  animation-iteration-count: 2;
+  animation-timing-function: ease-in-out;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: rgb(185, 184, 184);
+  transition: 0.3s;
+}
+@keyframes borderEffect {
+  0% {
+    border-top-style: solid;
+    border-top-color: whitesmoke;
+  }
+  25% {
+    border-right-style: solid;
+    border-right-color: whitesmoke;
+  }
+  50% {
+    border-bottom-style: solid;
+    border-bottom-color: whitesmoke;
+  }
+  100% {
+    border-left-style: solid;
+    border-left-color: whitesmoke;
+  }
+}
+#SearchButton {
+  background-color: rgba(0, 0, 0, 0);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border: 2.01px solid grey;
+  border-right: none;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  outline: 0;
+  font-size: 1em;
+}
+.center-form {
+  margin-left: 30.3%;
+}
+/*From a minimum width and bigger*/
+@media (min-width: 320px) {
+  .InputStyle {
+    width: 50%;
+    font-size: 1.4rem;
+  }
+  .center-form {
+    margin-left: 30.3%;
+  }
+}
+@media (min-width: 375px) {
+  .InputStyle {
+    width: 50%;
+    font-size: 1.4rem;
+    padding-bottom: 1%;
+  }
+}
+@media (min-width: 425px) {
+  .InputStyle {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .InputStyle {
+    font-size: 1.75rem;
+    padding-top: 0.5%;
+    padding-bottom: 0.75%;
+  }
+  #SearchButton {
+    font-size: 1.1em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .InputStyle {
+    font-size: 1.75rem;
+    padding-top: 0.9%;
+  }
+  #SearchButton {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 1440px) {
+  .InputStyle {
+    font-size: 1.75rem;
+    padding-top: 0.75%;
+    padding-bottom: 1%;
+  }
+  #SearchButton {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 2560px) {
+  .InputStyle {
+    font-size: 1.75rem;
+    padding-top: 0.8%;
+  }
+  #SearchButton {
+    font-size: 1.2em;
+  }
+}
