@@ -6,20 +6,20 @@ function ChangeUserName(props) {
   const [oldName, setOldName] = useState("");
   const [newName, setNewName] = useState("");
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const result = await (
-      await fetch("http://localhost:4000/settings/changeName", {
+      await fetch("http://localhost:4010/settings/changeName", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${user.accesstoken}`
+          authorization: `Bearer ${user.accesstoken}`,
         },
         body: JSON.stringify({
           old_name: oldName,
-          new_name: newName
-        })
+          new_name: newName,
+        }),
       })
     ).json();
 
@@ -32,7 +32,7 @@ function ChangeUserName(props) {
     props.logOutCallback();
   };
 
-  const handleInput = event => {
+  const handleInput = (event) => {
     if (event.target.name === "old Name") {
       setOldName(event.target.value.toUpperCase());
     } else setNewName(event.target.value.toUpperCase());

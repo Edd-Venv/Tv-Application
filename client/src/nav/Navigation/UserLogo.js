@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../App.js";
 
-const UserLogo = props => {
+const UserLogo = (props) => {
   const [user] = useContext(UserContext);
   const [name, setName] = useState("");
 
@@ -9,12 +9,12 @@ const UserLogo = props => {
     if (user.accesstoken) {
       try {
         const result = await (
-          await fetch("http://localhost:4000/userName", {
+          await fetch("http://localhost:4010/userName", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              authorization: `Bearer ${user.accesstoken}`
-            }
+              authorization: `Bearer ${user.accesstoken}`,
+            },
           })
         ).json();
 
@@ -36,7 +36,7 @@ const UserLogo = props => {
           fontSize: "1.5rem",
           color: "black",
           fontWeight: "bold",
-          paddingLeft: "0.5rem"
+          paddingLeft: "0.5rem",
         }}
       >
         {name}
