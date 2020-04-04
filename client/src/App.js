@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router, navigate } from "@reach/router";
 import Content from "./nav/Content/Content.js";
 import "./App.css";
+import Movies from "./moviesApp.js";
 
 export const UserContext = React.createContext([]);
 
@@ -12,7 +13,7 @@ function App() {
   const logOutCallback = async () => {
     await fetch("http://localhost:4000/logout", {
       method: "POST",
-      credentials: "include" // Needed to include the cookie
+      credentials: "include", // Needed to include the cookie
     });
     // Clear user from context
     setUser({});
@@ -31,17 +32,10 @@ function App() {
     );
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <div
-        style={{
-          maxWidth: "1000px",
-          minWidth: "50%",
-          margin: "0 auto"
-        }}
-      >
-        <Router id="router">
-          <Content path="/" loading={loading} logOutCallback={logOutCallback} />
-        </Router>
-      </div>
+      <Router id="router">
+        <Content path="/" loading={loading} logOutCallback={logOutCallback} />
+        <Movies path="/Movies" logOutCallback={logOutCallback} />
+      </Router>
     </UserContext.Provider>
   );
 }

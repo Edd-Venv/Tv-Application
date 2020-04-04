@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../App.js";
-import { Link } from "@reach/router";
+import { Link, useMatch } from "@reach/router";
 import { GoGear } from "react-icons/go";
 
 const Navigation = ({ logOutCallback }) => {
@@ -50,6 +50,46 @@ const Navigation = ({ logOutCallback }) => {
       );
     else return null;
   };
+  const useShowMyShows = () => {
+    const match = useMatch("/");
+    if (match !== null)
+      return (
+        <Link className="nav-link" to="/MyTvShows">
+          MyShows<span className="sr-only">(current)</span>
+        </Link>
+      );
+    else return null;
+  };
+  const useShowTvShows = () => {
+    const match = useMatch("/Movies");
+    if (match !== null)
+      return (
+        <Link className="nav-link" to="/">
+          TvShows<span className="sr-only">(current)</span>
+        </Link>
+      );
+    else return null;
+  };
+  const useShowMovies = () => {
+    const match = useMatch("/Movies");
+    if (match !== null) return null;
+    else
+      return (
+        <Link className="nav-link" to="/Movies">
+          Movies<span className="sr-only">(current)</span>
+        </Link>
+      );
+  };
+  const useShowMyMovies = () => {
+    const match = useMatch("/Movies");
+    if (match !== null)
+      return (
+        <Link className="nav-link" to="/MyMovies">
+          MyMovies<span className="sr-only">(current)</span>
+        </Link>
+      );
+    else return null;
+  };
 
   return (
     <React.Fragment>
@@ -72,14 +112,13 @@ const Navigation = ({ logOutCallback }) => {
                 Home<span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item active">
-              <Link className="nav-link" to="/protected">
-                MyBooks<span className="sr-only">(current)</span>
-              </Link>
-            </li>
+            <li className="nav-item active">{useShowMyShows()}</li>
+            <li className="nav-item active">{useShowMyMovies()}</li>
             <li className="nav-item active">{showLogin()}</li>
             <li className="nav-item active">{showRegister()}</li>
             <li className="nav-item active">{showLogOut()}</li>
+            <li className="nav-item active">{useShowMovies()}</li>
+            <li className="nav-item active">{useShowTvShows()}</li>
             <li className="nav-item active">
               <a
                 className="nav-link"

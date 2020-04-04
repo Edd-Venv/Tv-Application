@@ -4,28 +4,38 @@ import { TvContextProvider } from "./tvShows/contexts/tvContext.js";
 import Body from "./tvShows/components/Body/Body";
 import Search from "./tvShows/components/Search/Search";
 import Slider from "./tvShows/components/Slider/Slider.js";
+import Navigation from "./nav/Navigation/Navigation.js";
 
-function TvShows() {
+function TvShows(props) {
   return (
     <React.Fragment>
+      <Navigation path="/" logOutCallback={props.logOutCallback} />
       <TvContextProvider>
-        <h2
+        <div
           style={{
-            textAlign: "center",
-            fontSize: "1.5em",
-            fontWeight: "bolder",
-            color: "white"
+            maxWidth: "1000px",
+            minWidth: "50%",
+            margin: "0 auto",
           }}
         >
-          TRENDING SHOWS
-        </h2>
-        <Header />
-        <br />
-        <Body />
-        <br />
-        <Search />
-        <br />
-        <Slider />
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "1.5em",
+              fontWeight: "bolder",
+              color: "white",
+            }}
+          >
+            TRENDING SHOWS
+          </h2>
+          <Header />
+          <br />
+          <Body />
+          <br />
+          <Search />
+          <br />
+          <Slider />
+        </div>
       </TvContextProvider>
     </React.Fragment>
   );
