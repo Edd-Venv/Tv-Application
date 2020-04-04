@@ -3,31 +3,31 @@ import { navigate } from "@reach/router";
 import { UserContext } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
 
-const Login = props => {
+const Login = (props) => {
   const [user, setUser] = useContext(UserContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const result = await (
-      await fetch("http://localhost:4000/login", {
+      await fetch("http://localhost:4010/login", {
         method: "POST",
         credentials: "include", // Needed to include the cookie
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           person_name: name,
-          password: password
-        })
+          password: password,
+        }),
       })
     ).json();
 
     if (result.accesstoken) {
       setUser({
-        accesstoken: result.accesstoken
+        accesstoken: result.accesstoken,
       });
 
       navigate("/");
@@ -36,7 +36,7 @@ const Login = props => {
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     if (e.target.name === "name") {
       setName(e.target.value.toUpperCase());
     } else {
@@ -57,7 +57,7 @@ const Login = props => {
             width: "30%",
             margin: "0 auto",
             font: "2rem",
-            marginTop: "10%"
+            marginTop: "10%",
           }}
         >
           <h3 style={{ textAlign: "center" }}>

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../App.js";
 import { Link, useMatch } from "@reach/router";
-import { GoGear } from "react-icons/go";
+import UserLogo from "./UserLogo.js";
+import { GoGear, GoPerson } from "react-icons/go";
 
 const Navigation = ({ logOutCallback }) => {
   const [user] = useContext(UserContext);
@@ -131,6 +132,10 @@ const Navigation = ({ logOutCallback }) => {
             </li>
             <li className="nav-item active">{showSettings()}</li>
           </ul>
+        </div>
+        <div>
+          <GoPerson />
+          <UserLogo />
         </div>
       </nav>
     </React.Fragment>
