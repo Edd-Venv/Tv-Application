@@ -2,19 +2,13 @@
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
-  max-width: 70%;
-  min-width: 50%;
+  width: 10%;
 }
-
+#slider-box {
+  width: 40%;
+}
 * {
   box-sizing: border-box;
-}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
 }
 
 /* Hide the images by default */
@@ -45,5 +39,25 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+/*From a minimum width and bigger*/
+
+@media (min-width: 768px) {
+  #slider-box {
+    width: 27%;
+  }
+}
+
+@media (min-width: 1024px) {
+  #slider-box {
+    width: 30%;
+  }
+}
+
+@media (min-width: 2560px) {
+  #slider-box {
+    width: 35%;
   }
 }

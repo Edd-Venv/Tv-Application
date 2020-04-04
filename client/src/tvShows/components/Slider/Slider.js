@@ -8,7 +8,7 @@ function Slider() {
   const { isLoaded, data } = useContext(TvContext);
   const slicedArray = [];
 
-  for (let i = 0; i < 13; i++) {
+  for (let i = 0; i < 12; i++) {
     slicedArray.push(data[i]);
   }
   const consoler = (key) => {
@@ -16,7 +16,7 @@ function Slider() {
   };
 
   return (
-    <div className="slider-container">
+    <React.Fragment>
       {isLoaded === false ? (
         <div
           className="spinner-grow text-dark"
@@ -33,6 +33,7 @@ function Slider() {
             showThumbs={false}
             autoPlay
             infiniteLoop
+            showIndicators={false}
           >
             {slicedArray.map((data) => {
               return (
@@ -41,8 +42,7 @@ function Slider() {
                     alt="loading"
                     src={data.image.original}
                     className="img-thumbnail"
-                    id="box"
-                    style={{ width: "40%" }}
+                    id="slider-box"
                   />
                   <button onClick={consoler.bind(this, data.id)}>save</button>
                 </React.Fragment>
@@ -51,7 +51,7 @@ function Slider() {
           </Carousel>
         </div>
       )}
-    </div>
+    </React.Fragment>
   );
 }
 export default Slider;
