@@ -6,19 +6,19 @@ function ChangeUserPwd(props) {
   const [oldPwd, setOldPwd] = useState("");
   const [newPwd, setNewPwd] = useState("");
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await (
-      await fetch("http://localhost:4000/settings/changePassword", {
+      await fetch("http://localhost:4010/settings/changePassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${user.accesstoken}`
+          authorization: `Bearer ${user.accesstoken}`,
         },
         body: JSON.stringify({
           old_password: oldPwd,
-          new_password: newPwd
-        })
+          new_password: newPwd,
+        }),
       })
     ).json();
     if (!result.error) {
@@ -30,7 +30,7 @@ function ChangeUserPwd(props) {
     props.logOutCallback();
   };
 
-  const handleInput = event => {
+  const handleInput = (event) => {
     if (event.target.name === "old password") {
       setOldPwd(event.target.value);
     } else setNewPwd(event.target.value);
