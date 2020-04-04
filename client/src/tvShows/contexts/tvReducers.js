@@ -6,3 +6,22 @@ export const tvReducer = (state, action) => {
       throw new Error();
   }
 };
+
+export const searchReducer = (state, action) => {
+  switch (action.type) {
+    case "SEARCH":
+      return {
+        data: action.data
+      };
+    case "SECONDSEARCH":
+      return {
+        ...state,
+        Test: action.Test,
+        showTrailer: action.showTrailer,
+        isLoaded: action.isLoaded,
+        display: action.display
+      };
+    default:
+      throw new Error();
+  }
+};
