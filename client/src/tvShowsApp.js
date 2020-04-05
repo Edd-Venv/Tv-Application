@@ -34,6 +34,7 @@ function TvShows(props) {
           <br />
           <Search />
           <br />
+
           <Slider />
         </div>
       </TvContextProvider>

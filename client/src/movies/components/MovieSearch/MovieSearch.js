@@ -1,62 +1,64 @@
-import React from "react";
-import { MovieSearchContext } from "../../contexts/movieSearchContext";
-import FetalMovieSearchError from "./FetalMovieSearchError";
-import MovieSearchResult from "./MovieSearchResult";
+import React, { useReducer } from "react";
+import { initialState } from "./DummyData.js";
+import { searchReducer } from "../../contexts/movieReducers.js";
+import SearchForm from "./SearchForm.js";
+import MovieSearchResult from "./MovieSearchResult.js";
 import "./MovieSearch.css";
 
-class MovieSearch extends React.Component {
-  static contextType = MovieSearchContext;
+function Search() {
+  const [state, dispatch] = useReducer(searchReducer, initialState);
+  const handleClose = () => {
+    dispatch({
+      type: "SEARCH",
+      ...initialState,
+    });
 
-  render() {
-    const {
-      Movies,
-      isLoaded,
-      display,
-      Test,
-      MovieTrailer,
-      handleSubmit,
-      handleChange,
-      value,
-      handleClick
-    } = this.context;
-    return (
-      <React.Fragment>
-        <div className="movie-center-form">
-          <form onSubmit={handleSubmit}>
-            <span className="form-inline">
-              <button id="MovieSearchButton" type="submit">
-                <i className="fas fa-search" />
-              </button>
-              <input
-                className="MovieInputStyle"
-                type="text/number"
-                onChange={handleChange}
-                value={value}
-                placeholder="Movie Title"
-                id="input"
-              />
-            </span>
-          </form>
-        </div>
-        <br />
-        <br />
-        {isLoaded === false ? null : (
-          <div className={display}>
-            {Movies.Poster === "N/A" || Movies.Error === "Movie not found!" ? (
-              <FetalMovieSearchError handleClick={handleClick} />
-            ) : (
-              <MovieSearchResult
-                Movies={Movies}
-                Test={Test}
-                MovieTrailer={MovieTrailer}
-                handleClick={handleClick}
-              />
-            )}{" "}
-          </div>
-        )}
-      </React.Fragment>
-    );
-  }
+    document.getElementById("movie-model").style.display = "none";
+    //document.getElementById("movie-slider").style.display = "block";
+  };
+
+  const onAddSearch = (text) => {
+    (async function fetchData() {
+      await fetch("http://localhost:4010/movieSearch", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          search_text: text,
+        }),
+      })
+        .then((result) => {
+          return result.json();
+        })
+        .then((Data) => {
+          dispatch({
+            type: "SEARCH",
+            isLoaded: true,
+            Movie: Data.data[0],
+            MovieTrailer: Data.data[1].Similar.Info[0].yUrl,
+            Test: Data.data[1].Similar.Info[0].Type,
+          });
+        });
+    })();
+  };
+
+  return (
+    <React.Fragment>
+      <br />
+      <br />
+      <br />
+      <SearchForm onAddSearch={onAddSearch} />
+      <br />
+      <MovieSearchResult
+        Movie={state.Movie}
+        Test={state.Test}
+        MovieTrailer={state.MovieTrailer}
+        handleClose={handleClose}
+      />
+      <br />
+    </React.Fragment>
+  );
 }
 
-export default MovieSearch;
+export default Search;
