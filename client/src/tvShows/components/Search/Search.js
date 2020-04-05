@@ -19,32 +19,26 @@ function Search() {
 
   const onAddSearch = (text) => {
     (async function fetchData() {
-      await fetch(
-        `https://cors-anywhere.herokuapp.com/https://api.tvmaze.com/search/shows?q=${text}&embed=seasons`
-      )
+      await fetch("http://localhost:4010/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          search_text: text,
+        }),
+      })
         .then((result) => {
           return result.json();
         })
         .then((Data) => {
           dispatch({
             type: "SEARCH",
-            data: Data[0].show,
-          });
-        });
-
-      await fetch(
-        `https://cors-anywhere.herokuapp.com/https://tastedive.com/api/similar?q=${text}&type=shows&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`
-      )
-        .then((result) => {
-          return result.json();
-        })
-        .then((Data) => {
-          dispatch({
-            type: "SECONDSEARCH",
+            data: Data.data[0][0].show,
             isLoaded: true,
-            showTrailer: Data.Similar.Info[0].yUrl,
-            Test: Data.Similar.Info[0].Type,
-            teaser: Data.Similar.Info[0].wTeaser,
+            showTrailer: Data.data[1].Similar.Info[0].yUrl,
+            Test: Data.data[1].Similar.Info[0].Type,
+            teaser: Data.data[1].Similar.Info[0].wTeaser,
             display: "show",
           });
         });
