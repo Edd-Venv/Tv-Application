@@ -1,51 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Movies.css";
-import { MovieContext } from "../../contexts/movieContext";
+import { MovieContext } from "../../contexts/movieContext.js";
 
-class Movies extends React.Component {
-  static contextType = MovieContext;
+function Movie() {
+  const { isLoaded, data } = useContext(MovieContext);
 
-  render() {
-    const { Movies, Movies2, Movies3, Movies4 } = this.context;
-    return (
-      <React.Fragment>
-        <div className="movieContainer">
-          <div className="poster1">
-            <img
-              alt="loading"
-              src={Movies.Poster}
-              className="img-thumbnail"
-              id="boxMovie"
-            />
-          </div>
-          <div className="poster2">
-            <img
-              alt="loading"
-              src={Movies2.Poster}
-              className="img-thumbnail"
-              id="boxMovie"
-            />
-          </div>
-          <div className="poster3">
-            <img
-              alt="loading"
-              src={Movies3.Poster}
-              className="img-thumbnail"
-              id="boxMovie"
-            />
-          </div>
-          <div className="poster4">
-            <img
-              alt="loading"
-              src={Movies4.Poster}
-              className="img-thumbnail"
-              id="boxMovie"
-            />
-          </div>
+  return (
+    <React.Fragment>
+      {isLoaded === false ? (
+        <div
+          className="spinner-grow text-dark"
+          role="status"
+          style={{ margin: "0 auto" }}
+        >
+          <span className="sr-only">Loading...</span>
         </div>
-      </React.Fragment>
-    );
-  }
+      ) : (
+        <div className="movieContainer">
+          {data.map((info) => {
+            return (
+              <div className="poster" key={info.imdbID}>
+                <img
+                  alt="loading"
+                  src={info.Poster}
+                  className="img-thumbnail"
+                  id="boxMovie"
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </React.Fragment>
+  );
 }
 
-export default Movies;
+export default Movie;
