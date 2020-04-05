@@ -3,7 +3,7 @@ import { tvReducer } from "./tvReducers.js";
 
 const initialState = {
   isLoaded: false,
-  data: {}
+  data: {},
 };
 export const TvContext = createContext(initialState);
 
@@ -12,15 +12,15 @@ export const TvContextProvider = ({ children }) => {
 
   useEffect(() => {
     document.title = "Tv Shows";
-    fetch("https://api.tvmaze.com/shows")
-      .then(result => {
+    fetch("http://localhost:4010/apiData")
+      .then((result) => {
         return result.json();
       })
-      .then(Data => {
+      .then((Data) => {
         dispatch({
           type: "GET",
           isLoaded: true,
-          data: Data.slice(0, 128)
+          data: Data.data.slice(0, 128),
         });
       });
   }, []);

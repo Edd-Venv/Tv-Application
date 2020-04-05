@@ -25,7 +25,7 @@ function Slider() {
           },
           body: JSON.stringify({
             show_key: Args[0],
-            show_name: Args[1],
+            show_title: Args[1],
             show_runtime: Args[2],
             show_status: Args[3],
             show_premiered: Args[4],

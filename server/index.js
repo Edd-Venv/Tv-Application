@@ -268,32 +268,34 @@ async function saveShow(req, res, next) {
       );
 
       const doesShowExist = checkDB.rows[0];
-      if (doesBookExist !== undefined) return null;
-      console.log(doesShowExist);
-      /*
-        const values = [
-          userId,
-          req.body.book_image,
-          req.body.book_key,
-          req.body.book_title,
-          req.body.book_author,
-          req.body.book_price,
-          req.body.book_currencyCode,
-          req.body.book_pages
-        ];
-  
-        pool.query(
-          `INSERT INTO book (person_id, book_image, book_key, book_title,
-              book_author,
-              book_price,
-              book_currencyCode,
-              book_pages) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8)`,
-          values,
-          (q_err, q_res) => {
-            if (q_err) return next(q_err);
-            res.json({ message: "Book Saved" });
-          }
-        );*/
+      if (doesShowExist !== undefined) return null;
+
+      const values = [
+        userId,
+        req.body.show_key,
+        req.body.show_title,
+        req.body.show_runtime,
+        req.body.show_status,
+        req.body.show_premiered,
+        req.body.show_genre,
+        req.body.show_rating,
+        req.body.show_image,
+        req.body.show_summary,
+      ];
+
+      pool.query(
+        `INSERT INTO show (person_id, show_key, show_title, show_runtime,
+              show_status,
+              show_premiered,
+              show_genre,
+              show_rating,
+              show_image, show_summary) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        values,
+        (q_err, q_res) => {
+          if (q_err) return next(q_err);
+          res.json({ message: "Show Saved" });
+        }
+      );
     } catch (err) {
       res.json({ error: err });
     }
@@ -303,6 +305,84 @@ async function saveShow(req, res, next) {
 //Saving a show after the user authentication
 server.post("/", async (req, res, next) => {
   saveShow(req, res, next);
+});
+
+//Getting Protected data
+server.get("/MyShows", async (req, res) => {
+  try {
+    const userId = isAuth(req);
+    if (userId !== null) {
+      const shows = await pool.query(
+        `SELECT * FROM show WHERE person_id = '${userId}'`
+      );
+      res.send({
+        data: shows.rows,
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: `${err.message}`,
+    });
+  }
+});
+
+//Delete Protected Data
+server.post("/MyShows/Delete", async (req, res) => {
+  try {
+    const userId = isAuth(req);
+    if (userId !== null) {
+      await pool.query(
+        `DELETE FROM show WHERE show_key = '${req.body.show_key}'
+           AND person_id = '${userId}'`
+      );
+
+      res.json({ message: `${req.body.show_title} Deleted.` });
+    }
+  } catch (error) {
+    res.json({ error: "Book Not Deleted." });
+  }
+});
+
+/////////////////////////////////////////////////// TV SHOWS API CALLS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+//SEARCH DATA
+
+server.post("/search", async (req, res) => {
+  const tvShowsFirstApi = `https://api.tvmaze.com/search/shows?q=${req.body.search_text}&embed=seasons`;
+  const tvShowsSecondApi = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=shows&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
+
+  try {
+    const exists = Cache.has(`${req.body.search_text}`);
+    if (exists) {
+      res.json({ data: Cache.get(`${req.body.search_text}`) });
+    } else {
+      const firstResult = await (await fetch(tvShowsFirstApi)).json();
+      const secondResult = await (await fetch(tvShowsSecondApi)).json();
+      const finalResult = [firstResult, secondResult];
+      Cache.set(`${req.body.search_text}`, finalResult, 691200);
+      res.json({ data: finalResult });
+    }
+  } catch (error) {
+    res.json({ error: error });
+  }
+});
+
+//FETCH DATA
+const apiData = "https://api.tvmaze.com/shows";
+server.get("/apiData", async (req, res) => {
+  try {
+    const exists = Cache.has("apiData");
+
+    if (exists) {
+      res.json({ data: Cache.get("apiData") });
+    } else {
+      const result = await (await fetch(apiData)).json();
+      Cache.set("apiData", result, 691200);
+      res.json({ data: result });
+    }
+  } catch (error) {
+    res.json({ error: error });
+  }
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
