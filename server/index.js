@@ -307,6 +307,11 @@ server.post("/", async (req, res, next) => {
   saveShow(req, res, next);
 });
 
+//Saving a searched Show
+server.post("/search/saveShow", async (req, res, next) => {
+  saveShow(req, res, next);
+});
+
 //Getting Protected data
 server.get("/MyShows", async (req, res) => {
   try {
@@ -339,7 +344,7 @@ server.post("/MyShows/Delete", async (req, res) => {
       res.json({ message: `${req.body.show_title} Deleted.` });
     }
   } catch (error) {
-    res.json({ error: "Book Not Deleted." });
+    res.json({ error: "Show Not Deleted." });
   }
 });
 
@@ -382,6 +387,147 @@ server.get("/apiData", async (req, res) => {
     }
   } catch (error) {
     res.json({ error: error });
+  }
+});
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////// MOVIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////////////////// UTILS ///////////////////////////////////
+
+//SAVING A MOVIE
+async function saveMovie(req, res, next) {
+  const userId = isAuth(req);
+  if (userId !== null) {
+    try {
+      //Check If Book is Already Saved
+      const checkDB = await pool.query(
+        `SELECT * FROM movie WHERE movie_key = '${req.body.movie_key}'
+             AND person_id = '${userId}'`
+      );
+
+      const doesShowExist = checkDB.rows[0];
+      if (doesShowExist !== undefined) return null;
+
+      const values = [
+        userId,
+        req.body.movie_image,
+        req.body.movie_title,
+        req.body.movie_summary,
+        req.body.movie_genre,
+        req.body.movie_release,
+        req.body.movie_runtime,
+        req.body.movie_rating,
+        req.body.movie_key,
+        req.body.movie_trailer,
+      ];
+
+      pool.query(
+        `INSERT INTO movie (person_id, movie_image, movie_title, movie_summary,
+          movie_genre,
+          movie_release,
+          movie_runtime,
+          movie_rating,
+          movie_key, movie_trailer) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        values,
+        (q_err, q_res) => {
+          if (q_err) return next(q_err);
+          res.json({ message: "Movie Saved" });
+        }
+      );
+    } catch (err) {
+      res.json({ error: err });
+    }
+  }
+}
+
+//Saving a Searched Movie
+server.post("/search/saveMovie", async (req, res, next) => {
+  saveMovie(req, res, next);
+});
+
+/////////////////////////////////////////////////////////////////API CALLS///////////////////////////////////
+//FETCH MOVIE DATA
+const movieApi1 =
+  "https://www.omdbapi.com/?t=Bohemian Rhapsody&apikey=728de06e";
+const movieApi2 = "https://www.omdbapi.com/?t=A Star Is Born&apikey=728de06e";
+const movieApi3 =
+  "https://www.omdbapi.com/?t=Fantastic Beasts: The Crimes Of Grindelwald&apikey=728de06e";
+const movieApi4 =
+  "https://www.omdbapi.com/?t=Jurassic World: Fallen Kingdom&apikey=728de06e";
+server.get("/movieData", async (req, res) => {
+  try {
+    const exists = Cache.has("movieData");
+
+    if (exists) {
+      res.json({ data: Cache.get("movieData") });
+    } else {
+      const result1 = await (await fetch(movieApi1)).json();
+      const result2 = await (await fetch(movieApi2)).json();
+      const result3 = await (await fetch(movieApi3)).json();
+      const result4 = await (await fetch(movieApi4)).json();
+      finalResult = [result1, result2, result3, result4];
+      Cache.set("movieData", finalResult, 691200);
+      res.json({ data: finalResult });
+    }
+  } catch (error) {
+    res.json({ error: error });
+  }
+});
+
+///// MOVIE SEARCH
+server.post("/movieSearch", async (req, res) => {
+  const moviesFirstApiCall = `https://www.omdbapi.com/?t=${req.body.search_text}&apikey=728de06e`;
+  const moviesSecondApiCall = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=movies&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
+
+  try {
+    const exists = Cache.has(`${req.body.search_text}`);
+    if (exists) {
+      res.json({ data: Cache.get(`${req.body.search_text}`) });
+    } else {
+      const firstResult = await (await fetch(moviesFirstApiCall)).json();
+      const secondResult = await (await fetch(moviesSecondApiCall)).json();
+      const finalResult = [firstResult, secondResult];
+      Cache.set(`${req.body.search_text}`, finalResult, 691200);
+      res.json({ data: finalResult });
+    }
+  } catch (error) {
+    res.json({ error: error });
+  }
+});
+
+///FETCHING SAVED Movies
+server.get("/MyMovies", async (req, res) => {
+  try {
+    const userId = isAuth(req);
+    if (userId !== null) {
+      const movies = await pool.query(
+        `SELECT * FROM movie WHERE person_id = '${userId}'`
+      );
+      res.send({
+        data: movies.rows,
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: `${err.message}`,
+    });
+  }
+});
+
+//DELETING SAVED MOVIES
+server.post("/MyMovies/Delete", async (req, res) => {
+  try {
+    const userId = isAuth(req);
+    if (userId !== null) {
+      await pool.query(
+        `DELETE FROM movie WHERE movie_key = '${req.body.movie_key}'
+           AND person_id = '${userId}'`
+      );
+
+      res.json({ message: `${req.body.movie_title} Deleted.` });
+    }
+  } catch (error) {
+    res.json({ error: "Movie Not Deleted." });
   }
 });
 

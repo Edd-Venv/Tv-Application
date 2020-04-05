@@ -17,29 +17,29 @@ function Header() {
         </div>
       ) : (
         <React.Fragment>
-          <div className="header1" key={data[54].id}>
+          <div className="header1" key={data[49].id}>
             <a
-              href={data[54]._links.self.href}
+              href={data[49].officialSite}
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
                 alt="loading"
-                src={data[54].image.original}
+                src={data[49].image.original}
                 className="img-thumbnail"
                 id="box"
               />
             </a>
           </div>
-          <div className="header2" key={data[11].id}>
+          <div className="header2" key={data[6].id}>
             <a
-              href={data[11]._links.self.href}
+              href={data[6].officialSite}
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
                 alt="loading"
-                src={data[11].image.original}
+                src={data[6].image.original}
                 className="img-thumbnail"
                 id="box"
               />
@@ -47,7 +47,7 @@ function Header() {
           </div>
           <div className="header3" key={data[52].id}>
             <a
-              href={data[52]._links.self.href}
+              href={data[52].officialSite}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -61,7 +61,7 @@ function Header() {
           </div>
           <div className="header4" key={data[7].id}>
             <a
-              href={data[7]._links.self.href}
+              href={data[7].officialSite}
               target="_blank"
               rel="noopener noreferrer"
             >
