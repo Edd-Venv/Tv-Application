@@ -7,6 +7,7 @@ import Register from "./nav/Register/Register.js";
 import Movies from "./moviesApp.js";
 import Settings from "./nav/Settings/Settings.js";
 import MyShows from "./nav/Content/MyShows.js";
+import MyMovies from "./movies/components/Movies/MyMovies.js";
 
 export const UserContext = React.createContext([]);
 
@@ -62,6 +63,7 @@ function App() {
         <Register path="/register" />
         <Content path="/" loading={loading} logOutCallback={logOutCallback} />
         <Movies path="/Movies" logOutCallback={logOutCallback} />
+        <MyMovies path="/MyMovies" logOutCallback={logOutCallback} />
         <MyShows path="/MyTvShows" logOutCallback={logOutCallback} />
       </Router>
     </UserContext.Provider>
