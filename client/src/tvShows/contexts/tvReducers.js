@@ -11,15 +11,12 @@ export const searchReducer = (state, action) => {
   switch (action.type) {
     case "SEARCH":
       return {
-        data: action.data
-      };
-    case "SECONDSEARCH":
-      return {
-        ...state,
+        data: action.data,
         Test: action.Test,
         showTrailer: action.showTrailer,
         isLoaded: action.isLoaded,
-        display: action.display
+        display: action.display,
+        teaser: action.teaser,
       };
     default:
       throw new Error();
