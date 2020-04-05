@@ -44,7 +44,9 @@ function ChangeUserName(props) {
       style={{ width: "30%", margin: "0 auto", font: "2rem" }}
     >
       <div className="form-group">
-        <h3 style={{ textAlign: "center" }}>CHANGE USER NAME</h3>
+        <h3 style={{ textAlign: "center", color: "white" }}>
+          CHANGE USER NAME
+        </h3>
         <label htmlFor="old Name">OLD USERNAME</label>
         <input
           className="form-control"

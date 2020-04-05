@@ -41,7 +41,7 @@ function ChangeUserPwd(props) {
       style={{ width: "30%", margin: "0 auto", font: "2rem" }}
     >
       <div className="form-group">
-        <h3 style={{ textAlign: "center" }}>CHANGE PASSWORD</h3>
+        <h3 style={{ textAlign: "center", color: "white" }}>CHANGE PASSWORD</h3>
         <label htmlFor="old password">OLD PASSWORD</label>
         <input
           className="form-control"
