@@ -1,3 +1,8 @@
+.my-movies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+}
+
 .movieContainer {
   display: flex;
   justify-content: space-between;
@@ -5,22 +10,11 @@
   margin: 0 auto;
   width: 85%;
 }
-.poster1 {
+.poster {
   min-width: 60px;
   width: 24%;
 }
-.poster2 {
-  min-width: 60px;
-  width: 24%;
-}
-.poster3 {
-  min-width: 60px;
-  width: 24%;
-}
-.poster4 {
-  min-width: 60px;
-  width: 24%;
-}
+
 img {
   width: 100%;
 }
