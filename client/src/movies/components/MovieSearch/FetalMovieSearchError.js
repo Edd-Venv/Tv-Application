@@ -1,20 +1,23 @@
 import React from "react";
 import "./MovieSearch.css";
 
-class FetalMovieSearchError extends React.Component {
-  render() {
-    const { handleClick } = this.props;
-    return (
-      <React.Fragment>
-        <div className="error-div">
-          <p className="error-paragraph">Sorry Movie Not In DataBase</p>
-          <span onClick={handleClick} className="close" id="error-close-button">
+const FetalMovieSearchError = (props) => {
+  return (
+    <React.Fragment>
+      <div className="error-div">
+        <div className="error-paragraph">
+          Sorry Movie Not In DataBase{" "}
+          <div
+            style={{ display: "inline" }}
+            onClick={props.handleClose}
+            id="error-close-button"
+          >
             ×
-          </span>
+          </div>{" "}
         </div>
-      </React.Fragment>
-    );
-  }
-}
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default FetalMovieSearchError;

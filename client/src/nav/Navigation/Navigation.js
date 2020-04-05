@@ -117,9 +117,9 @@ const Navigation = ({ logOutCallback }) => {
             <li className="nav-item active">{useShowMyMovies()}</li>
             <li className="nav-item active">{showLogin()}</li>
             <li className="nav-item active">{showRegister()}</li>
-            <li className="nav-item active">{showLogOut()}</li>
             <li className="nav-item active">{useShowMovies()}</li>
             <li className="nav-item active">{useShowTvShows()}</li>
+            <li className="nav-item active">{showLogOut()}</li>
             <li className="nav-item active">
               <a
                 className="nav-link"
