@@ -8,8 +8,26 @@ create table show (
     show_status VARCHAR NOT NULL,
     show_premiered VARCHAR NOT NULL,
     show_genre VARCHAR NOT NULL,
-    show_rating NUMERIC NOT NULL,
+    show_rating NUMERIC,
     show_summary VARCHAR NOT NULL,
+    id_uid UUID REFERENCES person
+)
+
+          
+          
+         
+create table movie (
+    movie_id SERIAL PRIMARY KEY,
+    person_id UUID NOT NULL,
+    movie_image VARCHAR NOT NULL,
+    movie_key VARCHAR NOT NULL,
+    movie_title VARCHAR NOT NULL,
+    movie_runtime VARCHAR NOT NULL,
+    movie_summary VARCHAR NOT NULL,
+    movie_release VARCHAR NOT NULL,
+    movie_genre VARCHAR NOT NULL,
+    movie_rating NUMERIC,
+    movie_trailer VARCHAR NOT NULL,
     id_uid UUID REFERENCES person
 )
 
