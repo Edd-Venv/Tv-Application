@@ -25,17 +25,26 @@ img {
   font-weight: bold;
   margin-left: 3%;
 }
-.MovieInputStyle {
+
+.input-container {
   border: 2px solid grey;
-  border-left: none;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   background-color: rgba(0, 0, 0, 0);
-  padding-top: 0.8%;
-  padding-bottom: 0.8%;
   outline: 0;
-  font-size: 1em;
-  width: 30%;
+  width: 20vw;
+  margin: 0 auto;
+  font-size: 1.2em;
+}
+
+.input-style {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  outline: 0;
+  width: 17vw;
+  font-size: 1.2em;
 }
 #input:hover {
   animation-name: borderEffect;
@@ -43,8 +52,6 @@ img {
   animation-delay: -0.5s;
   animation-iteration-count: 2;
   animation-timing-function: ease-in-out;
-  border: 2px solid;
-  border-radius: 5px;
   background-color: rgb(185, 184, 184);
   transition: 0.3s;
 }
@@ -68,23 +75,20 @@ img {
 }
 #MovieSearchButton {
   background-color: rgba(0, 0, 0, 0);
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-  border: 2.01px solid grey;
-  border-right: none;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  border: none;
   outline: 0;
+  font-size: 1em;
+  display: inline;
 }
-.movie-center-form {
-  margin-left: 30%;
-}
+
 /*From a minimum width and bigger*/
 @media (min-width: 320px) {
-  .MovieInputStyle {
-    width: 50%;
-    font-size: 1.4rem;
-    padding-top: 1%;
+  .input-container {
+    width: 50vw;
+    font-size: 1.2rem;
+  }
+  .input-style {
+    width: 38vw;
   }
   .error-paragraph {
     margin-left: 30%;
@@ -92,11 +96,6 @@ img {
   }
 }
 @media (min-width: 375px) {
-  .MovieInputStyle {
-    width: 50%;
-    font-size: 1.4rem;
-    padding-bottom: 1%;
-  }
   #error-close-button {
     color: red;
     font-weight: bold;
@@ -107,9 +106,8 @@ img {
   }
 }
 @media (min-width: 425px) {
-  .MovieInputStyle {
-    font-size: 1.5rem;
-    padding-top: 0.7%;
+  .input-style {
+    width: 40vw;
   }
   #error-close-button {
     color: red;
@@ -121,12 +119,11 @@ img {
   }
 }
 @media (min-width: 768px) {
-  .MovieInputStyle {
-    font-size: 1.75rem;
-    padding-bottom: 0.9%;
+  .input-container {
+    font-size: 1.3rem;
   }
-  #MovieSearchButton {
-    font-size: 1.2em;
+  .input-style {
+    width: 43vw;
   }
   .error-paragraph {
     margin-left: 45%;
@@ -143,13 +140,14 @@ img {
 }
 
 @media (min-width: 1024px) {
-  .MovieInputStyle {
-    font-size: 1.75rem;
-    padding-top: 0.75%;
+  .input-container {
+    width: 25vw;
+    font-size: 1.5rem;
   }
-  #MovieSearchButton {
-    font-size: 1.2em;
+  .input-style {
+    width: 20vw;
   }
+
   .error-paragraph {
     margin-left: 45%;
     font-size: 2rem;
@@ -164,12 +162,12 @@ img {
   }
 }
 @media (min-width: 1440px) {
-  .MovieInputStyle {
-    font-size: 1.75rem;
-    padding-top: 0.75%;
+  .input-container {
+    width: 21vw;
+    font-size: 2rem;
   }
-  #MovieSearchButton {
-    font-size: 1.2em;
+  .input-style {
+    width: 17vw;
   }
   .error-paragraph {
     margin-left: 45%;
@@ -185,12 +183,12 @@ img {
   }
 }
 @media (min-width: 2560px) {
-  .MovieInputStyle {
-    font-size: 1.75rem;
-    padding-top: 0.8%;
+  .input-container {
+    width: 25vw;
+    font-size: 2.5rem;
   }
-  #MovieSearchButton {
-    font-size: 1.2em;
+  .input-style {
+    width: 22vw;
   }
   .error-paragraph {
     margin-left: 45%;

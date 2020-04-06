@@ -13,27 +13,22 @@ const SearchForm = React.memo((props) => {
     //document.getElementById("movie-slider").style.display = "none";
   };
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="movie-center-form"
-      autoComplete="off"
-    >
-      <span className="form-inline">
+    <form onSubmit={handleSubmit} autoComplete="off">
+      <div className="input-container" id="input">
         <button id="MovieSearchButton" type="submit">
           <i className="fas fa-search" />
         </button>
         <input
-          className="MovieInputStyle"
+          className="input-style"
           type="text/number"
           onChange={(event) => {
             setText(event.target.value);
           }}
           value={currentText}
           placeholder="Movie Title"
-          id="input"
           required
         />
-      </span>
+      </div>
     </form>
   );
 });

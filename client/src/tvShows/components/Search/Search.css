@@ -77,16 +77,24 @@ img {
   width: 100%;
 }
 
-.InputStyle {
+.input-container {
   border: 2px solid grey;
-  border-left: none;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   background-color: rgba(0, 0, 0, 0);
-  padding-top: 0.8%;
-  padding-bottom: 0.8%;
   outline: 0;
-  width: 30%;
+  width: 20vw;
+  margin: 0 auto;
+  font-size: 1.2em;
+}
+
+.input-style {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  outline: 0;
+  width: 17vw;
   font-size: 1.2em;
 }
 #input:hover {
@@ -95,8 +103,6 @@ img {
   animation-delay: -0.5s;
   animation-iteration-count: 2;
   animation-timing-function: ease-in-out;
-  border: 2px solid;
-  border-radius: 5px;
   background-color: rgb(185, 184, 184);
   transition: 0.3s;
 }
@@ -120,76 +126,64 @@ img {
 }
 #SearchButton {
   background-color: rgba(0, 0, 0, 0);
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-  border: 2.01px solid grey;
-  border-right: none;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  border: none;
   outline: 0;
   font-size: 1em;
+  display: inline;
 }
-.center-form {
-  margin-left: 30.3%;
-}
+
 /*From a minimum width and bigger*/
 @media (min-width: 320px) {
-  .InputStyle {
-    width: 50%;
-    font-size: 1.4rem;
+  .input-container {
+    width: 50vw;
+    font-size: 1.2rem;
   }
-  .center-form {
-    margin-left: 30.3%;
-  }
-}
-@media (min-width: 375px) {
-  .InputStyle {
-    width: 50%;
-    font-size: 1.4rem;
-    padding-bottom: 1%;
+  .input-style {
+    width: 38vw;
   }
 }
+
 @media (min-width: 425px) {
-  .InputStyle {
-    font-size: 1.5rem;
+  .input-style {
+    width: 40vw;
   }
 }
 @media (min-width: 768px) {
-  .InputStyle {
-    font-size: 1.75rem;
-    padding-top: 0.5%;
-    padding-bottom: 0.75%;
+  .input-container {
+    font-size: 1.3rem;
   }
-  #SearchButton {
-    font-size: 1.1em;
+  .input-style {
+    width: 43vw;
   }
 }
 
 @media (min-width: 1024px) {
-  .InputStyle {
-    font-size: 1.75rem;
-    padding-top: 0.9%;
+  .input-container {
+    width: 25vw;
+    font-size: 1.5rem;
+  }
+  .input-style {
+    width: 20vw;
   }
   #SearchButton {
     font-size: 1.2em;
   }
 }
 @media (min-width: 1440px) {
-  .InputStyle {
-    font-size: 1.75rem;
-    padding-top: 0.75%;
-    padding-bottom: 1%;
+  .input-container {
+    width: 21vw;
+    font-size: 2rem;
   }
-  #SearchButton {
-    font-size: 1.2em;
+  .input-style {
+    width: 17vw;
   }
 }
 @media (min-width: 2560px) {
-  .InputStyle {
-    font-size: 1.75rem;
-    padding-top: 0.8%;
+  .input-container {
+    width: 25vw;
+    font-size: 2.5rem;
   }
-  #SearchButton {
-    font-size: 1.2em;
+  .input-style {
+    width: 22vw;
   }
 }
