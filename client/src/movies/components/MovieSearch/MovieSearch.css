@@ -26,7 +26,7 @@ img {
   margin-left: 3%;
 }
 
-.input-container {
+.movie-input-container {
   border: 2px solid grey;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
@@ -39,34 +39,51 @@ img {
   font-size: 1.2em;
 }
 
-.input-style {
+.movie-input-style {
   border: none;
   background-color: rgba(0, 0, 0, 0);
   outline: 0;
   width: 17vw;
   font-size: 1.2em;
 }
-#input:hover {
-  animation-name: borderEffect;
+#movie-input:hover {
+  animation-name: movie-input-border-effect;
   animation-duration: 1.5s;
   animation-delay: -0.5s;
   animation-iteration-count: 2;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: linear;
   background-color: rgb(185, 184, 184);
   transition: 0.3s;
+  -webkit-animation-name: movie-input-border-effect;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-delay: -0.1s;
+  -webkit-animation-iteration-count: 2;
+  -webkit-animation-timing-function: linear;
+  -webkit-background-color: rgb(185, 184, 184);
+  -webkit-transition: 0.5s;
 }
-@keyframes borderEffect {
+@keyframes movie-input-border-effect {
   0% {
     border-top-style: solid;
     border-top-color: whitesmoke;
   }
   25% {
+    border-top-style: solid;
+    border-top-color: whitesmoke;
     border-right-style: solid;
     border-right-color: whitesmoke;
   }
   50% {
+    border-right-style: solid;
+    border-right-color: whitesmoke;
     border-bottom-style: solid;
     border-bottom-color: whitesmoke;
+  }
+  75% {
+    border-bottom-style: solid;
+    border-bottom-color: whitesmoke;
+    border-left-style: solid;
+    border-left-color: whitesmoke;
   }
   100% {
     border-left-style: solid;
@@ -83,12 +100,16 @@ img {
 
 /*From a minimum width and bigger*/
 @media (min-width: 320px) {
-  .input-container {
+  .movie-input-container {
     width: 50vw;
     font-size: 1.2rem;
   }
-  .input-style {
+  .movie-input-style {
     width: 38vw;
+  }
+  #movie-input:hover {
+    width: 51vw;
+    transform: translate(1px, -5px);
   }
   .error-paragraph {
     margin-left: 30%;
@@ -106,8 +127,12 @@ img {
   }
 }
 @media (min-width: 425px) {
-  .input-style {
+  .movie-input-style {
     width: 40vw;
+  }
+  #movie-input:hover {
+    width: 52vw;
+    transform: translate(1px, -5px);
   }
   #error-close-button {
     color: red;
@@ -119,10 +144,10 @@ img {
   }
 }
 @media (min-width: 768px) {
-  .input-container {
+  .movie-input-container {
     font-size: 1.3rem;
   }
-  .input-style {
+  .movie-input-style {
     width: 43vw;
   }
   .error-paragraph {
@@ -140,12 +165,16 @@ img {
 }
 
 @media (min-width: 1024px) {
-  .input-container {
+  .movie-input-container {
     width: 25vw;
     font-size: 1.5rem;
   }
-  .input-style {
+  .movie-input-style {
     width: 20vw;
+  }
+  #movie-input:hover {
+    width: 26vw;
+    transform: translate(1px, -5px);
   }
 
   .error-paragraph {
@@ -162,12 +191,16 @@ img {
   }
 }
 @media (min-width: 1440px) {
-  .input-container {
+  .movie-input-container {
     width: 21vw;
     font-size: 2rem;
   }
-  .input-style {
+  .movie-input-style {
     width: 17vw;
+  }
+  #movie-input:hover {
+    width: 22vw;
+    transform: translate(1px, -5px);
   }
   .error-paragraph {
     margin-left: 45%;
@@ -183,12 +216,16 @@ img {
   }
 }
 @media (min-width: 2560px) {
-  .input-container {
+  .movie-input-container {
     width: 25vw;
     font-size: 2.5rem;
   }
-  .input-style {
+  .movie-input-style {
     width: 22vw;
+  }
+  #movie-input:hover {
+    width: 26vw;
+    transform: translate(1px, -5px);
   }
   .error-paragraph {
     margin-left: 45%;

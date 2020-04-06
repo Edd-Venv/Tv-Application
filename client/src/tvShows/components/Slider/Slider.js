@@ -4,6 +4,7 @@ import "./Slider.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { UserContext } from "../../../App.js";
+import PopUp from "./Card.js";
 
 function Slider() {
   const { isLoaded, data } = useContext(TvContext);
@@ -44,7 +45,12 @@ function Slider() {
       }
     }
   }
-
+  const showPopUp = (data) => {
+    if (document.getElementById("show-pop-up") !== null) {
+      document.getElementById("show-pop-up").style.display = "block";
+      return <PopUp data={data} />;
+    }
+  };
   return (
     <React.Fragment>
       {isLoaded === false ? (
@@ -56,45 +62,34 @@ function Slider() {
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        <div id="slider">
-          <Carousel
-            centerMode={true}
-            showStatus={false}
-            showThumbs={false}
-            autoPlay
-            infiniteLoop
-            showIndicators={false}
-          >
-            {slicedArray.map((data) => {
-              return (
-                <React.Fragment key={data.id}>
-                  <img
-                    alt="loading"
-                    src={data.image.original}
-                    className="img-thumbnail"
-                    id="slider-box"
-                  />
-                  <button
-                    className="btn btn-primary"
-                    onClick={saveShow.bind(this, [
-                      data.id,
-                      data.name,
-                      data.runtime,
-                      data.status,
-                      data.premiered,
-                      data.genres[0],
-                      data.rating.average,
-                      data.summary,
-                      data.image.original,
-                    ])}
-                  >
-                    save
-                  </button>
-                </React.Fragment>
-              );
-            })}
-          </Carousel>
-        </div>
+        <React.Fragment>
+          <div id="slider">
+            <Carousel
+              centerMode={true}
+              showStatus={false}
+              showThumbs={false}
+              autoPlay
+              infiniteLoop
+              showIndicators={false}
+            >
+              {slicedArray.map((data) => {
+                return (
+                  <React.Fragment key={data.id}>
+                    <button onClick={showPopUp.bind(this, data)}>
+                      <img
+                        alt="loading"
+                        src={data.image.original}
+                        className="img-thumbnail"
+                        id="slider-box"
+                      />
+                    </button>
+                  </React.Fragment>
+                );
+              })}
+            </Carousel>
+          </div>
+          <PopUp data={data} />
+        </React.Fragment>
       )}
     </React.Fragment>
   );

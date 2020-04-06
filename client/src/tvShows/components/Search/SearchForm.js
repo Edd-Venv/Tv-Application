@@ -13,12 +13,12 @@ const SearchForm = React.memo((props) => {
   };
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
-      <div className="input-container" id="input">
+      <div className="show-input-container" id="show-input">
         <button id="SearchButton" type="submit">
           <i className="fas fa-search" />
         </button>
         <input
-          className="input-style"
+          className="show-input-style"
           type="text/number"
           onChange={(event) => {
             setText(event.target.value);

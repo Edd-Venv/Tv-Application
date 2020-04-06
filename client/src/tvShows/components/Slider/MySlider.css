@@ -1,0 +1,13 @@
+.cards-slider-wrapper {
+  position: sticky;
+  left: 50%;
+  width: 10vw;
+}
+.cards-slider {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 80%;
+  min-width: 50%;
+  background-color: blue;
+}
