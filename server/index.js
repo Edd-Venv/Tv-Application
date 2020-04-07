@@ -477,7 +477,7 @@ server.get("/movieData", async (req, res) => {
 ///// MOVIE SEARCH
 server.post("/movieSearch", async (req, res) => {
   const moviesFirstApiCall = `https://www.omdbapi.com/?t=${req.body.search_text}&apikey=728de06e`;
-  const moviesSecondApiCall = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=movies&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
+  const moviesSecondApiCall = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=movies&info=1&limit=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
 
   try {
     const exists = Cache.has(`${req.body.search_text}`);
