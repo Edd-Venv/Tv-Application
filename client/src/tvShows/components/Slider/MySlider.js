@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { TvContext } from "../../contexts/tvContext.js";
 import data from "./SliderData.js";
-import "./MySlider.css";
 
 function MySlider() {
   const { isLoaded } = useContext(TvContext);
@@ -58,22 +57,3 @@ function MySlider() {
 }
 
 export default MySlider;
-
-/*
-
-const nextProperty = () => {
-      const newIndex = state.property.id + 1;
-      setState({
-        property: data.properties[newIndex],
-      });
-    };
-
-    const prevProperty = () => {
-      const newIndex = state.property.id - 1;
-      setState({
-        property: data.properties[newIndex],
-      });
-    };
-
-
-*/
