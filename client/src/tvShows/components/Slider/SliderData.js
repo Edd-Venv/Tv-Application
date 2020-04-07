@@ -1,4 +1,4 @@
-const data = {
+/*const data = {
   properties: [
     {
       id: 1,
@@ -130,7 +130,8 @@ const data = {
         "Sink your teeth into meaty drama and intrigue with <b>House</b>, FOX's take on mystery, where the villain is a medical malady and the hero is an irreverent, controversial doctor who trusts no one.",
     },
   ],
-};
+};*/
+
 const rData = {
   data: {
     id: 1,

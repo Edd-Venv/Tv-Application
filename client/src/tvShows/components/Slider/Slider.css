@@ -17,9 +17,14 @@
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
-  width: 10%;
+  width: 15vw;
+  min-width: 10%;
 }
 #slider-box {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: none;
   width: 40%;
 }
 * {

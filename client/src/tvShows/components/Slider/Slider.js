@@ -1,55 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import { TvContext } from "../../contexts/tvContext.js";
 import "./Slider.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { UserContext } from "../../../App.js";
-import PopUp from "./Card.js";
+import CarouselCard from "./Card.js";
+import { carouselReducer } from "../../contexts/tvReducers.js";
+import rData from "./SliderData.js";
 
 function Slider() {
   const { isLoaded, data } = useContext(TvContext);
-  const [user] = useContext(UserContext);
+  const [state, dispatch] = useReducer(carouselReducer, rData.data);
   const slicedArray = [];
 
   for (let i = 0; i < 12; i++) {
     slicedArray.push(data[i]);
   }
-  async function saveShow(Args) {
-    if (!user.accesstoken) return console.log("You need to login to Save.");
-    else {
-      const result = await (
-        await fetch("http://localhost:4010/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${user.accesstoken}`, //To Be Converted To User ID using Auth in Server
-          },
-          body: JSON.stringify({
-            show_key: Args[0],
-            show_title: Args[1],
-            show_runtime: Args[2],
-            show_status: Args[3],
-            show_premiered: Args[4],
-            show_genre: Args[5],
-            show_rating: Args[6],
-            show_summary: Args[7],
-            show_image: Args[8],
-          }),
-        })
-      ).json();
 
-      if (!result.error) {
-        console.log(result.message);
-      } else {
-        console.log(result.error);
-      }
-    }
-  }
-  const showPopUp = (data) => {
+  const showCarouselCard = (data) => {
     if (document.getElementById("show-pop-up") !== null) {
+      dispatch({ type: "CAROUSEL", carouselData: data });
+      document.getElementById("slider").style.display = "none";
       document.getElementById("show-pop-up").style.display = "block";
-      return <PopUp data={data} />;
     }
+  };
+  const handleClose = () => {
+    dispatch({
+      type: "CAROUSEL",
+      carouselData: rData.data,
+    });
+    document.getElementById("show-pop-up").style.display = "none";
+    document.getElementById("slider").style.display = "block";
   };
   return (
     <React.Fragment>
@@ -75,12 +55,14 @@ function Slider() {
               {slicedArray.map((data) => {
                 return (
                   <React.Fragment key={data.id}>
-                    <button onClick={showPopUp.bind(this, data)}>
+                    <button
+                      onClick={showCarouselCard.bind(this, data)}
+                      id="slider-box"
+                    >
                       <img
                         alt="loading"
                         src={data.image.original}
                         className="img-thumbnail"
-                        id="slider-box"
                       />
                     </button>
                   </React.Fragment>
@@ -88,7 +70,7 @@ function Slider() {
               })}
             </Carousel>
           </div>
-          <PopUp data={data} />
+          <CarouselCard data={state} handleClose={handleClose} />
         </React.Fragment>
       )}
     </React.Fragment>

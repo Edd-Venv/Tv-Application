@@ -7,6 +7,15 @@ export const tvReducer = (state, action) => {
   }
 };
 
+export const carouselReducer = (state, action) => {
+  switch (action.type) {
+    case "CAROUSEL":
+      return { ...action.carouselData };
+    default:
+      throw new Error();
+  }
+};
+
 export const searchReducer = (state, action) => {
   switch (action.type) {
     case "SEARCH":
