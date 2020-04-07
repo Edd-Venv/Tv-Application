@@ -8,10 +8,10 @@ const SearchForm = React.memo((props) => {
     props.onAddSearch(currentText);
     setText("");
 
+    document.getElementById("movie-slider").style.display = "none";
     document.getElementById("movie-model").style.display = "block";
-
-    //document.getElementById("movie-slider").style.display = "none";
   };
+
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <div className="movie-input-container" id="movie-input">
