@@ -14,7 +14,7 @@ function Search() {
     });
 
     document.getElementById("movie-model").style.display = "none";
-    //document.getElementById("movie-slider").style.display = "block";
+    document.getElementById("movie-slider").style.display = "block";
   };
 
   const onAddSearch = (text) => {
@@ -32,6 +32,7 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
+          console.log(Data);
           dispatch({
             type: "SEARCH",
             isLoaded: true,
