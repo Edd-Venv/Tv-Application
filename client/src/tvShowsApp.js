@@ -5,7 +5,6 @@ import Body from "./tvShows/components/Body/Body";
 import Search from "./tvShows/components/Search/Search";
 import Slider from "./tvShows/components/Slider/Slider.js";
 import Navigation from "./nav/Navigation/Navigation.js";
-import MySlider from "./tvShows/components/Slider/MySlider";
 
 function TvShows(props) {
   return (
