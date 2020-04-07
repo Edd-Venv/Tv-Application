@@ -78,10 +78,10 @@ function SearchResult(props) {
                       </div>
                     </div>
                     <div className="col-md-8">
-                      <div className="card-body">
+                      <div className="card-body" id="search-result-font">
                         <h2 className="card-title">{data.name}</h2>
                         <hr />
-                        <div id="search-result-font-size" className="card-text">
+                        <div className="card-text">
                           <p>
                             {" "}
                             <strong>Description:</strong>

@@ -4,6 +4,7 @@
   min-width: 10%;
   margin: 0 auto;
   width: 50%;
+  font-size: 1.3rem;
 }
 
 .ShowImage {
@@ -34,9 +35,7 @@
   margin-right: 0%;
   z-index: 1;
 }
-#font-size {
-  font-size: 1.3rem;
-}
+
 #show-error-paragraph {
   color: black;
   font-size: 1.3rem;
@@ -55,10 +54,67 @@
   width: 95%;
 }
 @media (min-width: 320px) {
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 90%;
+    font-size: 1.3rem;
+  }
   .ShowImage {
     max-width: 65%;
-    min-width: 60px;
-    margin-left: 5.5%;
+    margin-left: 4.3%;
+  }
+  #search-result-font {
+    margin-left: 1%;
+  }
+}
+@media (min-width: 375px) {
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 90%;
+    font-size: 1.4rem;
+  }
+  .ShowImage {
+    max-width: 65%;
+    margin-left: 4.3%;
+  }
+  #search-result-font {
+    margin-left: 1%;
+  }
+}
+@media (min-width: 425px) {
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 90%;
+    font-size: 1.45rem;
+  }
+  .ShowImage {
+    max-width: 65%;
+    margin-left: 4.3%;
+  }
+  #search-result-font {
+    margin-left: 1%;
+  }
+}
+@media (min-width: 755px) {
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+    font-size: 1.45rem;
+  }
+  .ShowImage {
+    max-width: 40%;
+    margin-left: 2.5%;
+  }
+  #search-result-font {
+    margin-left: 1%;
   }
 }
 @media (min-width: 768px) {
@@ -67,37 +123,57 @@
     min-width: 60px;
     margin-left: 7%;
   }
-  #search-result-font-size {
+  #search-result-font {
     font-size: 1.3rem;
   }
 }
 @media (min-width: 1024px) {
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 50%;
+    font-size: 1.45rem;
+  }
   .ShowImage {
     max-width: 100%;
-    min-width: 60px;
     margin-left: 7%;
   }
-  #search-result-font-size {
-    font-size: 1.8rem;
+  #search-result-font {
+    margin-left: 1%;
   }
 }
 @media (min-width: 1440px) {
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 50%;
+    font-size: 1.3rem;
+  }
+  #search-result-font {
+    margin-left: 1%;
+  }
   .ShowImage {
-    max-width: 100%;
+    max-width: 50%;
     min-width: 60px;
     margin-left: 7%;
-  }
-  #search-result-font-size {
-    font-size: 2rem;
   }
 }
 @media (min-width: 2560px) {
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 50%;
+    font-size: 1.3rem;
+  }
+  #search-result-font {
+    margin-left: 1%;
+  }
   .ShowImage {
-    max-width: 100%;
+    max-width: 50%;
     min-width: 60px;
     margin-left: 7%;
-  }
-  #search-result-font-size {
-    font-size: 2.5rem;
   }
 }

@@ -17,10 +17,10 @@ function Slider() {
   }
 
   const showCarouselCard = (data) => {
-    if (document.getElementById("show-pop-up") !== null) {
+    if (document.getElementById("carousel-card") !== null) {
       dispatch({ type: "CAROUSEL", carouselData: data });
       document.getElementById("slider").style.display = "none";
-      document.getElementById("show-pop-up").style.display = "block";
+      document.getElementById("carousel-card").style.display = "block";
     }
   };
   const handleClose = () => {
@@ -28,7 +28,7 @@ function Slider() {
       type: "CAROUSEL",
       carouselData: rData.data,
     });
-    document.getElementById("show-pop-up").style.display = "none";
+    document.getElementById("carousel-card").style.display = "none";
     document.getElementById("slider").style.display = "block";
   };
   return (

@@ -39,74 +39,79 @@ const CarouselCard = (props) => {
   }
 
   return (
-    <div className="slider-container" id="show-pop-up">
-      <div className="card mb-3">
-        <span onClick={handleClose} className="close" id="close-button">
-          ×
-        </span>
-        <div className="row no-gutters">
-          <div className="col-md-4">
-            <div className="ShowImage">
-              <img
-                src={data.image.original}
-                alt={data.name}
-                className="img-thumbnail"
-              />
+    <div id="carousel-card">
+      <div className="carousel-container">
+        <div className="card mb-3">
+          <span onClick={handleClose} className="close" id="close-button">
+            ×
+          </span>
+          <div className="row no-gutters">
+            <div className="col-md-4">
+              <div className="show-image">
+                <img
+                  src={data.image.original}
+                  alt={data.name}
+                  className="img-thumbnail"
+                />
+              </div>
             </div>
-          </div>
-          <div className="col-md-8">
-            <div className="card-body">
-              <h2 className="card-title">{data.name}</h2>
-              <hr />
-              <div id="search-result-font-size" className="card-text">
-                <p>
-                  {" "}
-                  <strong>Description:</strong>
-                  {data.summary
-                    .replace(/<p>/g, " ")
-                    .replace(/<b>/g, " ")
-                    .replace(/p>/g, " ")
-                    .replace(/</g, " ")
-                    .replace(/i>/g, " ")
-                    .replace(/b>/g, " ")
-                    .substring(0, 250)}
-                  .
-                </p>
-                <p>
-                  <strong>Premiered: </strong>
-                  {data.premiered}{" "}
-                </p>
-                <p>
-                  <strong>Runtime: </strong>
-                  {data.runtime} mins
-                </p>
-                <p>
-                  <strong>Rating: </strong>
-                  {data.rating.average}
-                </p>
-                <button
-                  className="btn btn-primary"
-                  onClick={saveShow.bind(this, [
-                    data.id,
-                    data.name,
-                    data.runtime,
-                    data.status,
-                    data.premiered,
-                    data.genres[0],
-                    data.rating.average,
-                    data.summary
+            <div className="col-md-8">
+              <div className="card-body" id="carousel-card-font">
+                <h2 className="card-title">
+                  {data.name}
+                  <hr />
+                </h2>
+
+                <div className="card-text">
+                  <p>
+                    {" "}
+                    <strong>Description:</strong>
+                    {data.summary
                       .replace(/<p>/g, " ")
                       .replace(/<b>/g, " ")
                       .replace(/p>/g, " ")
                       .replace(/</g, " ")
                       .replace(/i>/g, " ")
                       .replace(/b>/g, " ")
-                      .substring(0, 100),
-                    data.image.original,
-                  ])}
-                >
-                  save
-                </button>
+                      .substring(0, 250)}
+                    .
+                  </p>
+                  <p>
+                    <strong>Premiered: </strong>
+                    {data.premiered}{" "}
+                  </p>
+                  <p>
+                    <strong>Runtime: </strong>
+                    {data.runtime} mins
+                  </p>
+                  <p>
+                    <strong>Rating: </strong>
+                    {data.rating.average}
+                  </p>
+                  <button
+                    className="btn btn-primary"
+                    onClick={saveShow.bind(this, [
+                      data.id,
+                      data.name,
+                      data.runtime,
+                      data.status,
+                      data.premiered,
+                      data.genres[0],
+                      data.rating.average,
+                      data.summary
+                        .replace(/<p>/g, " ")
+                        .replace(/<b>/g, " ")
+                        .replace(/p>/g, " ")
+                        .replace(/</g, " ")
+                        .replace(/i>/g, " ")
+                        .replace(/b>/g, " ")
+                        .substring(0, 100),
+                      data.image.original,
+                    ])}
+                  >
+                    save
+                  </button>
+                </div>
               </div>
             </div>
           </div>
