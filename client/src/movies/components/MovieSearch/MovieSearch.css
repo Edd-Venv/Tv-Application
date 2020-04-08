@@ -97,9 +97,21 @@ img {
   font-size: 1em;
   display: inline;
 }
-
+#movie-slider-button {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: none;
+  margin: 0 auto;
+}
 /*From a minimum width and bigger*/
 @media (min-width: 320px) {
+  #movie-slider-box {
+    width: 20vw;
+  }
+  #movie-slider-button {
+    width: 35vw;
+  }
   .movie-input-container {
     width: 50vw;
     font-size: 1.2rem;
@@ -127,6 +139,9 @@ img {
   }
 }
 @media (min-width: 425px) {
+  #movie-slider-button {
+    width: 25vw;
+  }
   .movie-input-style {
     width: 40vw;
   }
@@ -144,6 +159,9 @@ img {
   }
 }
 @media (min-width: 768px) {
+  #movie-slider-button {
+    width: 20vw;
+  }
   .movie-input-container {
     font-size: 1.3rem;
   }
@@ -165,6 +183,9 @@ img {
 }
 
 @media (min-width: 1024px) {
+  #movie-slider-button {
+    width: 13vw;
+  }
   .movie-input-container {
     width: 25vw;
     font-size: 1.5rem;

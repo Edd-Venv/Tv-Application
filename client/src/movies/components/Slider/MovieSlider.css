@@ -65,16 +65,16 @@
 /*From a minimum width and bigger*/
 
 @media (min-width: 320px) {
-  #movie-carousel-slider-font {
-    font-size: 1.2rem;
+  #movie-carousel-card-font {
+    font-size: 1.4rem;
     font-weight: bold;
   }
   #movie-slider-box {
     width: 60vw;
   }
-  #movie-slider-iframe {
-    width: 60vw;
-    margin: 0 auto;
+  #movie-carousel-card-iframe {
+    width: 85vw;
+    height: 85vw;
   }
   #movie-carousel-card {
     padding-top: 75px;
@@ -86,89 +86,85 @@
     padding-right: 2vw;
     font-size: 1.25rem;
   }
-  .show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
 }
 @media (min-width: 375px) {
-  #movie-carousel-slider-font {
-    font-size: 1.2rem;
+  #movie-carousel-card-font {
+    font-size: 1.4rem;
     font-weight: bold;
   }
   #movie-slider-box {
     width: 59vw;
   }
-  #movie-slider-iframe {
-    width: 60vw;
-    margin: 0 auto;
+  #movie-carousel-card-iframe {
+    width: 90vw;
+    height: 90vw;
   }
 }
 
 @media (min-width: 425px) {
-  #movie-carousel-slider-font {
-    font-size: 1.3rem;
+  #movie-carousel-card-font {
+    font-size: 1.5rem;
     font-weight: bold;
   }
   #movie-slider-box {
     width: 59.5vw;
   }
-  #movie-slider-iframe {
-    width: 60vw;
-    margin: 0 auto;
+  #movie-carousel-card-iframe {
+    width: 80vw;
+    height: 60vw;
   }
 }
 
 @media (min-width: 768px) {
-  #movie-carousel-slider-font {
-    font-size: 1.3rem;
+  #movie-carousel-card-font {
+    font-size: 1.5rem;
     font-weight: bold;
   }
   #movie-slider-box {
     width: 59.5vw;
   }
-  #movie-slider-iframe {
+  #movie-carousel-card-iframe {
     width: 60vw;
-    margin: 0 auto;
+    height: 40vw;
   }
 }
 @media (min-width: 931px) {
-  #movie-carousel-slider-font {
-    font-size: 1.35rem;
+  #movie-carousel-card-font {
+    font-size: 1.5rem;
     font-weight: bold;
   }
   #movie-slider-box {
     width: 48vw;
   }
-  #movie-slider-iframe {
-    width: 60vw;
-    margin: 0 auto;
+  #movie-carousel-card-iframe {
+    width: 55vw;
+    height: 45vw;
   }
 }
 
 @media (min-width: 1024px) {
-  #movie-carousel-slider-font {
+  #movie-carousel-card-font {
     font-size: 1.5rem;
     font-weight: bold;
   }
   #movie-slider-box {
     width: 43vw;
   }
-  #movie-slider-iframe {
-    width: 60vw;
-    margin: 0 auto;
+  #movie-carousel-card-iframe {
+    width: 55vw;
+    height: 35vw;
   }
 }
 @media (min-width: 1440px) {
-  #movie-carousel-slider-font {
+  #movie-carousel-card-font {
     font-size: 1.7rem;
     font-weight: bold;
   }
   #movie-slider-box {
     width: 40vw;
   }
-  #movie-slider-iframe {
+  #movie-carousel-card-iframe {
     width: 60vw;
-    margin: 0 auto;
+    height: 45vw;
   }
 }
