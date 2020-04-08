@@ -50,8 +50,11 @@ const MovieSearchResult = (props) => {
       {Movie.Poster === "N/A" || Movie.Error ? (
         <FetalMovieSearchError handleClose={handleClose} />
       ) : (
-        <div className="movieSearchContainer" key={Movie.imdbID}>
-          <div className="card mb-3">
+        <div className="movie-search-container" key={Movie.imdbID}>
+          <div
+            className="card mb-3"
+            style={{ backgroundColor: "rgb(243, 243, 243)" }}
+          >
             <span onClick={handleClose} className="close" id="close-button">
               ×
             </span>
@@ -66,8 +69,8 @@ const MovieSearchResult = (props) => {
                 </div>
               </div>
               <div className="col-md-8">
-                <div className="card-body">
-                  <h3 className="card-title" id="movie-title">
+                <div className="card-body" id="movie-search-result-font">
+                  <h3 className="card-title">
                     {Movie.Title}
                     <hr />
                   </h3>
