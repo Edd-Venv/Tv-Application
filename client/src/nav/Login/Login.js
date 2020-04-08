@@ -1,12 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { navigate } from "@reach/router";
 import { UserContext } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
+import "./Login.css";
 
 const Login = (props) => {
   const [, setUser] = useContext(UserContext);
   const [name, setName] = useState("");
+  const [state, setState] = useState({ message: "" });
   const [password, setPassword] = useState("");
+  const userNameRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  useEffect(() => {
+    userNameRef.current.focus();
+  }, []);
+
+  const firstKeyDown = (event) => {
+    if (event.key === "Enter") passwordRef.current.focus();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,9 +41,9 @@ const Login = (props) => {
       setUser({
         accesstoken: result.accesstoken,
       });
-
       navigate("/");
     } else {
+      setState({ message: result.error });
       console.log(result.error);
     }
   };
@@ -50,16 +62,7 @@ const Login = (props) => {
     <React.Fragment>
       <Navigation />
       <div className={displayLogin}>
-        <form
-          className="card mb-3"
-          onSubmit={handleSubmit}
-          style={{
-            width: "30%",
-            margin: "0 auto",
-            font: "2rem",
-            marginTop: "10%",
-          }}
-        >
+        <form className="card mb-3" onSubmit={handleSubmit} id="login-form">
           <h3 style={{ textAlign: "center" }}>
             LOGIN
             <hr />
@@ -75,7 +78,10 @@ const Login = (props) => {
               name="name"
               placeholder="User Name"
               required
+              ref={userNameRef}
+              onKeyDown={firstKeyDown}
             />
+            {state.message}
           </div>
           <div className="form-group">
             <label htmlFor="password">PASSWORD</label>
@@ -88,6 +94,7 @@ const Login = (props) => {
               autoComplete="current-password"
               placeholder="Password"
               required
+              ref={passwordRef}
             />
           </div>
           <button type="submit" className="btn btn-primary">

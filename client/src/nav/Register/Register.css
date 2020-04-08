@@ -1,0 +1,41 @@
+#register-form {
+  width: 30%;
+  margin: 0 auto;
+  font: 2rem;
+  background-color: rgb(218, 213, 213);
+}
+@media (min-width: 320px) {
+  #register-form {
+    width: 80vw;
+    margin: 0 auto;
+    font: 2rem;
+    margin-top: 5%;
+  }
+}
+
+@media (min-width: 768px) {
+  #register-form {
+    width: 50vw;
+    margin: 0 auto;
+    font: 2rem;
+    margin-top: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  #register-form {
+    width: 30vw;
+    margin: 0 auto;
+    font: 2rem;
+    margin-top: 5%;
+  }
+}
+
+@media (min-width: 1440px) {
+  #register-form {
+    width: 35vw;
+    margin: 0 auto;
+    font: 2rem;
+    margin-top: 5%;
+  }
+}

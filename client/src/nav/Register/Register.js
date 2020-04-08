@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { navigate } from "@reach/router";
 import Navigation from "../Navigation/Navigation";
+import "./Register.css";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [state, setState] = useState({ message: "" });
+  const userNameRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  useEffect(() => {
+    userNameRef.current.focus();
+  }, []);
+
+  const firstKeyDown = (event) => {
+    if (event.key === "Enter") passwordRef.current.focus();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,10 +33,9 @@ const Register = () => {
       })
     ).json();
     if (!result.error) {
-      console.log(result.message);
       navigate("/login");
     } else {
-      console.log(result.error);
+      setState({ message: result.error });
     }
   };
 
@@ -39,16 +50,7 @@ const Register = () => {
   return (
     <React.Fragment>
       <Navigation displayLogin={"dontDisplayLoginForm"} />
-      <form
-        className="card mb-3"
-        onSubmit={handleSubmit}
-        style={{
-          width: "30%",
-          margin: "0 auto",
-          font: "2rem",
-          marginTop: "10%",
-        }}
-      >
+      <form className="card mb-3" onSubmit={handleSubmit} id="register-form">
         <h3 style={{ textAlign: "center" }}>
           REGISTER
           <hr />
@@ -63,7 +65,10 @@ const Register = () => {
             name="name"
             placeholder="User Name"
             required
+            onKeyDown={firstKeyDown}
+            ref={userNameRef}
           />
+          {state.message}
         </div>
         <div className="form-group">
           <label htmlFor="password">PASSWORD</label>
@@ -76,6 +81,7 @@ const Register = () => {
             autoComplete="current-password"
             placeholder="Password"
             required
+            ref={passwordRef}
           />
         </div>
         <button type="submit" className="btn btn-primary">
