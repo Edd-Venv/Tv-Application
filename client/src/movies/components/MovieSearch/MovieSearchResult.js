@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../../App.js";
 import FetalMovieSearchError from "./FetalMovieSearchError.js";
 import "./MovieSearchResult.css";
 
 const MovieSearchResult = (props) => {
   const { Movie, Test, MovieTrailer, handleClose, isLoaded } = props;
+  const [state, setState] = useState({ message: "" });
   const [user] = useContext(UserContext);
 
   async function saveMovie(Args) {
@@ -34,9 +35,9 @@ const MovieSearchResult = (props) => {
       ).json();
 
       if (!result.error) {
-        console.log(result.message);
+        setState({ message: result.message });
       } else {
-        console.log(result.error);
+        setState({ message: result.error });
       }
     }
   }
@@ -107,6 +108,7 @@ const MovieSearchResult = (props) => {
                     >
                       save
                     </button>
+                    {state.message}
                   </div>
                 </div>
               </div>
@@ -135,14 +137,3 @@ const MovieSearchResult = (props) => {
 };
 
 export default MovieSearchResult;
-/*
-{Movie.Poster === "N/A" || Movie.Error ? (
-        <div>
-          <p>Moive Not Found.</p>
-          <span onClick={handleClose} className="close" id="close-button">
-            ×
-          </span>
-        </div>
-      ) : (
-
-*/
