@@ -118,7 +118,7 @@ const Navigation = ({ logOutCallback }) => {
                 className="nav-link"
                 href="https://edwinushibantu.netlify.com/"
               >
-                Home <span className="sr-only">(current)</span>
+                Applications <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item active">{useShowMyShows()}</li>
