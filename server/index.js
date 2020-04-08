@@ -244,8 +244,9 @@ server.post("/deleteUser", async (req, res) => {
   try {
     const userId = isAuth(req);
     if (userId !== null) {
-      await pool.query(`DELETE FROM book WHERE person_id = '${userId}'`);
       await pool.query(`DELETE FROM person WHERE id_uid = '${userId}'`);
+      await pool.query(`DELETE FROM show WHERE id_uid = '${userId}'`);
+      await pool.query(`DELETE FROM moive WHERE id_uid = '${userId}'`);
 
       res.json({ message: "User Deleted." });
     }
@@ -262,7 +263,7 @@ async function saveShow(req, res, next) {
   const userId = isAuth(req);
   if (userId !== null) {
     try {
-      //Check If Book is Already Saved
+      //Check If Show is Already Saved
       const checkDB = await pool.query(
         `SELECT * FROM show WHERE show_key = '${req.body.show_key}'
              AND person_id = '${userId}'`
@@ -313,7 +314,7 @@ server.post("/search/saveShow", async (req, res, next) => {
   saveShow(req, res, next);
 });
 
-//Getting Protected data
+//Getting saved Shows
 server.get("/MyShows", async (req, res) => {
   try {
     const userId = isAuth(req);
@@ -332,7 +333,7 @@ server.get("/MyShows", async (req, res) => {
   }
 });
 
-//Delete Protected Data
+//Delete saved Shows
 server.post("/MyShows/Delete", async (req, res) => {
   try {
     const userId = isAuth(req);
