@@ -51,6 +51,7 @@ const Navigation = ({ logOutCallback }) => {
       );
     else return null;
   };
+
   const useShowMyShows = () => {
     const match = useMatch("/");
     if (match !== null)
@@ -61,16 +62,19 @@ const Navigation = ({ logOutCallback }) => {
       );
     else return null;
   };
+
   const useShowTvShows = () => {
-    const match = useMatch("/Movies");
-    if (match !== null)
+    const match = useMatch("/");
+
+    if (match !== null) return null;
+    else
       return (
         <Link className="nav-link" to="/">
           TvShows<span className="sr-only">(current)</span>
         </Link>
       );
-    else return null;
   };
+
   const useShowMovies = () => {
     const match = useMatch("/Movies");
     if (match !== null) return null;
@@ -81,6 +85,7 @@ const Navigation = ({ logOutCallback }) => {
         </Link>
       );
   };
+
   const useShowMyMovies = () => {
     const match = useMatch("/Movies");
     if (match !== null)
@@ -109,16 +114,20 @@ const Navigation = ({ logOutCallback }) => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav" style={{ fontSize: "1.7rem" }}>
             <li className="nav-item active">
-              <Link className="nav-link" to="/">
-                Home<span className="sr-only">(current)</span>
-              </Link>
+              <a
+                className="nav-link"
+                href="https://edwinushibantu.netlify.com/"
+              >
+                Home <span className="sr-only">(current)</span>
+              </a>
             </li>
             <li className="nav-item active">{useShowMyShows()}</li>
             <li className="nav-item active">{useShowMyMovies()}</li>
+
+            <li className="nav-item active">{useShowTvShows()}</li>
+            <li className="nav-item active">{useShowMovies()}</li>
             <li className="nav-item active">{showLogin()}</li>
             <li className="nav-item active">{showRegister()}</li>
-            <li className="nav-item active">{useShowMovies()}</li>
-            <li className="nav-item active">{useShowTvShows()}</li>
             <li className="nav-item active">{showLogOut()}</li>
             <li className="nav-item active">
               <a

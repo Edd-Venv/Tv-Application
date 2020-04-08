@@ -59,7 +59,7 @@ const MovieSlider = () => {
                           id="movie-slider-iframe"
                           src={data.yUrl}
                           className="img-thumbnail"
-                          title="This is a unique title prop"
+                          title={data.Name}
                         />{" "}
                       </div>
                     </button>
