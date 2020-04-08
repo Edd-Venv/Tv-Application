@@ -10,7 +10,7 @@ export const movieReducer = (state, action) => {
 export const movieCarouselReducer = (state, action) => {
   switch (action.type) {
     case "MOVIECAROUSEL":
-      return { isLoaded: action.isLoaded, data: action.movieCarouselData };
+      return { ...action.movieCarouselData };
     default:
       throw new Error();
   }

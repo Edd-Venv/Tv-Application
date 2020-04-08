@@ -7,7 +7,7 @@ import recommedations from "./SliderData.js";
 import "./MovieSlider.css";
 
 const MovieSlider = () => {
-  const [state, dispatch] = useReducer(movieCarouselReducer, recommedations);
+  const [state, dispatch] = useReducer(movieCarouselReducer, recommedations[0]);
 
   const showCarouselCard = (data) => {
     if (document.getElementById("movie-carousel-card") !== null) {
@@ -51,17 +51,13 @@ const MovieSlider = () => {
                   <div key={data.yID}>
                     <button
                       onClick={showCarouselCard.bind(this, data)}
-                      id="movie-slider-box"
+                      id="movie-slider-button"
                     >
-                      <div id="movie-carousel-slider-font">
-                        <p className="card-title">{data.Name}</p>
-                        <iframe
-                          id="movie-slider-iframe"
-                          src={data.yUrl}
-                          className="img-thumbnail"
-                          title={data.Name}
-                        />{" "}
-                      </div>
+                      <img
+                        alt="loading"
+                        src={data.poster}
+                        className="img-thumbnail"
+                      />
                     </button>
                   </div>
                 );
