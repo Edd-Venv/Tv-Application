@@ -5,11 +5,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import CarouselCard from "./Card.js";
 import { carouselReducer } from "../../contexts/tvReducers.js";
-import rData from "./SliderData.js";
+import { sliderData } from "../DummyData.js";
 
 function Slider() {
   const { isLoaded, data } = useContext(TvContext);
-  const [state, dispatch] = useReducer(carouselReducer, rData.data);
+  const [state, dispatch] = useReducer(carouselReducer, sliderData.data);
   const slicedArray = [];
 
   for (let i = 0; i < 12; i++) {
@@ -26,7 +26,7 @@ function Slider() {
   const handleClose = () => {
     dispatch({
       type: "CAROUSEL",
-      carouselData: rData.data,
+      carouselData: sliderData.data,
     });
     document.getElementById("carousel-card").style.display = "none";
     document.getElementById("slider").style.display = "block";

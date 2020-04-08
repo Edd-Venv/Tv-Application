@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import "./Body.css";
+import "./BodyCard.css";
 import { TvContext } from "../../contexts/tvContext";
-import MainCard from "../MainCard.js";
-import dummyData from "../DummyData.js";
+import BodyCard from "./BodyCard.js";
+import { dummyData } from "../DummyData.js";
 
 function Body() {
   const { isLoaded, data } = useContext(TvContext);
@@ -12,15 +13,15 @@ function Body() {
 
   const handleClose = () => {
     setState({ data: { ...dummyData } });
-    document.getElementById("main-card").style.display = "none";
+    document.getElementById("body-card").style.display = "none";
     document.getElementById("slider").style.display = "block";
   };
 
   const showMainCard = (data) => {
-    if (document.getElementById("main-card") !== null) {
+    if (document.getElementById("body-card") !== null) {
       setState({ data: data });
       document.getElementById("slider").style.display = "none";
-      document.getElementById("main-card").style.display = "block";
+      document.getElementById("body-card").style.display = "block";
     }
   };
 
@@ -67,7 +68,7 @@ function Body() {
                 />
               </button>
             </div>
-            <MainCard data={state.data} handleClose={handleClose} />
+            <BodyCard data={state.data} handleClose={handleClose} />
           </React.Fragment>
         )}
       </div>
