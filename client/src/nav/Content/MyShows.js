@@ -57,7 +57,7 @@ const MyShows = (props) => {
       />
       <br />
       {!user.accesstoken ? (
-        <h2 style={{ textAlign: "center", fontWeight: "bold" }}>
+        <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You need to login.
         </h2>
       ) : user.accesstoken && content[0] === undefined ? (
@@ -69,7 +69,7 @@ const MyShows = (props) => {
           <span className="sr-only">Loading...</span>
         </div>
       ) : user.accesstoken && content[0].length === 0 ? (
-        <h2 style={{ textAlign: "center", fontWeight: "bold" }}>
+        <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You Don't Have Shows Saved.
         </h2>
       ) : user.accesstoken && content[0].length <= 2 ? (
