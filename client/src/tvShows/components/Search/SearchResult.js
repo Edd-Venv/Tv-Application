@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./SearchResult.css";
 import PartialSearchError from "./PatialSearchError";
 import { UserContext } from "../../../App.js";
 
 function SearchResult(props) {
+  const [state, setState] = useState({ message: "" });
   const {
     data,
     isLoaded,
@@ -41,9 +42,9 @@ function SearchResult(props) {
       ).json();
 
       if (!result.error) {
-        console.log(result.message);
+        setState({ message: result.message });
       } else {
-        console.log(result.error);
+        setState({ message: result.error });
       }
     }
   }
@@ -130,6 +131,7 @@ function SearchResult(props) {
                           >
                             save
                           </button>
+                          {state.message}
                         </div>
                       </div>
                     </div>

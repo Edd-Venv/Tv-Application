@@ -4,7 +4,7 @@ import { UserContext } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
 
 const Login = (props) => {
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 

@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../../App.js";
 import "./Slider.css";
 
 const CarouselCard = (props) => {
   const [user] = useContext(UserContext);
+  const [state, setState] = useState({ message: "" });
   const { data, handleClose } = props;
 
   async function saveShow(Args) {
@@ -31,9 +32,9 @@ const CarouselCard = (props) => {
       ).json();
 
       if (!result.error) {
-        console.log(result.message);
+        setState({ message: result.message });
       } else {
-        console.log(result.error);
+        setState({ message: result.error });
       }
     }
   }
@@ -88,6 +89,7 @@ const CarouselCard = (props) => {
                     <strong>Rating: </strong>
                     {data.rating.average}
                   </p>
+
                   <button
                     className="btn btn-primary"
                     onClick={saveShow.bind(this, [
@@ -111,6 +113,7 @@ const CarouselCard = (props) => {
                   >
                     save
                   </button>
+                  {state.message}
                 </div>
               </div>
             </div>
