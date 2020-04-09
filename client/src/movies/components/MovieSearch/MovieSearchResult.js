@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../../App.js";
 import FetalMovieSearchError from "./FetalMovieSearchError.js";
 import "./MovieSearchResult.css";
@@ -41,6 +41,13 @@ const MovieSearchResult = (props) => {
       }
     }
   }
+  useEffect(() => {
+    if (state.message !== "") {
+      setTimeout(() => {
+        setState({ message: "" });
+      }, 3000);
+    }
+  }, [state]);
 
   if (isLoaded === false)
     return <div style={{ textAlign: "center", color: "white" }}>Loading</div>;

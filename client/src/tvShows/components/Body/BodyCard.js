@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../../App.js";
 import "./BodyCard.css";
 
@@ -38,6 +38,14 @@ const BodyCard = (props) => {
       }
     }
   }
+
+  useEffect(() => {
+    if (state.message !== "") {
+      setTimeout(() => {
+        setState({ message: "" });
+      }, 3000);
+    }
+  }, [state]);
 
   return (
     <div id="body-card">
