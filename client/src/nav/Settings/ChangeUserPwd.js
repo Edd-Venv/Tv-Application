@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../App.js";
+import "./Settings.css";
 
 function ChangeUserPwd(props) {
   const [user] = useContext(UserContext);
@@ -36,10 +37,7 @@ function ChangeUserPwd(props) {
     } else setNewPwd(event.target.value);
   };
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ width: "30%", margin: "0 auto", font: "2rem" }}
-    >
+    <form className="card mb-3" onSubmit={handleSubmit} id="form">
       <div className="form-group">
         <h3 style={{ textAlign: "center", color: "white" }}>CHANGE PASSWORD</h3>
         <label htmlFor="old password">OLD PASSWORD</label>

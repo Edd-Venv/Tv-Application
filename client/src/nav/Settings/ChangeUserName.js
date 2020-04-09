@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../../App.js";
+import "./Settings.css";
 
 function ChangeUserName(props) {
   const [user] = useContext(UserContext);
@@ -39,10 +40,7 @@ function ChangeUserName(props) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ width: "30%", margin: "0 auto", font: "2rem" }}
-    >
+    <form onSubmit={handleSubmit} className="card mb-3" id="form">
       <div className="form-group">
         <h3 style={{ textAlign: "center", color: "white" }}>
           CHANGE USER NAME
