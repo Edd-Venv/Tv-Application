@@ -6,7 +6,7 @@ function Movie() {
   const { isLoaded, data } = useContext(MovieContext);
 
   return (
-    <React.Fragment>
+    <div className="movie-container">
       {isLoaded === false ? (
         <div
           className="spinner-grow text-dark"
@@ -16,7 +16,7 @@ function Movie() {
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        <div className="movie-container">
+        <React.Fragment>
           {data.map((info) => {
             return (
               <div className="poster" key={info.imdbID}>
@@ -29,9 +29,9 @@ function Movie() {
               </div>
             );
           })}
-        </div>
+        </React.Fragment>
       )}
-    </React.Fragment>
+    </div>
   );
 }
 

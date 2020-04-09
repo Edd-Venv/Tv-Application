@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SearchResult.css";
 import PartialSearchError from "./PatialSearchError";
 import { UserContext } from "../../../App.js";
@@ -49,17 +49,31 @@ function SearchResult(props) {
     }
   }
 
+  useEffect(() => {
+    if (state.message !== "") {
+      setTimeout(() => {
+        setState({ message: "" });
+      }, 3000);
+    }
+  }, [state]);
+
   return (
     <React.Fragment>
       <br />
       <br />
       <div id="model">
-        {(showTrailer === "" && !teaser) ||
-        (isLoaded === false && data === undefined) ||
-        !image ? (
-          <div style={{ textAlign: "center", color: "white" }}>Loading...</div>
-        ) : (
-          <div className="search-container">
+        <div className="search-container">
+          {(showTrailer === "" && !teaser) ||
+          (isLoaded === false && data === undefined) ||
+          !image ? (
+            <div
+              className="spinner-grow text-dark"
+              role="status"
+              style={{ margin: "0 auto" }}
+            >
+              <span className="sr-only">Loading...</span>
+            </div>
+          ) : (
             <div className="card mb-3">
               <span onClick={handleClose} className="close" id="close-button">
                 ×
@@ -153,8 +167,8 @@ function SearchResult(props) {
                 </React.Fragment>
               )}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </React.Fragment>
   );
