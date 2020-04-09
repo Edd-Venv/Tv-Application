@@ -33,7 +33,7 @@ function Settings(props) {
       <Navigation logOutCallback={props.logOutCallback} />
       <ChangeUserName logOutCallback={props.logOutCallback} />
       <ChangeUserPwd logOutCallback={props.logOutCallback} />
-      <h3 style={{ color: "white" }}>DELETE Profile</h3>
+      <h3 style={{ color: "white" }}>DELETE PROFILE</h3>
       <button className="btn btn-danger" onClick={deleteUser}>
         DELETE USER
         <GoTrashcan />
