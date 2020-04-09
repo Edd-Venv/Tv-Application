@@ -37,7 +37,7 @@ function ChangeUserPwd(props) {
     } else setNewPwd(event.target.value);
   };
   return (
-    <form className="card mb-3" onSubmit={handleSubmit} id="form">
+    <form className="card mb-3 form" onSubmit={handleSubmit}>
       <div className="form-group">
         <h3 style={{ textAlign: "center", color: "white" }}>CHANGE PASSWORD</h3>
         <label htmlFor="old password">OLD PASSWORD</label>

@@ -40,7 +40,7 @@ function ChangeUserName(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="card mb-3" id="form">
+    <form onSubmit={handleSubmit} className="card mb-3 form">
       <div className="form-group">
         <h3 style={{ textAlign: "center", color: "white" }}>
           CHANGE USER NAME
