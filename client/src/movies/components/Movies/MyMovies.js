@@ -81,6 +81,7 @@ const MyMovies = (props) => {
               <div
                 className="card mb-3"
                 style={{ width: "85%" }}
+                id="my-movies-item"
                 key={info.movie_key}
               >
                 <div className="row no-gutters">

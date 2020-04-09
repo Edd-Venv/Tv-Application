@@ -75,12 +75,13 @@ const MyShows = (props) => {
       ) : user.accesstoken && content[0].length <= 2 ? (
         <OneShow deleteShow={deleteShow} content={content} />
       ) : (
-        <div className="books-container">
+        <div className="my-shows-container">
           {content[0].map((info) => {
             return (
               <div
                 className="card mb-3"
                 style={{ width: "85%" }}
+                id="my-shows-item"
                 key={info.show_key}
               >
                 <div className="row no-gutters">
