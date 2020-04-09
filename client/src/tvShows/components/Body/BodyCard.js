@@ -48,7 +48,7 @@ const BodyCard = (props) => {
           </span>
           <div className="row no-gutters">
             <div className="col-md-4">
-              <div className="body-show-image">
+              <div className="body-card-show-image">
                 <img
                   src={data.image.original}
                   alt={data.name}

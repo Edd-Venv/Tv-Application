@@ -48,7 +48,7 @@ const HeaderCard = (props) => {
           </span>
           <div className="row no-gutters">
             <div className="col-md-4">
-              <div className="header-show-image">
+              <div className="header-card-show-image">
                 <img
                   src={data.image.original}
                   alt={data.name}
