@@ -32,7 +32,7 @@ function Slider() {
     document.getElementById("slider").style.display = "block";
   };
   return (
-    <React.Fragment>
+    <div className="slider-container">
       {isLoaded === false ? (
         <div
           className="spinner-grow text-dark"
@@ -73,7 +73,7 @@ function Slider() {
           <CarouselCard data={state} handleClose={handleClose} />
         </React.Fragment>
       )}
-    </React.Fragment>
+    </div>
   );
 }
 export default Slider;
