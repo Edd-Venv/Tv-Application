@@ -13,7 +13,7 @@ const OneMovie = (props) => {
             key={info.movie_key}
           >
             <div className="row no-gutters">
-              <div style={{ width: "30%", marginLeft: "3.2%" }}>
+              <div style={{ width: "30%", marginLeft: "2.7%" }}>
                 <img
                   alt="loading"
                   src={info.movie_image}
@@ -28,28 +28,28 @@ const OneMovie = (props) => {
                   </h2>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Summary : </strong>{" "}
                     {info.movie_summary.substring(0, 80)}
                   </p>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Premier Date : </strong>
                     {info.movie_release}
                   </p>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Rating : </strong>
                     {info.movie_rating}
                   </p>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Genres : </strong>
                     {info.movie_genre}
