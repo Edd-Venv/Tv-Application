@@ -9,7 +9,7 @@ const OneMovie = (props) => {
         return (
           <div
             className="card mb-3"
-            style={{ width: "40%" }}
+            style={{ width: "60%" }}
             key={info.movie_key}
           >
             <div className="row no-gutters">
