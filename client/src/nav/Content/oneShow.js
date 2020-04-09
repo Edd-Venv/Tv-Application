@@ -3,12 +3,12 @@ import React from "react";
 const OneShow = (props) => {
   const { content, deleteShow } = props;
   return (
-    <div className="books-container">
+    <div className="my-shows-container">
       {content[0].map((info) => {
         return (
           <div
             className="card mb-3"
-            style={{ width: "40%" }}
+            style={{ width: "60%", fontSize: "2.5rem" }}
             key={info.show_key}
           >
             <div className="row no-gutters">
