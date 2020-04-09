@@ -11,7 +11,11 @@ const MovieCarouselCard = (props) => {
           <div id="movie-carousel-card-font">
             <p className="card-title">
               {data.Name}
-              <span onClick={handleClose} className="close" id="close-button">
+              <span
+                onClick={handleClose}
+                className="close-card"
+                id="close-card-button"
+              >
                 ×
               </span>
             </p>
