@@ -114,10 +114,7 @@ const Navigation = ({ logOutCallback }) => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav" style={{ fontSize: "1.7rem" }}>
             <li className="nav-item active">
-              <a
-                className="nav-link"
-                href="https://edwinushibantu.netlify.com/"
-              >
+              <a className="nav-link" href=" ">
                 Applications <span className="sr-only">(current)</span>
               </a>
             </li>

@@ -49,12 +49,21 @@ const MovieSearchResult = (props) => {
     }
   }, [state]);
 
-  if (isLoaded === false)
-    return <div style={{ textAlign: "center", color: "white" }}>Loading</div>;
+  console.log(Movie);
 
   return (
     <div id="movie-model">
-      {Movie.Poster === "N/A" || Movie.Error ? (
+      {isLoaded === false || Movie.DummyData ? (
+        <div className="movie-container">
+          <div
+            className="spinner-grow text-dark"
+            role="status"
+            style={{ margin: "0 auto" }}
+          >
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      ) : Movie.Poster === "N/A" || Movie.Error ? (
         <FetalMovieSearchError handleClose={handleClose} />
       ) : (
         <div className="movie-search-container" key={Movie.imdbID}>

@@ -1,6 +1,7 @@
 export const initialState = {
   isLoaded: false,
   Movie: {
+    DummyData: true,
     Title: "Venom",
     Year: "2018",
     Rated: "PG-13",
