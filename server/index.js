@@ -245,8 +245,9 @@ server.post("/deleteUser", async (req, res) => {
     const userId = isAuth(req);
     if (userId !== null) {
       await pool.query(`DELETE FROM person WHERE id_uid = '${userId}'`);
-      await pool.query(`DELETE FROM show WHERE id_uid = '${userId}'`);
-      await pool.query(`DELETE FROM moive WHERE id_uid = '${userId}'`);
+      await pool.query(`DELETE FROM show WHERE person_id = '${userId}'`);
+      await pool.query(`DELETE FROM movie WHERE person_id = '${userId}'`);
+      await pool.query(`DELETE FROM book WHERE person_id = '${userId}'`);
 
       res.json({ message: "User Deleted." });
     }

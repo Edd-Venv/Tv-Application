@@ -27,10 +27,7 @@
   background: none;
   width: 40%;
 }
-.show-image {
-  max-width: 70%;
-  min-width: 60px;
-}
+
 /* Animations*/
 #carousel-card {
   -webkit-animation-name: fade;
@@ -43,6 +40,17 @@
   animation-duration: 0.6s;
 }
 
+.show-image {
+  max-width: 70%;
+  min-width: 60px;
+}
+.slider-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 80%;
+  min-width: 50%;
+}
 @keyframes zoom {
   from {
     transform: scale(0.4);
