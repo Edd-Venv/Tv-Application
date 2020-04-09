@@ -270,7 +270,9 @@ async function saveShow(req, res, next) {
       );
 
       const doesShowExist = checkDB.rows[0];
-      if (doesShowExist !== undefined) return null;
+
+      if (doesShowExist !== undefined)
+        throw new Error(`" ${req.body.show_title} " is Already Saved.`);
 
       const values = [
         userId,
@@ -299,7 +301,7 @@ async function saveShow(req, res, next) {
         }
       );
     } catch (err) {
-      res.json({ error: err });
+      res.json({ message: err.message });
     }
   }
 }
@@ -407,8 +409,9 @@ async function saveMovie(req, res, next) {
              AND person_id = '${userId}'`
       );
 
-      const doesShowExist = checkDB.rows[0];
-      if (doesShowExist !== undefined) return null;
+      const doesMovieExist = checkDB.rows[0];
+      if (doesMovieExist !== undefined)
+        throw new Error(`" ${req.body.movie_title} " is Already Saved.`);
 
       const values = [
         userId,
@@ -437,7 +440,7 @@ async function saveMovie(req, res, next) {
         }
       );
     } catch (err) {
-      res.json({ error: err });
+      res.json({ message: err.message });
     }
   }
 }
