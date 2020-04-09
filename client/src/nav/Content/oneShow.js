@@ -12,7 +12,7 @@ const OneShow = (props) => {
             key={info.show_key}
           >
             <div className="row no-gutters">
-              <div style={{ width: "30%", marginLeft: "3.2%" }}>
+              <div style={{ width: "30%", marginLeft: "2.8%" }}>
                 <img
                   alt="loading"
                   src={info.show_image}
@@ -27,7 +27,7 @@ const OneShow = (props) => {
                   </h2>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Summary : </strong>{" "}
                     {info.show_summary
@@ -37,21 +37,21 @@ const OneShow = (props) => {
                   </p>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Premier Date : </strong>
                     {info.show_premiered}
                   </p>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Rating : </strong>
                     {info.show_rating}
                   </p>
                   <p
                     className="card-text"
-                    style={{ fontSize: "1.5rem", width: "100%" }}
+                    style={{ fontSize: "1.8rem", width: "100%" }}
                   >
                     <strong>Genre : </strong>
                     {info.show_genre}
