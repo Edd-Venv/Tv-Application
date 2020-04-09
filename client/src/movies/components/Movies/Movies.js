@@ -16,7 +16,7 @@ function Movie() {
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        <div className="movieContainer">
+        <div className="movie-container">
           {data.map((info) => {
             return (
               <div className="poster" key={info.imdbID}>
