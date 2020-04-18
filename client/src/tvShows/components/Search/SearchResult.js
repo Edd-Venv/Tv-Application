@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./SearchResult.css";
-import PartialSearchError from "./PatialSearchError";
+import PartialSearchError from "./PatialSearchError.js";
 import { UserContext } from "../../../App.js";
+import Trailer from "./SearchResultTrailer.js";
 
 function SearchResult(props) {
   const [state, setState] = useState({ message: "" });
@@ -10,15 +11,17 @@ function SearchResult(props) {
     isLoaded,
     image,
     summary,
-    Test,
+    exists,
     showTrailer,
     teaser,
     handleClose,
+    handleTrailerPlayButton,
+    handleTrailerCloseButton,
   } = props;
   const [user] = useContext(UserContext);
 
   async function saveShow(Args) {
-    if (!user.accesstoken) return console.log("You need to login to Save.");
+    if (!user.accesstoken) setState({ message: "You need to login to Save." });
     else {
       const result = await (
         await fetch("http://localhost:4010/search/saveShow", {
@@ -61,7 +64,11 @@ function SearchResult(props) {
     <React.Fragment>
       <br />
       <br />
-      <div id="model">
+      <Trailer
+        showTrailer={showTrailer}
+        handleTrailerCloseButton={handleTrailerCloseButton}
+      />
+      <div id="search-result-modal">
         <div className="search-container">
           {(showTrailer === "" && !teaser) ||
           (isLoaded === false && data === undefined) ||
@@ -84,7 +91,7 @@ function SearchResult(props) {
                 <React.Fragment>
                   <div className="row no-gutters">
                     <div className="col-md-4">
-                      <div className="ShowImage">
+                      <div className="show-image">
                         <img
                           src={image.original}
                           alt={data.name}
@@ -143,26 +150,21 @@ function SearchResult(props) {
                               data.image.original,
                             ])}
                           >
-                            save
+                            {state.message === "" ? "Save" : state.message}
                           </button>
-                          {state.message}
+                          <br />
+                          {exists === "unknown" ? null : (
+                            <button
+                              className="btn btn-dark"
+                              onClick={handleTrailerPlayButton}
+                            >
+                              Watch Trailer
+                              <i className="fab fa-google-play" />
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
-                    <React.Fragment>
-                      {Test === "unknown" ? (
-                        <p id="show-error-paragraph">SHOW NOT IN DATABASE</p>
-                      ) : (
-                        <div className="card-body">
-                          <h5 id="show-trailer">Show Trailer</h5>
-                          <iframe
-                            src={showTrailer}
-                            className="iframe"
-                            title="This is a unique title prop"
-                          />
-                        </div>
-                      )}
-                    </React.Fragment>
                   </div>
                 </React.Fragment>
               )}
@@ -175,3 +177,17 @@ function SearchResult(props) {
 }
 
 export default SearchResult;
+/*
+{Test === "unknown" ? (
+                        <p id="show-error-paragraph">SHOW NOT IN DATABASE</p>
+                      ) : (
+                        <div className="card-body">
+                          <h5 id="show-trailer">Show Trailer</h5>
+                          <iframe
+                            src={showTrailer}
+                            className="iframe"
+                            title="This is a unique title prop"
+                          />
+                        </div>
+                      )}
+*/
