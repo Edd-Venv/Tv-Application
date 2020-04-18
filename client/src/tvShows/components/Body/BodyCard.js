@@ -8,8 +8,10 @@ const BodyCard = (props) => {
   const { data, handleClose } = props;
 
   async function saveShow(Args) {
-    if (!user.accesstoken) setState({ messsage: "You need to login to Save." });
-    else {
+    if (!user.accesstoken) {
+      document.getElementById("body-button").style.backgroundColor = "red";
+      setState({ message: "You need to login to Save." });
+    } else {
       const result = await (
         await fetch("http://localhost:4010/", {
           method: "POST",
@@ -32,6 +34,8 @@ const BodyCard = (props) => {
       ).json();
 
       if (!result.error) {
+        if (result.message !== "Show Saved")
+          document.getElementById("body-button").style.backgroundColor = "red";
         setState({ message: result.message });
       } else {
         setState({ message: result.error });
@@ -42,6 +46,8 @@ const BodyCard = (props) => {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
+        document.getElementById("body-button").style.backgroundColor =
+          "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
@@ -100,6 +106,7 @@ const BodyCard = (props) => {
 
                   <button
                     className="btn btn-primary"
+                    id="body-button"
                     onClick={saveShow.bind(this, [
                       data.id,
                       data.name,
@@ -119,9 +126,8 @@ const BodyCard = (props) => {
                       data.image.original,
                     ])}
                   >
-                    save
+                    {state.message === "" ? "Save" : state.message}
                   </button>
-                  {state.message}
                 </div>
               </div>
             </div>

@@ -85,6 +85,9 @@
     width: 30vw;
     margin-left: 4%;
   }
+  #header-button {
+    white-space: normal;
+  }
 }
 @media (min-width: 375px) {
   #header-card {
