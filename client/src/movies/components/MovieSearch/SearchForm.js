@@ -19,6 +19,13 @@ const SearchForm = React.memo((props) => {
           <i className="fas fa-search" />
         </button>
         <input
+          id="movie-input-area"
+          onMouseLeave={() => {
+            document.getElementById("movie-input-area").blur();
+          }}
+          onMouseOver={() => {
+            document.getElementById("movie-input-area").focus();
+          }}
           className="movie-input-style"
           type="text/number"
           onChange={(event) => {
