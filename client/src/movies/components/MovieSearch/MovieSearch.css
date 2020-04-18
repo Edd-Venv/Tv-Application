@@ -196,6 +196,7 @@ img {
   #movie-input:hover {
     width: 26vw;
     transform: translate(1px, -5px);
+    transition: transform 0.3s linear;
   }
 
   .error-paragraph {
@@ -222,6 +223,7 @@ img {
   #movie-input:hover {
     width: 22vw;
     transform: translate(1px, -5px);
+    transition: transform 0.3s linear;
   }
   .error-paragraph {
     margin-left: 45%;
@@ -247,6 +249,7 @@ img {
   #movie-input:hover {
     width: 26vw;
     transform: translate(1px, -5px);
+    transition: transform 0.3s linear;
   }
   .error-paragraph {
     margin-left: 45%;

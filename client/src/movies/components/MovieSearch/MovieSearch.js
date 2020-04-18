@@ -16,7 +16,17 @@ function Search() {
     document.getElementById("movie-slider").style.display = "block";
     document.getElementById("movie-model").style.display = "none";
   };
+  const handleTrailerPlayButton = () => {
+    document.getElementById("Iframe").src = state.MovieTrailer;
+    document.getElementById("movie-trailer").style.display = "block";
+    document.getElementById("movie-model").style.zIndex = 0;
+  };
 
+  const handleTrailerCloseButton = () => {
+    document.getElementById("Iframe").src = "";
+    document.getElementById("movie-trailer").style.display = "none";
+    document.getElementById("movie-model").style.zIndex = 1;
+  };
   const onAddSearch = (text) => {
     (async function fetchData() {
       await fetch("http://localhost:4010/movieSearch", {
@@ -52,9 +62,11 @@ function Search() {
       <br />
       <MovieSearchResult
         Movie={state.Movie}
-        Test={state.Test}
-        MovieTrailer={state.MovieTrailer}
+        exists={state.Test}
+        trailer={state.MovieTrailer}
         handleClose={handleClose}
+        handleTrailerPlayButton={handleTrailerPlayButton}
+        handleTrailerCloseButton={handleTrailerCloseButton}
       />
       <br />
     </React.Fragment>
