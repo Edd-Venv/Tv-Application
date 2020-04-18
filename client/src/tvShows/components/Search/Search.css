@@ -1,4 +1,4 @@
-#model {
+#search-result-modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -194,6 +194,7 @@ img {
   #show-input:hover {
     width: 26vw;
     transform: translate(1px, -5px);
+    transition: transform 0.3s linear;
   }
 }
 @media (min-width: 1440px) {
@@ -207,6 +208,7 @@ img {
   #show-input:hover {
     width: 22vw;
     transform: translate(1px, -5px);
+    transition: transform 0.3s linear;
   }
 }
 @media (min-width: 2560px) {

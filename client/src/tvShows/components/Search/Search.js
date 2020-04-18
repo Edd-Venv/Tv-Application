@@ -13,10 +13,21 @@ function Search() {
       type: "SEARCH",
       ...initialState,
     });
-    document.getElementById("model").style.display = "none";
+    document.getElementById("search-result-modal").style.display = "none";
     document.getElementById("slider").style.display = "block";
   };
 
+  const handleTrailerPlayButton = () => {
+    document.querySelector("iframe").src = state.showTrailer;
+    document.getElementById("show-trailer").style.display = "block";
+    document.getElementById("search-result-modal").style.zIndex = 0;
+  };
+
+  const handleTrailerCloseButton = () => {
+    document.querySelector("iframe").src = "";
+    document.getElementById("show-trailer").style.display = "none";
+    document.getElementById("search-result-modal").style.zIndex = 1;
+  };
   const onAddSearch = (text) => {
     (async function fetchData() {
       await fetch("http://localhost:4010/search", {
@@ -44,7 +55,7 @@ function Search() {
         });
     })();
   };
-
+  console.log("search", state);
   return (
     <React.Fragment>
       <br />
@@ -60,10 +71,12 @@ function Search() {
         image={state.data.image}
         display={state.display}
         summary={state.data.summary}
-        Test={state.Test}
+        exists={state.Test}
         showTrailer={state.showTrailer}
         teaser={state.teaser}
         handleClose={handleClose}
+        handleTrailerPlayButton={handleTrailerPlayButton}
+        handleTrailerCloseButton={handleTrailerCloseButton}
       />
     </React.Fragment>
   );
