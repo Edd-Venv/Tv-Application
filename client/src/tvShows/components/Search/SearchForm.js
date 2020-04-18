@@ -8,7 +8,7 @@ const SearchForm = React.memo((props) => {
     props.onAddSearch(currentText);
     setText("");
 
-    document.getElementById("model").style.display = "block";
+    document.getElementById("search-result-modal").style.display = "block";
     document.getElementById("slider").style.display = "none";
   };
   return (
@@ -18,6 +18,13 @@ const SearchForm = React.memo((props) => {
           <i className="fas fa-search" />
         </button>
         <input
+          id="input-area"
+          onMouseLeave={() => {
+            document.getElementById("input-area").blur();
+          }}
+          onMouseOver={() => {
+            document.getElementById("input-area").focus();
+          }}
           className="show-input-style"
           type="text/number"
           onChange={(event) => {
