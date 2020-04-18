@@ -55,7 +55,7 @@ function Search() {
         });
     })();
   };
-  console.log("search", state);
+
   return (
     <React.Fragment>
       <br />

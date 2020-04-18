@@ -8,8 +8,10 @@ const HeaderCard = (props) => {
   const { data, handleClose } = props;
 
   async function saveShow(Args) {
-    if (!user.accesstoken) setState({ messsage: "You need to login to Save." });
-    else {
+    if (!user.accesstoken) {
+      document.getElementById("header-button").style.backgroundColor = "red";
+      setState({ message: "You need to login to Save." });
+    } else {
       const result = await (
         await fetch("http://localhost:4010/", {
           method: "POST",
@@ -32,6 +34,9 @@ const HeaderCard = (props) => {
       ).json();
 
       if (!result.error) {
+        if (result.message !== "Show Saved")
+          document.getElementById("header-button").style.backgroundColor =
+            "red";
         setState({ message: result.message });
       } else {
         setState({ message: result.error });
@@ -42,11 +47,12 @@ const HeaderCard = (props) => {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
+        document.getElementById("header-button").style.backgroundColor =
+          "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
   }, [state]);
-
   return (
     <div id="header-card">
       <div className="header-card-container">
@@ -100,6 +106,7 @@ const HeaderCard = (props) => {
 
                   <button
                     className="btn btn-primary"
+                    id="header-button"
                     onClick={saveShow.bind(this, [
                       data.id,
                       data.name,
@@ -119,9 +126,8 @@ const HeaderCard = (props) => {
                       data.image.original,
                     ])}
                   >
-                    save
+                    {state.message === "" ? "Save" : state.message}
                   </button>
-                  {state.message}
                 </div>
               </div>
             </div>
