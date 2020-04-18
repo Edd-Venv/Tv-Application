@@ -85,6 +85,9 @@
     width: 30vw;
     margin-left: 4%;
   }
+  #slider-card-button {
+    white-space: normal;
+  }
 }
 @media (min-width: 375px) {
   #carousel-card {

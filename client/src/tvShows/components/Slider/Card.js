@@ -8,8 +8,11 @@ const CarouselCard = (props) => {
   const { data, handleClose } = props;
 
   async function saveShow(Args) {
-    if (!user.accesstoken) return console.log("You need to login to Save.");
-    else {
+    if (!user.accesstoken) {
+      document.getElementById("slider-card-button").style.backgroundColor =
+        "red";
+      setState({ message: "You need to login to Save." });
+    } else {
       const result = await (
         await fetch("http://localhost:4010/", {
           method: "POST",
@@ -32,6 +35,9 @@ const CarouselCard = (props) => {
       ).json();
 
       if (!result.error) {
+        if (result.message !== "Show Saved")
+          document.getElementById("slider-card-button").style.backgroundColor =
+            "red";
         setState({ message: result.message });
       } else {
         setState({ message: result.error });
@@ -42,6 +48,8 @@ const CarouselCard = (props) => {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
+        document.getElementById("slider-card-button").style.backgroundColor =
+          "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
@@ -100,6 +108,7 @@ const CarouselCard = (props) => {
 
                   <button
                     className="btn btn-primary"
+                    id="slider-card-button"
                     onClick={saveShow.bind(this, [
                       data.id,
                       data.name,
@@ -119,9 +128,8 @@ const CarouselCard = (props) => {
                       data.image.original,
                     ])}
                   >
-                    save
+                    {state.message === "" ? "Save" : state.message}
                   </button>
-                  {state.message}
                 </div>
               </div>
             </div>
