@@ -21,8 +21,12 @@ function SearchResult(props) {
   const [user] = useContext(UserContext);
 
   async function saveShow(Args) {
-    if (!user.accesstoken) setState({ message: "You need to login to Save." });
-    else {
+    if (!user.accesstoken) {
+      document.getElementById(
+        "tv-show-search-result-button"
+      ).style.backgroundColor = "red";
+      setState({ message: "You need to login to Save." });
+    } else {
       const result = await (
         await fetch("http://localhost:4010/search/saveShow", {
           method: "POST",
@@ -45,6 +49,10 @@ function SearchResult(props) {
       ).json();
 
       if (!result.error) {
+        if (result.message !== "Show Saved")
+          document.getElementById(
+            "tv-show-search-result-button"
+          ).style.backgroundColor = "red";
         setState({ message: result.message });
       } else {
         setState({ message: result.error });
@@ -55,6 +63,9 @@ function SearchResult(props) {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
+        document.getElementById(
+          "tv-show-search-result-button"
+        ).style.backgroundColor = "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
@@ -131,6 +142,7 @@ function SearchResult(props) {
                           </p>
                           <button
                             className="btn btn-primary"
+                            id="tv-show-search-result-button"
                             onClick={saveShow.bind(this, [
                               data.id,
                               data.name,

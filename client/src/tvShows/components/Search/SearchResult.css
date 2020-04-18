@@ -95,6 +95,9 @@
   #search-result-font {
     margin-left: 1%;
   }
+  #tv-show-search-result-button {
+    white-space: normal;
+  }
 }
 @media (min-width: 375px) {
   .search-container {
