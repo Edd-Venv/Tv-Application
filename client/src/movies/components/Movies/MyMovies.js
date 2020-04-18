@@ -85,7 +85,7 @@ const MyMovies = (props) => {
                 key={info.movie_key}
               >
                 <div className="row no-gutters">
-                  <div style={{ width: "30%", marginLeft: "3.2%" }}>
+                  <div className="my-movies-image-container">
                     <img
                       alt="loading"
                       src={info.movie_image}
@@ -98,45 +98,35 @@ const MyMovies = (props) => {
                       <h2 className="card-title" style={{ marginLeft: "2%" }}>
                         {info.movie_title}
                       </h2>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Summary : </strong>{" "}
-                        {info.movie_summary.substring(0, 90)}
-                      </p>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Premier Date : </strong>
-                        {info.movie_release}
-                      </p>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Rating : </strong>
-                        {info.movie_rating}
-                      </p>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Genres : </strong>
-                        {info.movie_genre}
-                      </p>
-                      <button
-                        className="btn btn-danger"
-                        onClick={deleteMovie.bind(this, [
-                          info.movie_title,
-                          info.movie_key,
-                        ])}
-                      >
-                        Delete
-                      </button>
+                      <div className="my-movies-card-font">
+                        <p className="card-text">
+                          <strong>Summary : </strong>{" "}
+                          {info.movie_summary.substring(0, 90)}
+                        </p>
+                        <p className="card-text">
+                          <strong>Premier Date : </strong>
+                          {info.movie_release}
+                        </p>
+                        <p className="card-text">
+                          <strong>Rating : </strong>
+                          {info.movie_rating}
+                        </p>
+                        <p className="card-text">
+                          <strong>Genres : </strong>
+                          {info.movie_genre}
+                        </p>
+                        <button
+                          className="btn btn-danger"
+                          onClick={deleteMovie.bind(this, [
+                            info.movie_title,
+                            info.movie_key,
+                          ])}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
-                  </div>{" "}
+                  </div>
                 </div>
               </div>
             );
