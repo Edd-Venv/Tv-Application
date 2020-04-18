@@ -18,9 +18,10 @@ const MovieSearchResult = (props) => {
   const [user] = useContext(UserContext);
 
   async function saveMovie(Args) {
-    if (!user.accesstoken)
-      setState({ message: "You need to login to Save Movie." });
-    else {
+    if (!user.accesstoken) {
+      document.getElementById("movie-button").style.backgroundColor = "red";
+      setState({ message: "You need to login to Save." });
+    } else {
       const result = await (
         await fetch("http://localhost:4010/search/saveMovie", {
           method: "POST",
@@ -44,6 +45,8 @@ const MovieSearchResult = (props) => {
       ).json();
 
       if (!result.error) {
+        if (result.message !== "Movie Saved")
+          document.getElementById("movie-button").style.backgroundColor = "red";
         setState({ message: result.message });
       } else {
         setState({ message: result.error });
@@ -53,12 +56,13 @@ const MovieSearchResult = (props) => {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
+        if (!user.accesstoken)
+          document.getElementById("movie-button").style.backgroundColor =
+            "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
   }, [state]);
-
-  console.log(Movie);
 
   return (
     <React.Fragment>
@@ -105,7 +109,6 @@ const MovieSearchResult = (props) => {
                       {Movie.Title}
                       <hr />
                     </h3>
-                    <br />
                     <div
                       className="card-text"
                       id="movie-search-result-font-size"
@@ -131,6 +134,7 @@ const MovieSearchResult = (props) => {
                       </p>
                       <button
                         className="btn btn-primary"
+                        id="movie-button"
                         onClick={saveMovie.bind(this, [
                           Movie.Poster,
                           Movie.Title,
@@ -140,7 +144,7 @@ const MovieSearchResult = (props) => {
                           Movie.Runtime,
                           Movie.imdbRating,
                           Movie.imdbID,
-                          MovieTrailer,
+                          trailer,
                         ])}
                       >
                         {state.message === "" ? "Save" : state.message}

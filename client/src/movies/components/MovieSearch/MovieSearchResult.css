@@ -108,6 +108,9 @@
     width: 90vw;
     height: 85vw;
   }
+  #movie-button {
+    white-space: normal;
+  }
 }
 @media (min-width: 375px) {
   .movie-search-container {
