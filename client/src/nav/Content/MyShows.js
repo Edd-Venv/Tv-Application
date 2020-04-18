@@ -72,8 +72,6 @@ const MyShows = (props) => {
         <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You Don't Have Shows Saved.
         </h2>
-      ) : user.accesstoken && content[0].length <= 2 ? (
-        <OneShow deleteShow={deleteShow} content={content} />
       ) : (
         <div className="my-shows-container">
           {content[0].map((info) => {
@@ -85,7 +83,7 @@ const MyShows = (props) => {
                 key={info.show_key}
               >
                 <div className="row no-gutters">
-                  <div style={{ width: "30%", marginLeft: "3.2%" }}>
+                  <div className="my-shows-image-container">
                     <img
                       alt="loading"
                       src={info.show_image}
@@ -98,46 +96,36 @@ const MyShows = (props) => {
                       <h2 className="card-title" style={{ marginLeft: "2%" }}>
                         {info.show_title}
                       </h2>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Summary : </strong>{" "}
-                        {info.show_summary
-                          .substring(0, 90)
-                          .replace(/<p>/g, " ")
-                          .replace(/<b>/g, " ")}
-                      </p>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Premier Date : </strong>
-                        {info.show_premiered}
-                      </p>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Rating : </strong>
-                        {info.show_rating}
-                      </p>
-                      <p
-                        className="card-text"
-                        style={{ fontSize: "1.5rem", width: "100%" }}
-                      >
-                        <strong>Genre : </strong>
-                        {info.show_genre}
-                      </p>
-                      <button
-                        className="btn btn-danger"
-                        onClick={deleteShow.bind(this, [
-                          info.show_title,
-                          info.show_key,
-                        ])}
-                      >
-                        Delete
-                      </button>
+                      <div className="my-shows-card-font">
+                        <p className="card-text">
+                          <strong>Summary : </strong>{" "}
+                          {info.show_summary
+                            .substring(0, 90)
+                            .replace(/<p>/g, " ")
+                            .replace(/<b>/g, " ")}
+                        </p>
+                        <p className="card-text">
+                          <strong>Premier Date : </strong>
+                          {info.show_premiered}
+                        </p>
+                        <p className="card-text">
+                          <strong>Rating : </strong>
+                          {info.show_rating}
+                        </p>
+                        <p className="card-text">
+                          <strong>Genre : </strong>
+                          {info.show_genre}
+                        </p>
+                        <button
+                          className="btn btn-danger"
+                          onClick={deleteShow.bind(this, [
+                            info.show_title,
+                            info.show_key,
+                          ])}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>{" "}
                 </div>
