@@ -131,13 +131,13 @@ server.post("/refresh_token", async (req, res) => {
   const token = req.cookies.refreshtoken;
 
   // If we don't have a token in our request ask to relogin I think
-  if (!token) return res.send({ accesstoken: "" });
+  if (!token) return res.send({ error: "token doesn't exist" });
   // We have a token, let's verify it!
   let payload = null;
   try {
     payload = verify(token, process.env.REFRESH_TOKEN_SECRET);
   } catch (err) {
-    return res.send({ accesstoken: "" });
+    return res.send({ error: err });
   }
 
   try {
@@ -169,6 +169,7 @@ server.post("/refresh_token", async (req, res) => {
 
     //All Checks Out send new refreshtoken and accesstoken
     sendRefreshToken(res, refreshtoken);
+
     return res.send({ accesstoken });
   } catch (err) {
     return res.send(err);
@@ -330,7 +331,7 @@ server.get("/MyShows", async (req, res) => {
       });
     }
   } catch (err) {
-    res.redirect("http://localhost:4010/login");
+    res.redirect("http://18.222.115.53:4010/login");
   }
 });
 
@@ -512,7 +513,7 @@ server.get("/MyMovies", async (req, res) => {
       });
     }
   } catch (err) {
-    res.redirect("http://localhost:4010/login");
+    res.redirect("http://localhost:4020/login");
   }
 });
 
