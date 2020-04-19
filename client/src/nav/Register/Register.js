@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { UserContext } from "../../App.js";
 import { navigate } from "@reach/router";
 import Navigation from "../Navigation/Navigation";
 import "./Register.css";
 
 const Register = () => {
+  const [, setUser] = useContext(UserContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [state, setState] = useState({ message: "" });
@@ -17,23 +19,36 @@ const Register = () => {
   const firstKeyDown = (event) => {
     if (event.key === "Enter") passwordRef.current.focus();
   };
+  const handleLoginAndResgister = async (url) => {
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        person_name: name,
+        password: password,
+      }),
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await (
-      await fetch("http://localhost:4010/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          person_name: name,
-          password: password,
-        }),
-      })
-    ).json();
+
+    const result = handleLoginAndResgister("http://localhost:4010/register");
+
     if (!result.error) {
-      navigate("/login");
+      //Login User automatically
+      const secondResult = await (
+        await handleLoginAndResgister("http://localhost:4010/login")
+      ).json();
+
+      if (secondResult.accesstoken) {
+        setUser({
+          accesstoken: secondResult.accesstoken,
+        });
+        navigate("/");
+      }
     } else {
       setState({ message: result.error });
     }

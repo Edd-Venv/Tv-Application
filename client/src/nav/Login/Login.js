@@ -44,7 +44,6 @@ const Login = (props) => {
       navigate("/");
     } else {
       setState({ message: result.error });
-      console.log(result.error);
     }
   };
 
