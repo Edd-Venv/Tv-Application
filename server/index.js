@@ -330,9 +330,7 @@ server.get("/MyShows", async (req, res) => {
       });
     }
   } catch (err) {
-    res.json({
-      error: `${err.message}`,
-    });
+    res.redirect("http://18.222.115.53:4010/login");
   }
 });
 
@@ -514,9 +512,7 @@ server.get("/MyMovies", async (req, res) => {
       });
     }
   } catch (err) {
-    res.json({
-      error: `${err.message}`,
-    });
+    res.redirect("http://18.222.115.53:4020/login");
   }
 });
 
