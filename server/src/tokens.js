@@ -29,7 +29,7 @@ const sendRefreshToken = (res, token) => {
   res.cookie("refreshtoken", token, {
     httpOnly: true,
     path: "/refresh_token",
-    expires: new Date(Date.now() + 168 * 3600000),
+    expires: new Date(Date.now() + 8 * 3600000),
   });
 };
 

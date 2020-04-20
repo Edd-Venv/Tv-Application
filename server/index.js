@@ -331,7 +331,7 @@ server.get("/MyShows", async (req, res) => {
       });
     }
   } catch (err) {
-    res.redirect("http://18.222.115.53:4010/login");
+    res.redirect("/login");
   }
 });
 
