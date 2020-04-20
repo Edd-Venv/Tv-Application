@@ -1,6 +1,7 @@
 .my-shows-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  margin-top: 3%;
 }
 
 #my-shows-item:hover {

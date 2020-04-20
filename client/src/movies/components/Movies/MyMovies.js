@@ -5,8 +5,7 @@ import OneMovie from "./oneMovie.js";
 import "./Movies.css";
 
 const MyMovies = (props) => {
-  // Could have something here to check for the time when the accesstoken expires
-  // and then call the refresh_token endpoint to get a new accesstoken automatically
+  const [currentFilterText, setFilterText] = useState("");
   const [user] = useContext(UserContext);
   const [content, setContent] = useState([]);
 
@@ -49,6 +48,11 @@ const MyMovies = (props) => {
     }
   }
 
+  const filteredMovies = !currentFilterText
+    ? content[0]
+    : content[0].filter((show) =>
+        show.movie_title.toLowerCase().includes(currentFilterText.toLowerCase())
+      );
   return (
     <React.Fragment>
       <Navigation
@@ -75,63 +79,86 @@ const MyMovies = (props) => {
       ) : user.accesstoken && content[0].length <= 2 ? (
         <OneMovie deleteMovie={deleteMovie} content={content} />
       ) : (
-        <div className="my-movies-container">
-          {content[0].map((info) => {
-            return (
-              <div
-                className="card mb-3"
-                style={{ width: "85%" }}
-                id="my-movies-item"
-                key={info.movie_key}
-              >
-                <div className="row no-gutters">
-                  <div className="my-movies-image-container">
-                    <img
-                      alt="loading"
-                      src={info.movie_image}
-                      className="img-thumbnail"
-                      style={{ width: "100%" }}
-                    />
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      <h2 className="card-title" style={{ marginLeft: "2%" }}>
-                        {info.movie_title}
-                      </h2>
-                      <div className="my-movies-card-font">
-                        <p className="card-text">
-                          <strong>Summary : </strong>{" "}
-                          {info.movie_summary.substring(0, 90)}
-                        </p>
-                        <p className="card-text">
-                          <strong>Premier Date : </strong>
-                          {info.movie_release}
-                        </p>
-                        <p className="card-text">
-                          <strong>Rating : </strong>
-                          {info.movie_rating}
-                        </p>
-                        <p className="card-text">
-                          <strong>Genres : </strong>
-                          {info.movie_genre}
-                        </p>
-                        <button
-                          className="btn btn-danger"
-                          onClick={deleteMovie.bind(this, [
-                            info.movie_title,
-                            info.movie_key,
-                          ])}
-                        >
-                          Delete
-                        </button>
+        <React.Fragment>
+          <div className="movie-input-container" id="movie-input">
+            <button id="MovieSearchButton" type="submit">
+              <i className="fas fa-search" />
+            </button>
+            <input
+              id="filter-by-movie-title"
+              onMouseLeave={() => {
+                document.getElementById("filter-by-movie-title").blur();
+              }}
+              onMouseOver={() => {
+                document.getElementById("filter-by-movie-title").focus();
+              }}
+              className="movie-input-style"
+              type="text/number"
+              placeholder="Movie Title"
+              onChange={(event) => {
+                setFilterText(event.target.value);
+              }}
+              value={currentFilterText}
+            />
+          </div>
+          <div className="my-movies-container">
+            {filteredMovies.map((info) => {
+              return (
+                <div
+                  className="card mb-3"
+                  style={{ width: "85%" }}
+                  id="my-movies-item"
+                  key={info.movie_key}
+                >
+                  <div className="row no-gutters">
+                    <div className="my-movies-image-container">
+                      <img
+                        alt="loading"
+                        src={info.movie_image}
+                        className="img-thumbnail"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <div className="col-md-8">
+                      <div className="card-body">
+                        <h2 className="card-title" style={{ marginLeft: "2%" }}>
+                          {info.movie_title}
+                        </h2>
+                        <div className="my-movies-card-font">
+                          <p className="card-text">
+                            <strong>Summary : </strong>{" "}
+                            {info.movie_summary.substring(0, 90)}
+                          </p>
+                          <p className="card-text">
+                            <strong>Premier Date : </strong>
+                            {info.movie_release}
+                          </p>
+                          <p className="card-text">
+                            <strong>Rating : </strong>
+                            {info.movie_rating}
+                          </p>
+                          <p className="card-text">
+                            <strong>Genres : </strong>
+                            {info.movie_genre}
+                          </p>
+                          <button
+                            className="btn btn-danger"
+                            onClick={deleteMovie.bind(this, [
+                              info.movie_title,
+                              info.movie_key,
+                            ])}
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
