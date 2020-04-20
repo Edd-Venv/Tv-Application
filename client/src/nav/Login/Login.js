@@ -72,7 +72,7 @@ const Login = (props) => {
             <input
               className="form-control"
               value={name}
-              onChange={handleChange.bind(this)}
+              onChange={handleChange}
               type="text"
               name="name"
               placeholder="User Name"
