@@ -5,8 +5,7 @@ import OneShow from "./oneShow.js";
 import "./MyShows.css";
 
 const MyShows = (props) => {
-  // Could have something here to check for the time when the accesstoken expires
-  // and then call the refresh_token endpoint to get a new accesstoken automatically
+  const [currentFilterText, setFilterText] = useState("");
   const [user] = useContext(UserContext);
   const [content, setContent] = useState([]);
 
@@ -49,6 +48,12 @@ const MyShows = (props) => {
     }
   }
 
+  const filteredShows = !currentFilterText
+    ? content[0]
+    : content[0].filter((show) =>
+        show.show_title.toLowerCase().includes(currentFilterText.toLowerCase())
+      );
+
   return (
     <React.Fragment>
       <Navigation
@@ -72,67 +77,92 @@ const MyShows = (props) => {
         <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You Don't Have Shows Saved.
         </h2>
+      ) : user.accesstoken && content[0].length === 1 ? (
+        <OneShow content={content} deleteShow={deleteShow} />
       ) : (
-        <div className="my-shows-container">
-          {content[0].map((info) => {
-            return (
-              <div
-                className="card mb-3"
-                style={{ width: "85%" }}
-                id="my-shows-item"
-                key={info.show_key}
-              >
-                <div className="row no-gutters">
-                  <div className="my-shows-image-container">
-                    <img
-                      alt="loading"
-                      src={info.show_image}
-                      className="img-thumbnail"
-                      style={{ width: "100%" }}
-                    />
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      <h2 className="card-title" style={{ marginLeft: "2%" }}>
-                        {info.show_title}
-                      </h2>
-                      <div className="my-shows-card-font">
-                        <p className="card-text">
-                          <strong>Summary : </strong>{" "}
-                          {info.show_summary
-                            .substring(0, 90)
-                            .replace(/<p>/g, " ")
-                            .replace(/<b>/g, " ")}
-                        </p>
-                        <p className="card-text">
-                          <strong>Premier Date : </strong>
-                          {info.show_premiered}
-                        </p>
-                        <p className="card-text">
-                          <strong>Rating : </strong>
-                          {info.show_rating}
-                        </p>
-                        <p className="card-text">
-                          <strong>Genre : </strong>
-                          {info.show_genre}
-                        </p>
-                        <button
-                          className="btn btn-danger"
-                          onClick={deleteShow.bind(this, [
-                            info.show_title,
-                            info.show_key,
-                          ])}
-                        >
-                          Delete
-                        </button>
-                      </div>
+        <React.Fragment>
+          <div className="show-input-container" id="show-input">
+            <button id="SearchButton" type="submit">
+              <i className="fas fa-search" />
+            </button>
+            <input
+              id="filter-by-show-title"
+              onMouseLeave={() => {
+                document.getElementById("filter-by-show-title").blur();
+              }}
+              onMouseOver={() => {
+                document.getElementById("filter-by-show-title").focus();
+              }}
+              className="show-input-style"
+              type="text/number"
+              placeholder="Show Title"
+              onChange={(event) => {
+                setFilterText(event.target.value);
+              }}
+              value={currentFilterText}
+            />
+          </div>
+          <div className="my-shows-container">
+            {filteredShows.map((info) => {
+              return (
+                <div
+                  className="card mb-3"
+                  style={{ width: "80%" }}
+                  id="my-shows-item"
+                  key={info.show_key}
+                >
+                  <div className="row no-gutters">
+                    <div className="my-shows-image-container">
+                      <img
+                        alt="loading"
+                        src={info.show_image}
+                        className="img-thumbnail"
+                        style={{ width: "100%" }}
+                      />
                     </div>
-                  </div>{" "}
+                    <div className="col-md-8">
+                      <div className="card-body">
+                        <h2 className="card-title" style={{ marginLeft: "2%" }}>
+                          {info.show_title}
+                        </h2>
+                        <div className="my-shows-card-font">
+                          <p className="card-text">
+                            <strong>Summary : </strong>{" "}
+                            {info.show_summary
+                              .substring(0, 90)
+                              .replace(/<p>/g, " ")
+                              .replace(/<b>/g, " ")}
+                          </p>
+                          <p className="card-text">
+                            <strong>Premier Date : </strong>
+                            {info.show_premiered}
+                          </p>
+                          <p className="card-text">
+                            <strong>Rating : </strong>
+                            {info.show_rating}
+                          </p>
+                          <p className="card-text">
+                            <strong>Genre : </strong>
+                            {info.show_genre}
+                          </p>
+                          <button
+                            className="btn btn-danger"
+                            onClick={deleteShow.bind(this, [
+                              info.show_title,
+                              info.show_key,
+                            ])}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>{" "}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
