@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { UserContext } from "../../../App.js";
+import { UserContext, BaseUrl } from "../../../App.js";
 import Navigation from "../../../nav/Navigation/Navigation.js";
 import OneMovie from "./oneMovie.js";
 import "./Movies.css";
@@ -11,7 +11,7 @@ const MyMovies = (props) => {
 
   async function fetchMovies() {
     const result = await (
-      await fetch("http://localhost:4010/MyMovies", {
+      await fetch(`${BaseUrl}/MyMovies`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const MyMovies = (props) => {
   async function deleteMovie(Args) {
     try {
       if (user.accesstoken)
-        await fetch("http://localhost:4010/MyMovies/Delete", {
+        await fetch(`${BaseUrl}/MyMovies/Delete`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -53,6 +53,7 @@ const MyMovies = (props) => {
     : content[0].filter((show) =>
         show.movie_title.toLowerCase().includes(currentFilterText.toLowerCase())
       );
+
   return (
     <React.Fragment>
       <Navigation
