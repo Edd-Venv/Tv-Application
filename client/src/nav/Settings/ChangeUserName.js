@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import "./Settings.css";
 
 function ChangeUserName(props) {
@@ -11,7 +11,7 @@ function ChangeUserName(props) {
     event.preventDefault();
 
     const result = await (
-      await fetch("http://localhost:4010/settings/changeName", {
+      await fetch(`${BaseUrl}/settings/changeName`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

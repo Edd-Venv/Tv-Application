@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import { navigate } from "@reach/router";
 import Navigation from "../Navigation/Navigation";
 import "./Register.css";
@@ -35,12 +35,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const result = handleLoginAndResgister("http://localhost:4010/register");
+    const result = handleLoginAndResgister(`${BaseUrl}/register`);
 
     if (!result.error) {
       //Login User automatically
       const secondResult = await (
-        await handleLoginAndResgister("http://localhost:4010/login")
+        await handleLoginAndResgister(`${BaseUrl}/login`)
       ).json();
 
       if (secondResult.accesstoken) {
