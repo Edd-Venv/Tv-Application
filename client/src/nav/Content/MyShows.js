@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
 import OneShow from "./oneShow.js";
 import "./MyShows.css";
@@ -11,7 +11,7 @@ const MyShows = (props) => {
 
   async function fetchShows() {
     const result = await (
-      await fetch("http://localhost:4010/Myshows", {
+      await fetch(`${BaseUrl}/Myshows`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const MyShows = (props) => {
   async function deleteShow(Args) {
     try {
       if (user.accesstoken)
-        await fetch("http://localhost:4010/MyShows/Delete", {
+        await fetch(`${BaseUrl}/MyShows/Delete`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

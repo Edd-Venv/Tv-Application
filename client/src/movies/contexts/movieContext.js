@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useEffect } from "react";
 import { movieReducer } from "./movieReducers.js";
+import { BaseUrl } from "../../App.js";
 
 const initialState = {
   isLoaded: false,
@@ -11,7 +12,7 @@ export const MovieContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(movieReducer, initialState);
   useEffect(() => {
     document.title = "Movies";
-    fetch("http://localhost:4010/movieData")
+    fetch(`${BaseUrl}/movieData`)
       .then((result) => {
         return result.json();
       })
