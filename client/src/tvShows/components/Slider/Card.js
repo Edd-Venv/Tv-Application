@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../../App.js";
+import { UserContext, BaseUrl } from "../../../App.js";
 import "./Slider.css";
 
 const CarouselCard = (props) => {
@@ -14,7 +14,7 @@ const CarouselCard = (props) => {
       setState({ message: "You need to login to Save." });
     } else {
       const result = await (
-        await fetch("http://localhost:4010/", {
+        await fetch(`${BaseUrl}/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useEffect } from "react";
 import { tvReducer } from "./tvReducers.js";
+import { BaseUrl } from "../../App.js";
 
 const initialState = {
   isLoaded: false,
@@ -12,7 +13,7 @@ export const TvContextProvider = ({ children }) => {
 
   useEffect(() => {
     document.title = "Tv Shows";
-    fetch("http://localhost:4010/apiData")
+    fetch(`${BaseUrl}/apiData`)
       .then((result) => {
         return result.json();
       })
