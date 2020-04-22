@@ -3,6 +3,7 @@ import { initialState } from "./DummyData.js";
 import { searchReducer } from "../../contexts/movieReducers.js";
 import SearchForm from "./SearchForm.js";
 import MovieSearchResult from "./MovieSearchResult.js";
+import { BaseUrl } from "../../../App.js";
 import "./MovieSearch.css";
 
 function Search() {
@@ -29,7 +30,7 @@ function Search() {
   };
   const onAddSearch = (text) => {
     (async function fetchData() {
-      await fetch("http://localhost:4010/movieSearch", {
+      await fetch(`${BaseUrl}/movieSearch`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../../App.js";
+import { UserContext, BaseUrl } from "../../../App.js";
 import MovieTrailer from "./MovieTrailer.js";
 import FetalMovieSearchError from "./FetalMovieSearchError.js";
 import "./MovieSearchResult.css";
@@ -23,7 +23,7 @@ const MovieSearchResult = (props) => {
       setState({ message: "You need to login to Save." });
     } else {
       const result = await (
-        await fetch("http://localhost:4010/search/saveMovie", {
+        await fetch(`${BaseUrl}/search/saveMovie`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
