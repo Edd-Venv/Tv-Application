@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import "./Search.css";
+import { BaseUrl } from "../../../App.js";
 import { initialState } from "./DummyState";
 import { searchReducer } from "../../contexts/tvReducers.js";
 import SearchResult from "./SearchResult";
@@ -30,7 +31,7 @@ function Search() {
   };
   const onAddSearch = (text) => {
     (async function fetchData() {
-      await fetch("http://localhost:4010/search", {
+      await fetch(`${BaseUrl}/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

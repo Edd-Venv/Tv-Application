@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./SearchResult.css";
 import PartialSearchError from "./PatialSearchError.js";
-import { UserContext } from "../../../App.js";
+import { UserContext, BaseUrl } from "../../../App.js";
 import Trailer from "./SearchResultTrailer.js";
 
 function SearchResult(props) {
@@ -28,7 +28,7 @@ function SearchResult(props) {
       setState({ message: "You need to login to Save." });
     } else {
       const result = await (
-        await fetch("http://localhost:4010/search/saveShow", {
+        await fetch(`${BaseUrl}/search/saveShow`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
