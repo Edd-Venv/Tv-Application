@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
@@ -9,7 +9,7 @@ const UserLogo = (props) => {
     if (user.accesstoken) {
       try {
         const result = await (
-          await fetch("http://localhost:4010/userName", {
+          await fetch(`${BaseUrl}/userName`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

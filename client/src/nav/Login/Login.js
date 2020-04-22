@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { navigate } from "@reach/router";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
 import "./Login.css";
 
@@ -24,7 +24,7 @@ const Login = (props) => {
     e.preventDefault();
 
     const result = await (
-      await fetch("http://localhost:4010/login", {
+      await fetch(`${BaseUrl}/login`, {
         method: "POST",
         credentials: "include", // Needed to include the cookie
         headers: {
