@@ -7,7 +7,7 @@ const SearchForm = React.memo((props) => {
     event.preventDefault();
     props.onAddSearch(currentText);
     setText("");
-
+    document.getElementById("input-area").blur();
     document.getElementById("search-result-modal").style.display = "block";
     document.getElementById("slider").style.display = "none";
   };

@@ -3,14 +3,14 @@ const { sign } = require("jsonwebtoken");
 // Create tokens
 // ----------------------------------
 const createAccessToken = (userId) => {
-  return sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
+  return sign({ userId }, "EDWINRULES", {
     expiresIn: "14d",
     algorithm: "HS256",
   });
 };
 
 const createRefreshToken = (userId) => {
-  return sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
+  return sign({ userId }, "EDWINRULESEVENMORE", {
     expiresIn: "14d",
     algorithm: "HS256",
   });
