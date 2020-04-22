@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import { GoTrashcan } from "react-icons/go";
 import Navigation from "../Navigation/Navigation.js";
 import ChangeUserName from "./ChangeUserName.js";
@@ -10,7 +10,7 @@ function Settings(props) {
 
   const deleteUser = async () => {
     const result = await (
-      await fetch("http://localhost:4010/deleteUser", {
+      await fetch(`${BaseUrl}/deleteUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
