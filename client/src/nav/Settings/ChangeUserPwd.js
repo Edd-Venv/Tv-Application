@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import "./Settings.css";
 
 function ChangeUserPwd(props) {
@@ -10,7 +10,7 @@ function ChangeUserPwd(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await (
-      await fetch("http://localhost:4010/settings/changePassword", {
+      await fetch(`${BaseUrl}/settings/changePassword`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
