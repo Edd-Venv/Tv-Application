@@ -15,7 +15,7 @@ module.exports = pool;
   port: 5432,
   database: "booksdb"
 
-  "http://18.222.115.53:4000"
+  "http://18.222.115.53:4010"
 
   const path = require("path");
 const http = require("http");
@@ -27,6 +27,6 @@ const http = require("http");
   });
 }
 
-http.createServer(server).listen(4000);
+http.createServer(server).listen(4010);
 
 */
