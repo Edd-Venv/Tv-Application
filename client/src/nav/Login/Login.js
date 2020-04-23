@@ -1,5 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { navigate } from "@reach/router";
+import handleToolTip from "../Utils/tooltip.js";
 import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
 import "./Login.css";
@@ -56,6 +57,18 @@ const Login = (props) => {
   };
 
   const { displayLogin } = props;
+  handleToolTip("login-tool-tip", "login-user-name-input", "login-form");
+
+  useEffect(() => {
+    if (document.getElementById("login-tool-tip")) {
+      const setToolTip = document.getElementById("login-tool-tip");
+      if (state.message !== "") setToolTip.textContent = state.message;
+
+      setTimeout(() => {
+        setToolTip.textContent = "";
+      }, 3000);
+    }
+  }, [state.message]);
 
   return (
     <React.Fragment>
@@ -70,6 +83,7 @@ const Login = (props) => {
           <div className="form-group">
             <label htmlFor="name">USER NAME</label>
             <input
+              id="login-user-name-input"
               className="form-control"
               value={name}
               onChange={handleChange}
@@ -80,8 +94,8 @@ const Login = (props) => {
               ref={userNameRef}
               onKeyDown={firstKeyDown}
             />
-            {state.message}
           </div>
+          <div />
           <div className="form-group">
             <label htmlFor="password">PASSWORD</label>
             <input
