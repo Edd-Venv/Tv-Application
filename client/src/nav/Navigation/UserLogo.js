@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext, BaseUrl } from "../../App.js";
+import { GoPerson } from "react-icons/go";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
@@ -39,6 +40,7 @@ const UserLogo = (props) => {
           paddingLeft: "0.5rem",
         }}
       >
+        <GoPerson />
         {name}
       </i>
     </span>
