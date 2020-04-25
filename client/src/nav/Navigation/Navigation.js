@@ -39,7 +39,7 @@ const Navigation = ({ logOutCallback }) => {
     else if (!user.accesstoken)
       return (
         <Link className="nav-link" to="/login">
-          Login{" "}
+          Login
           <svg
             className="bi bi-box-arrow-in-right"
             width="1em"
@@ -145,7 +145,12 @@ const Navigation = ({ logOutCallback }) => {
 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-light"
+        style={{
+          fontFamily: "Roboto Condensed, sans-serif",
+        }}
+      >
         <button
           className="navbar-toggler"
           type="button"
@@ -186,7 +191,6 @@ const Navigation = ({ logOutCallback }) => {
           </ul>
         </div>
         <div>
-          <GoPerson />
           <UserLogo />
         </div>
       </nav>
