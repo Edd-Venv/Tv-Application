@@ -24,6 +24,8 @@ function TvShows(props) {
               fontSize: "1.5em",
               fontWeight: "bolder",
               color: "white",
+              letterSpacing: "0.1rem",
+              fontFamily: "Oswald, sans-serif",
             }}
           >
             TRENDING SHOWS

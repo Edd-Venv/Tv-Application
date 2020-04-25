@@ -86,6 +86,7 @@
 
 #movie-search-result-font {
   font-size: 1.3rem;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 @media (min-width: 320px) {

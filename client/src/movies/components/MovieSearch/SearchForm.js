@@ -34,6 +34,7 @@ const SearchForm = React.memo((props) => {
           value={currentText}
           placeholder="Movie Title"
           required
+          style={{ fontFamily: "Roboto Condensed, sans-serif" }}
         />
       </div>
     </form>
