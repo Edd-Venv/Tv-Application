@@ -33,6 +33,7 @@ const SearchForm = React.memo((props) => {
           value={currentText}
           placeholder="Show Title"
           required
+          style={{ fontFamily: "Roboto Condensed, sans-serif" }}
         />
       </div>
     </form>
