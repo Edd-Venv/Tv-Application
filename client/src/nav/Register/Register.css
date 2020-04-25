@@ -3,6 +3,7 @@
   margin: 0 auto;
   font: 2rem;
   background-color: rgb(218, 213, 213);
+  font-family: "Oswald", sans-serif;
 }
 @media (min-width: 320px) {
   #register-form {
