@@ -39,7 +39,15 @@ function ChangeUserPwd(props) {
   return (
     <form className="card mb-3 form" onSubmit={handleSubmit}>
       <div className="form-group">
-        <h3 style={{ textAlign: "center", color: "white" }}>CHANGE PASSWORD</h3>
+        <h3
+          style={{
+            fontFamily: "Oswald, sans-serif",
+            textAlign: "center",
+            color: "white",
+          }}
+        >
+          CHANGE PASSWORD
+        </h3>
         <label htmlFor="old password">OLD PASSWORD</label>
         <input
           className="form-control"
