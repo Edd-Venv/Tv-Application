@@ -62,8 +62,15 @@ const MyShows = (props) => {
       />
       <br />
       {!user.accesstoken ? (
-        <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
-          You need to login.
+        <h2
+          style={{
+            fontFamily: "Roboto Condensed, sans-serif",
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "red",
+          }}
+        >
+          YOU NEED TO LOGIN.
         </h2>
       ) : user.accesstoken && content[0] === undefined ? (
         <div
@@ -74,7 +81,14 @@ const MyShows = (props) => {
           <span className="sr-only">Loading...</span>
         </div>
       ) : user.accesstoken && content[0].length === 0 ? (
-        <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
+        <h2
+          style={{
+            fontFamily: "Roboto Condensed, sans-serif",
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "white",
+          }}
+        >
           You Don't Have Shows Saved.
         </h2>
       ) : user.accesstoken && content[0].length === 1 ? (
@@ -99,6 +113,7 @@ const MyShows = (props) => {
               onChange={(event) => {
                 setFilterText(event.target.value);
               }}
+              style={{ fontFamily: "Roboto Condensed, sans-serif" }}
               value={currentFilterText}
             />
           </div>

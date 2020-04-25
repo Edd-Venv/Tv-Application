@@ -62,8 +62,15 @@ const MyMovies = (props) => {
       />
       <br />
       {!user.accesstoken ? (
-        <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
-          You need to login.
+        <h2
+          style={{
+            fontFamily: "Roboto Condensed, sans-serif",
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "red",
+          }}
+        >
+          YOU NEED TO LOGIN.
         </h2>
       ) : user.accesstoken && content[0] === undefined ? (
         <div
@@ -100,6 +107,7 @@ const MyMovies = (props) => {
                 setFilterText(event.target.value);
               }}
               value={currentFilterText}
+              style={{ fontFamily: "Roboto Condensed, sans-serif" }}
             />
           </div>
           <div className="my-movies-container">
