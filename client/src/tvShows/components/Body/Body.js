@@ -7,12 +7,12 @@ import { dummyData } from "../DummyData.js";
 
 function Body() {
   const { isLoaded, data } = useContext(TvContext);
-  const [state, setState] = useState({
-    data: { ...dummyData },
-  });
+  const DummyData = Object.assign({}, dummyData);
+
+  const [state, setState] = useState({ data: DummyData });
 
   const handleClose = () => {
-    setState({ data: { ...dummyData } });
+    setState({ data: DummyData });
     document.getElementById("body-card").style.display = "none";
     document.getElementById("slider").style.display = "block";
   };

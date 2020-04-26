@@ -191,7 +191,7 @@ const Navigation = ({ logOutCallback }) => {
           </ul>
         </div>
         <div>
-          <UserLogo />
+          <UserLogo logOutCallback={logOutCallback} />
         </div>
       </nav>
     </React.Fragment>

@@ -1,33 +1,17 @@
 import React, { useContext, useState, useEffect } from "react";
-import { UserContext, BaseUrl } from "../../App.js";
+import { UserContext } from "../../App.js";
 import { GoPerson } from "react-icons/go";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
   const [name, setName] = useState("");
 
-  async function getName() {
-    if (user.accesstoken) {
-      try {
-        const result = await (
-          await fetch(`${BaseUrl}/userName`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: `Bearer ${user.accesstoken}`,
-            },
-          })
-        ).json();
-
-        setName(result.name);
-      } catch (error) {
-        console.log(error);
-      }
-    } else return setName("GUEST");
-  }
-
   useEffect(() => {
-    getName();
+    if (localStorage.getItem("userName"))
+      setName(localStorage.getItem("userName"));
+    else setName("GUEST");
+    if (user.accesstoken && !localStorage.getItem("userName"))
+      props.logOutCallback();
   }, [user.accesstoken]);
 
   return (
