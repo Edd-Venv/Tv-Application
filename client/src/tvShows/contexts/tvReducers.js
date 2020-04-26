@@ -8,9 +8,10 @@ export const tvReducer = (state, action) => {
 };
 
 export const carouselReducer = (state, action) => {
+  const data = Object.assign({}, action.carouselData);
   switch (action.type) {
     case "CAROUSEL":
-      return { ...action.carouselData };
+      return data;
     default:
       throw new Error();
   }

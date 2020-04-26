@@ -39,6 +39,7 @@ const Login = (props) => {
     ).json();
 
     if (result.accesstoken) {
+      localStorage.setItem("userName", name);
       setUser({
         accesstoken: result.accesstoken,
       });
