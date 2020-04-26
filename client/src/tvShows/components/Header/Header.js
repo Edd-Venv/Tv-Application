@@ -6,12 +6,13 @@ import "./Header.css";
 
 function Header() {
   const { isLoaded, data } = useContext(TvContext);
+  const DummyData = Object.assign({}, dummyData);
   const [state, setState] = useState({
-    data: { ...dummyData },
+    data: DummyData,
   });
 
   const handleClose = () => {
-    setState({ data: { ...dummyData } });
+    setState({ data: DummyData });
     document.getElementById("header-card").style.display = "none";
     document.getElementById("slider").style.display = "block";
   };
