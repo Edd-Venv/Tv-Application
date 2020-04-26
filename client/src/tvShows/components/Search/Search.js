@@ -1,18 +1,15 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import "./Search.css";
 import { BaseUrl } from "../../../App.js";
 import { initialState } from "./DummyState";
-import { searchReducer } from "../../contexts/tvReducers.js";
 import SearchResult from "./SearchResult";
 import SearchForm from "./SearchForm.js";
 
 function Search() {
-  const [state, dispatch] = useReducer(searchReducer, initialState);
-
+  const [state, setState] = useState({ initialState });
   const handleClose = () => {
-    dispatch({
-      type: "SEARCH",
-      ...initialState,
+    setState({
+      initialState,
     });
     document.getElementById("search-result-modal").style.display = "none";
     document.getElementById("slider").style.display = "block";
@@ -44,14 +41,15 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
-          dispatch({
-            type: "SEARCH",
-            data: Data.data[0][0].show,
-            isLoaded: true,
-            showTrailer: Data.data[1].Similar.Info[0].yUrl,
-            Test: Data.data[1].Similar.Info[0].Type,
-            teaser: Data.data[1].Similar.Info[0].wTeaser,
-            display: "show",
+          setState({
+            initialState: {
+              data: Data.data[0][0].show,
+              isLoaded: true,
+              showTrailer: Data.data[1].Similar.Info[0].yUrl,
+              Test: Data.data[1].Similar.Info[0].Type,
+              teaser: Data.data[1].Similar.Info[0].wTeaser,
+              display: "show",
+            },
           });
         });
     })();
@@ -67,14 +65,14 @@ function Search() {
       <br />
       <br />
       <SearchResult
-        data={state.data}
-        isLoaded={state.isLoaded}
-        image={state.data.image}
-        display={state.display}
-        summary={state.data.summary}
-        exists={state.Test}
-        showTrailer={state.showTrailer}
-        teaser={state.teaser}
+        data={state.initialState.data}
+        isLoaded={state.initialState.isLoaded}
+        image={state.initialState.data.image}
+        display={state.initialState.display}
+        summary={state.initialState.data.summary}
+        exists={state.initialState.Test}
+        showTrailer={state.initialState.showTrailer}
+        teaser={state.initialState.teaser}
         handleClose={handleClose}
         handleTrailerPlayButton={handleTrailerPlayButton}
         handleTrailerCloseButton={handleTrailerCloseButton}
