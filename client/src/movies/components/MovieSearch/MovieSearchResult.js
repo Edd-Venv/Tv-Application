@@ -14,6 +14,7 @@ const MovieSearchResult = (props) => {
     handleClose,
     isLoaded,
   } = props;
+
   const [state, setState] = useState({ message: "" });
   const [user] = useContext(UserContext);
 
