@@ -1,17 +1,16 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import { initialState } from "./DummyData.js";
-import { searchReducer } from "../../contexts/movieReducers.js";
 import SearchForm from "./SearchForm.js";
 import MovieSearchResult from "./MovieSearchResult.js";
 import { BaseUrl } from "../../../App.js";
 import "./MovieSearch.css";
 
 function Search() {
-  const [state, dispatch] = useReducer(searchReducer, initialState);
+  const [state, setState] = useState({ data: initialState });
+
   const handleClose = () => {
-    dispatch({
-      type: "SEARCH",
-      ...initialState,
+    setState({
+      data: initialState,
     });
 
     document.getElementById("movie-slider").style.display = "block";
@@ -43,12 +42,13 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
-          dispatch({
-            type: "SEARCH",
-            isLoaded: true,
-            Movie: Data.data[0],
-            MovieTrailer: Data.data[1].Similar.Info[0].yUrl,
-            Test: Data.data[1].Similar.Info[0].Type,
+          setState({
+            data: {
+              isLoaded: true,
+              Movie: Data.data[0],
+              MovieTrailer: Data.data[1].Similar.Info[0].yUrl,
+              Test: Data.data[1].Similar.Info[0].Type,
+            },
           });
         });
     })();
@@ -62,9 +62,9 @@ function Search() {
       <SearchForm onAddSearch={onAddSearch} />
       <br />
       <MovieSearchResult
-        Movie={state.Movie}
-        exists={state.Test}
-        trailer={state.MovieTrailer}
+        Movie={state.data.Movie}
+        exists={state.data.Test}
+        trailer={state.data.MovieTrailer}
         handleClose={handleClose}
         handleTrailerPlayButton={handleTrailerPlayButton}
         handleTrailerCloseButton={handleTrailerCloseButton}

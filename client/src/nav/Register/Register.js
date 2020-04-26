@@ -36,6 +36,7 @@ const Register = () => {
       ).json();
 
       if (secondResult.accesstoken) {
+        localStorage.setItem("userName", name);
         setUser({
           accesstoken: secondResult.accesstoken,
         });

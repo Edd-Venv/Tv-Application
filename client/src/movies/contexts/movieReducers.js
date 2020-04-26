@@ -8,23 +8,10 @@ export const movieReducer = (state, action) => {
 };
 
 export const movieCarouselReducer = (state, action) => {
+  const data = Object.assign({}, action.movieCarouselData);
   switch (action.type) {
     case "MOVIECAROUSEL":
-      return { ...action.movieCarouselData };
-    default:
-      throw new Error();
-  }
-};
-
-export const searchReducer = (state, action) => {
-  switch (action.type) {
-    case "SEARCH":
-      return {
-        Movie: action.Movie,
-        MovieTrailer: action.MovieTrailer,
-        isLoaded: action.isLoaded,
-        Test: action.Test,
-      };
+      return data;
     default:
       throw new Error();
   }
