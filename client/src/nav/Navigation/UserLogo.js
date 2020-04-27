@@ -7,9 +7,11 @@ const UserLogo = (props) => {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("userName"))
+    if (localStorage.getItem("userName") && !user.accesstoken) setName("GUEST");
+    else if (localStorage.getItem("userName"))
       setName(localStorage.getItem("userName"));
     else setName("GUEST");
+
     if (user.accesstoken && !localStorage.getItem("userName"))
       props.logOutCallback();
   }, [user.accesstoken]);

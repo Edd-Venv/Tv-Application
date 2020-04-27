@@ -57,9 +57,10 @@ const MovieSearchResult = (props) => {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
-        if (!user.accesstoken)
-          document.getElementById("movie-button").style.backgroundColor =
-            "#337ab7";
+        if (document.getElementById("movie-button"))
+          if (!user.accesstoken)
+            document.getElementById("movie-button").style.backgroundColor =
+              "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
