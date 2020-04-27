@@ -63,9 +63,10 @@ function SearchResult(props) {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
-        document.getElementById(
-          "tv-show-search-result-button"
-        ).style.backgroundColor = "#337ab7";
+        if (document.getElementById("tv-show-search-result-button"))
+          document.getElementById(
+            "tv-show-search-result-button"
+          ).style.backgroundColor = "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
