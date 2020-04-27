@@ -21,6 +21,13 @@
   width: 50%;
   font-family: "Roboto Condensed", sans-serif;
 }
+.carousel-card {
+  background-size: contain;
+  background-color: #c7cbd4;
+  background-position: 0% 30%;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+}
 #slider-box {
   border: none;
   outline: none;
@@ -41,10 +48,6 @@
   animation-duration: 0.6s;
 }
 
-.show-image {
-  max-width: 70%;
-  min-width: 60px;
-}
 .slider-container {
   display: flex;
   justify-content: space-between;
@@ -77,15 +80,12 @@
   }
   .carousel-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.25rem;
   }
-  .show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #slider-card-button {
     white-space: normal;
   }
@@ -96,15 +96,12 @@
   }
   .carousel-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 1vw;
     font-size: 1.3rem;
   }
-  .show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #carousel-card-font {
     margin-left: 1%;
   }
@@ -115,17 +112,27 @@
   }
   .carousel-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.3rem;
   }
-  .show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #carousel-card-font {
     margin-left: 1.5%;
+  }
+}
+@media (max-width: 766px) {
+  .carousel-card {
+    color: black;
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-color: #c7cbd4;
+    background-position: 0% 25%;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    margin-top: 5vh;
+    padding-top: 10vh;
   }
 }
 @media (min-width: 768px) {
@@ -134,18 +141,14 @@
   }
   .carousel-container {
     margin: 0 auto;
-    width: 100%;
+    width: 93.5%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.6rem;
   }
-  .show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 5.5%;
-  }
+
   #carousel-card-font {
-    margin-left: 1.5%;
+    margin-left: 0%;
   }
 }
 
@@ -160,11 +163,7 @@
     padding-right: 2vw;
     font-size: 1.5rem;
   }
-  .show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 4.5%;
-  }
+
   #carousel-card-font {
     margin-left: 1%;
   }
@@ -175,18 +174,15 @@
   }
   .carousel-container {
     margin: 0 auto;
-    width: 80%;
+    margin-top: 5vh;
+    width: 65%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.6rem;
   }
-  .show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 5.5%;
-  }
+
   #carousel-card-font {
-    margin-left: 1.5%;
+    margin-left: -7.5%;
   }
 }
 @media (min-width: 1440px) {
@@ -196,11 +192,6 @@
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.4rem;
-  }
-  .show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 3.5%;
   }
 }
 @media (min-width: 2560px) {
@@ -213,10 +204,5 @@
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 2.3rem;
-  }
-  .show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 2.5%;
   }
 }
