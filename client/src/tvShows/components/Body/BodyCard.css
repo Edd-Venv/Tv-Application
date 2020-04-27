@@ -20,7 +20,13 @@
   min-width: 10%;
   width: 50%;
 }
-
+.body-card {
+  background-size: contain;
+  background-color: #c7cbd4;
+  background-position: 0% 30%;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+}
 .body-card-show-image {
   max-width: 70%;
   min-width: 60px;
@@ -62,16 +68,13 @@
   }
   .body-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.25rem;
     font-family: "Roboto Condensed", sans-serif;
   }
-  .body-card-show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #body-button {
     white-space: normal;
   }
@@ -82,15 +85,12 @@
   }
   .body-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 1vw;
     font-size: 1.3rem;
   }
-  .body-card-show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #body-card-font {
     margin-left: 1%;
   }
@@ -101,17 +101,27 @@
   }
   .body-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.3rem;
   }
-  .body-card-show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #body-card-font {
     margin-left: 1.5%;
+  }
+}
+@media (max-width: 766px) {
+  .body-card {
+    color: black;
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-color: #c7cbd4;
+    background-position: 0% 25%;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    margin-top: 5vh;
+    padding-top: 10vh;
   }
 }
 @media (min-width: 768px) {
@@ -120,16 +130,12 @@
   }
   .body-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 93%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.6rem;
   }
-  .body-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 5.5%;
-  }
+
   #body-card-font {
     margin-left: 1.5%;
   }
@@ -141,16 +147,12 @@
   }
   .body-card-container {
     margin: 0 auto;
-    width: 80%;
+    width: 73%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.5rem;
   }
-  .body-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 4.5%;
-  }
+
   #body-card-font {
     margin-left: 1%;
   }
@@ -161,18 +163,15 @@
   }
   .body-card-container {
     margin: 0 auto;
-    width: 80%;
+    margin-top: 5vh;
+    width: 60%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.6rem;
   }
-  .body-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 5.5%;
-  }
+
   #body-card-font {
-    margin-left: 1.5%;
+    margin-left: 0%;
   }
 }
 @media (min-width: 1440px) {
@@ -182,11 +181,6 @@
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 2rem;
-  }
-  .body-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 3.5%;
   }
 }
 @media (min-width: 2560px) {
@@ -199,10 +193,5 @@
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 2.3rem;
-  }
-  .body-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 2.5%;
   }
 }
