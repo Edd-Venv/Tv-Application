@@ -11,3 +11,13 @@
 #logoutButton:hover {
   cursor: pointer;
 }
+.close-card-button {
+  color: #9d0000;
+  font-size: 3rem;
+  font-weight: bolder;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  z-index: 1;
+}
