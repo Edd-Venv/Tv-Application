@@ -36,7 +36,13 @@
   animation-name: zoom;
   animation-duration: 0.6s;
 }
-
+.header-card {
+  background-size: contain;
+  background-color: #c7cbd4;
+  background-position: 0% 30%;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+}
 .pop-up {
   display: inline;
   animation-name: pop;
@@ -76,16 +82,13 @@
   }
   .header-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.25rem;
     font-family: "Roboto Condensed", sans-serif;
   }
-  .header-card-show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #header-button {
     white-space: normal;
   }
@@ -96,15 +99,12 @@
   }
   .header-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 1vw;
     font-size: 1.3rem;
   }
-  .header-card-show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #header-card-font {
     margin-left: 1%;
   }
@@ -115,17 +115,27 @@
   }
   .header-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.3rem;
   }
-  .header-card-show-image {
-    width: 30vw;
-    margin-left: 4%;
-  }
+
   #header-card-font {
     margin-left: 1.5%;
+  }
+}
+@media (max-width: 766px) {
+  .header-card {
+    color: black;
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-color: #c7cbd4;
+    background-position: 0% 25%;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    margin-top: 5vh;
+    padding-top: 10vh;
   }
 }
 @media (min-width: 768px) {
@@ -134,18 +144,14 @@
   }
   .header-card-container {
     margin: 0 auto;
-    width: 100%;
+    width: 93.5%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.6rem;
   }
-  .header-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 5.5%;
-  }
+
   #header-card-font {
-    margin-left: 1.5%;
+    margin-left: 1%;
   }
 }
 
@@ -160,13 +166,9 @@
     padding-right: 2vw;
     font-size: 1.5rem;
   }
-  .header-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 4.5%;
-  }
+
   #header-card-font {
-    margin-left: 1%;
+    margin-left: -7%;
   }
 }
 @media (min-width: 1085px) {
@@ -175,18 +177,15 @@
   }
   .header-card-container {
     margin: 0 auto;
-    width: 80%;
+    margin-top: 5vh;
+    width: 65%;
     padding-left: 2vw;
     padding-right: 2vw;
     font-size: 1.6rem;
   }
-  .header-card-show-image {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 5.5%;
-  }
+
   #header-card-font {
-    margin-left: 1.5%;
+    margin-left: -7.5%;
   }
 }
 @media (min-width: 1440px) {
