@@ -17,7 +17,7 @@ function Search() {
     document.getElementById("movie-model").style.display = "none";
   };
   const handleTrailerPlayButton = () => {
-    document.getElementById("Iframe").src = state.MovieTrailer;
+    document.getElementById("Iframe").src = state.data.MovieTrailer;
     document.getElementById("movie-trailer").style.display = "block";
     document.getElementById("movie-model").style.zIndex = 0;
   };

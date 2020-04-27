@@ -14,6 +14,7 @@ const Trailer = (props) => {
           ×
         </p>
         <iframe
+          autoPlay
           src={showTrailer}
           className="img-thumbnail"
           title="This is a unique title prop"

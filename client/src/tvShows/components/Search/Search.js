@@ -16,7 +16,7 @@ function Search() {
   };
 
   const handleTrailerPlayButton = () => {
-    document.querySelector("iframe").src = state.showTrailer;
+    document.querySelector("iframe").src = state.initialState.showTrailer;
     document.getElementById("show-trailer").style.display = "block";
     document.getElementById("search-result-modal").style.zIndex = 0;
   };
