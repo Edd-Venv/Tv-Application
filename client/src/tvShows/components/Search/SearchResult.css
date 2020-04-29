@@ -47,8 +47,9 @@
   margin-left: 3%;
 }
 .tv-search-result-card {
-  background-size: contain;
+  border: none;
   background-color: #c7cbd4;
+  background-size: contain;
   background-position: 0% 30%;
   background-repeat: no-repeat;
   backface-visibility: hidden;
@@ -63,6 +64,7 @@
   }
   #search-result-tv-show-trailer-iframe {
     margin-top: 5%;
+    margin: 0 auto;
     width: 90vw;
     height: 85vw;
   }
@@ -149,6 +151,9 @@
   }
   #search-result-font {
     font-size: 1.5rem;
+    letter-spacing: 0.2px;
+    line-height: inherit;
+    outline-style: none;
   }
 }
 @media (min-width: 931) {

@@ -10,6 +10,7 @@
 }
 
 .movie-search-result-card {
+  border: none;
   background-size: contain;
   background-color: #c7cbd4;
   background-position: 0% 30%;
@@ -83,6 +84,7 @@
   }
   .movie-search-result-iframe {
     margin-top: 5%;
+    margin: 0 auto;
     width: 90vw;
     height: 85vw;
   }
@@ -161,6 +163,9 @@
   }
 
   #movie-search-result-font {
+    letter-spacing: 0.2px;
+    line-height: inherit;
+    outline-style: none;
     font-size: 1.45rem;
   }
   .movie-search-result-iframe {

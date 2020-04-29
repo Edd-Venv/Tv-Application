@@ -124,23 +124,23 @@ const MovieSearchResult = (props) => {
                       id="movie-search-result-font-size"
                     >
                       <p>
-                        <strong>Summary: </strong>
+                        <big>Summary: </big>
                         {Movie.Plot}
                       </p>
                       <p>
-                        <strong>Genre: </strong>
+                        <big>Genre: </big>
                         {Movie.Genre}.
                       </p>
                       <p>
-                        <strong>Release Date: </strong>
+                        <big>Release Date: </big>
                         {Movie.Released}
                       </p>
                       <p>
-                        <strong>Run time: </strong>
+                        <big>Run time: </big>
                         {Movie.Runtime}'s
                       </p>
                       <p>
-                        <strong>Rating:</strong> {Movie.imdbRating}
+                        <big>Rating:</big> {Movie.imdbRating}
                       </p>
                       <button
                         className="btn btn-primary"
