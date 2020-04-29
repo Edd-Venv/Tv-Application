@@ -138,6 +138,9 @@
 
   #body-card-font {
     margin-left: 1.5%;
+    letter-spacing: 0.2px;
+    line-height: inherit;
+    outline-style: none;
   }
 }
 

@@ -130,7 +130,7 @@ function SearchResult(props) {
                         <div className="card-text">
                           <p>
                             {" "}
-                            <strong>Description:</strong>
+                            <big>Description:</big>
                             {summary
                               .replace(/<p>/g, " ")
                               .replace(/<b>/g, " ")
@@ -142,15 +142,15 @@ function SearchResult(props) {
                             .
                           </p>
                           <p>
-                            <strong>Premiered: </strong>
+                            <big>Premiered: </big>
                             {data.premiered}{" "}
                           </p>
                           <p>
-                            <strong>Runtime: </strong>
-                            {data.runtime} mins
+                            <big>Runtime: </big>
+                            {data.runtime} min's
                           </p>
                           <p>
-                            <strong>Rating: </strong>
+                            <big>Rating: </big>
                             {data.rating.average}
                           </p>
                           <button

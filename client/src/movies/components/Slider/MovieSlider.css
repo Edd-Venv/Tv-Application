@@ -102,6 +102,7 @@
     width: 60vw;
   }
   #movie-carousel-card-iframe {
+    margin: 0 auto;
     width: 85vw;
     height: 85vw;
   }
