@@ -10,8 +10,8 @@ function Settings(props) {
 
   const deleteUser = async () => {
     const result = await (
-      await fetch(`${BaseUrl}/deleteUser`, {
-        method: "POST",
+      await fetch(`${BaseUrl}/user`, {
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${user.accesstoken}`,
