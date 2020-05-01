@@ -2,14 +2,14 @@ require("dotenv/config");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const userSetUpRoutes = require("./routes/UserSetUp/UserSetUp.js");
-const settingsRoutes = require("./routes/Settings/Settings.js");
-const tvShowsRoutesUtils = require("./routes/TvShowsRoutes/Utils/Utils.js");
-const tvShowsRoutesApiCalls = require("./routes/TvShowsRoutes/ApiCalls/ApiCalls.js");
-const tvShowsRoutesSearch = require("./routes/TvShowsRoutes/Search/Search.js");
-const moviesUtils = require("./routes/MoviesRoutes/Utils/Utils.js");
-const moviesApiCalls = require("./routes/MoviesRoutes/ApiCalls/ApiCalls.js");
-const moviesSearch = require("./routes/MoviesRoutes/Search/Search.js");
+const userSetUpRouter = require("./routes/UserSetUp/UserSetUp.js");
+const settingsRouter = require("./routes/Settings/Settings.js");
+const tvShowsUtilsRouter = require("./routes/TvShowsRoutes/Utils/Utils.js");
+const tvShowsApiRouter = require("./routes/TvShowsRoutes/ApiCalls/ApiCalls.js");
+const tvShowsSearchRouter = require("./routes/TvShowsRoutes/Search/Search.js");
+const moviesUtilsRouter = require("./routes/MoviesRoutes/Utils/Utils.js");
+const moviesApiRouter = require("./routes/MoviesRoutes/ApiCalls/ApiCalls.js");
+const moviesSearchRouter = require("./routes/MoviesRoutes/Search/Search.js");
 
 const server = express();
 
@@ -26,14 +26,14 @@ server.use(
 // Needed to be able to read body data
 server.use(express.json()); // to support JSON-encoded bodies
 server.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
-server.use(userSetUpRoutes);
-server.use(settingsRoutes);
-server.use(tvShowsRoutesUtils);
-server.use(tvShowsRoutesApiCalls);
-server.use(tvShowsRoutesSearch);
-server.use(moviesUtils);
-server.use(moviesApiCalls);
-server.use(moviesSearch);
+server.use(userSetUpRouter);
+server.use(settingsRouter);
+server.use(tvShowsUtilsRouter);
+server.use(tvShowsApiRouter);
+server.use(tvShowsSearchRouter);
+server.use(moviesUtilsRouter);
+server.use(moviesApiRouter);
+server.use(moviesSearchRouter);
 
 server.listen(process.env.PORT, () =>
   console.log(`Server listening on port ${process.env.PORT}!`)

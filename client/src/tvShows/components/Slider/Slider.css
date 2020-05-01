@@ -148,7 +148,10 @@
   }
 
   #carousel-card-font {
-    margin-left: 0%;
+    margin-left: 1%;
+    letter-spacing: 0.2px;
+    line-height: inherit;
+    outline-style: none;
   }
 }
 
