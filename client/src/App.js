@@ -72,6 +72,7 @@ function App() {
         <MyMovies path="/MyMovies" logOutCallback={logOutCallback} />
         <MyShows path="/MyTvShows" logOutCallback={logOutCallback} />
       </Router>
+      <div data-test="component-app" />
     </UserContext.Provider>
   );
 }

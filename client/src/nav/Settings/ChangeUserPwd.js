@@ -10,8 +10,8 @@ function ChangeUserPwd(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await (
-      await fetch(`${BaseUrl}/settings/changePassword`, {
-        method: "POST",
+      await fetch(`${BaseUrl}/settings/password`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${user.accesstoken}`,
