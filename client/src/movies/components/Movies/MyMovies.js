@@ -31,8 +31,8 @@ const MyMovies = (props) => {
   async function deleteMovie(Args) {
     try {
       if (user.accesstoken)
-        await fetch(`${BaseUrl}/MyMovies/Delete`, {
-          method: "POST",
+        await fetch(`${BaseUrl}/MyMovies`, {
+          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${user.accesstoken}`,

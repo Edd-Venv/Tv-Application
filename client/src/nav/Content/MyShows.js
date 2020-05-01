@@ -31,8 +31,8 @@ const MyShows = (props) => {
   async function deleteShow(Args) {
     try {
       if (user.accesstoken)
-        await fetch(`${BaseUrl}/MyShows/Delete`, {
-          method: "POST",
+        await fetch(`${BaseUrl}/MyShows`, {
+          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${user.accesstoken}`,
