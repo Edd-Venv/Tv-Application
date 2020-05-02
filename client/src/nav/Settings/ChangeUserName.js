@@ -26,11 +26,10 @@ function ChangeUserName(props) {
 
     if (!result.error) {
       console.log(result.message);
+      props.logOutCallback();
     } else {
       console.log(result.error);
     }
-
-    props.logOutCallback();
   };
 
   const handleInput = (event) => {
@@ -40,7 +39,7 @@ function ChangeUserName(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="card mb-3 form">
+    <form onSubmit={handleSubmit} className="card mb-3 form" autoComplete="off">
       <div className="form-group">
         <h3
           style={{

@@ -1,16 +1,16 @@
 import React from "react";
 import Enzyme, { shallow } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
-import App from "./App.js";
+import App from "./App";
+
+import { findByTestAttr } from "../test/testUtils.js";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-const setUp = (props = {}, state = null) => {
+const setUp = (props = {}) => {
   return shallow(<App {...props} />);
 };
-const findByTestAttr = (wrapper, val) => {
-  return wrapper.find(`[data-test='${val}']`);
-};
+
 describe("APP TESTS", () => {
   it("RENDERS WITHOUT CRASHING", () => {
     const wrapper = setUp();

@@ -10,7 +10,7 @@
   },
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": false
     },
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -18,7 +18,10 @@
   "plugins": ["react"],
   "rules": {
     "camelcase": "error",
-    "quotes": ["error", "single"],
-    "no-undef": "error"
+    "quotes": ["error", "double"],
+    "no-undef": "error",
+    "sort-imports": "warn",
+    "eol-last": "off",
+    "linebreak-style": "off"
   }
 }
