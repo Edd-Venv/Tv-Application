@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./Movies.css";
-import { MovieContext } from "../../contexts/movieContext.js";
+import { MovieContext } from "../../contexts/movieContext";
 
 function Movie() {
   const { isLoaded, data } = useContext(MovieContext);
