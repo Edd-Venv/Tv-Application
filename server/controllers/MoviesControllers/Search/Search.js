@@ -1,11 +1,9 @@
 const NodeCache = require("node-cache");
-const fetch = require("node-fetch");
+const Model = require("../../../models/MovieModels/Search/Search.js");
+
 const Cache = new NodeCache();
 
 exports.search = async (req, res) => {
-  const moviesFirstApiCall = `https://www.omdbapi.com/?t=${req.body.search_text}&apikey=728de06e`;
-  const moviesSecondApiCall = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=movies&info=1&limit=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
-
   try {
     const exists = Cache.has(`${req.body.search_text}`);
     if (exists) {
@@ -15,9 +13,7 @@ exports.search = async (req, res) => {
         data: Cache.get(`${req.body.search_text}`),
       });
     } else {
-      const firstResult = await (await fetch(moviesFirstApiCall)).json();
-      const secondResult = await (await fetch(moviesSecondApiCall)).json();
-      const finalResult = [firstResult, secondResult];
+      const finalResult = await Model.searchModel(req.body.search_text);
       Cache.set(`${req.body.search_text}`, finalResult, 691200);
       res.status(200).json({
         status: "success",
