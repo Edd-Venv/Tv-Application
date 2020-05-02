@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const moviesController = require("../../../controllers/MoviesControllers/ApiCalls/ApiCalls.js");
+
+const router = express.Router();
 
 router.get("/movieData", moviesController.getMovieApiData);
 module.exports = router;
