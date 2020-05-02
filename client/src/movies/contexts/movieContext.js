@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useEffect } from "react";
-import { movieReducer } from "./movieReducers.js";
-import { BaseUrl } from "../../App.js";
+import { BaseUrl } from "../../App";
+import { movieReducer } from "./movieReducers";
 
 const initialState = {
   isLoaded: false,

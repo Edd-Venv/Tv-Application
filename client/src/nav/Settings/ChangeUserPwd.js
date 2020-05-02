@@ -24,11 +24,10 @@ function ChangeUserPwd(props) {
     ).json();
     if (!result.error) {
       console.log(result.message);
+      props.logOutCallback();
     } else {
       console.log(result.error);
     }
-
-    props.logOutCallback();
   };
 
   const handleInput = (event) => {
@@ -37,7 +36,7 @@ function ChangeUserPwd(props) {
     } else setNewPwd(event.target.value);
   };
   return (
-    <form className="card mb-3 form" onSubmit={handleSubmit}>
+    <form className="card mb-3 form" onSubmit={handleSubmit} autoComplete="off">
       <div className="form-group">
         <h3
           style={{
