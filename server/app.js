@@ -11,12 +11,12 @@ const moviesUtilsRouter = require("./routes/MoviesRoutes/Utils/Utils.js");
 const moviesApiRouter = require("./routes/MoviesRoutes/ApiCalls/ApiCalls.js");
 const moviesSearchRouter = require("./routes/MoviesRoutes/Search/Search.js");
 
-const server = express();
+const app = express();
 
 // Use express middleware for easier cookie handling
-server.use(cookieParser());
+app.use(cookieParser());
 
-server.use(
+app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
@@ -24,17 +24,15 @@ server.use(
 );
 
 // Needed to be able to read body data
-server.use(express.json()); // to support JSON-encoded bodies
-server.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
-server.use(userSetUpRouter);
-server.use(settingsRouter);
-server.use(tvShowsUtilsRouter);
-server.use(tvShowsApiRouter);
-server.use(tvShowsSearchRouter);
-server.use(moviesUtilsRouter);
-server.use(moviesApiRouter);
-server.use(moviesSearchRouter);
+app.use(express.json()); // to support JSON-encoded bodies
+app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
+app.use(userSetUpRouter);
+app.use(settingsRouter);
+app.use(tvShowsUtilsRouter);
+app.use(tvShowsApiRouter);
+app.use(tvShowsSearchRouter);
+app.use(moviesUtilsRouter);
+app.use(moviesApiRouter);
+app.use(moviesSearchRouter);
 
-server.listen(process.env.PORT, () =>
-  console.log(`Server listening on port ${process.env.PORT}!`)
-);
+module.exports = app;
