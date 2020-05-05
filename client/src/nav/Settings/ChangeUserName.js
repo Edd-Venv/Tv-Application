@@ -11,7 +11,7 @@ function ChangeUserName(props) {
     event.preventDefault();
 
     const result = await (
-      await fetch(`${BaseUrl}/settings/name`, {
+      await fetch(`${BaseUrl}/user/name`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

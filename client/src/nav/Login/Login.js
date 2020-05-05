@@ -21,8 +21,8 @@ const Login = (props) => {
     if (event.key === "Enter") passwordRef.current.focus();
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     const result = await (
       await fetch(`${BaseUrl}/login`, {
@@ -40,6 +40,7 @@ const Login = (props) => {
 
     if (result.accesstoken) {
       localStorage.setItem("userName", name);
+      localStorage.setItem("userImage", result.userImage);
       setUser({
         accesstoken: result.accesstoken,
       });
@@ -49,11 +50,11 @@ const Login = (props) => {
     }
   };
 
-  const handleChange = (e) => {
-    if (e.target.name === "name") {
-      setName(e.target.value.toUpperCase());
+  const handleChange = (event) => {
+    if (event.target.name === "name") {
+      setName(event.target.value.toUpperCase());
     } else {
-      setPassword(e.target.value);
+      setPassword(event.target.value);
     }
   };
 
