@@ -18,7 +18,7 @@
   "plugins": ["react"],
   "rules": {
     "camelcase": "error",
-    "quotes": ["error", "double"],
+    "quotes": "off",
     "no-undef": "error",
     "sort-imports": "warn",
     "eol-last": "off",
