@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { UserContext, BaseUrl } from "../../App.js";
 import { navigate } from "@reach/router";
-import handleLoginAndResgister from "../Utils/RegisterFunc.js";
+import handleLogin from "../Utils/RegisterFunc.js";
 import handleToolTip from "../Utils/tooltip.js";
 import Navigation from "../Navigation/Navigation";
+import Axios from "axios";
 import "./Register.css";
 
 const Register = () => {
   const [, setUser] = useContext(UserContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [file, setFile] = useState(null);
   const [state, setState] = useState({ message: "" });
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -22,36 +24,76 @@ const Register = () => {
     if (event.key === "Enter") passwordRef.current.focus();
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const result = await (
-      await handleLoginAndResgister(`${BaseUrl}/register`, name, password)
-    ).json();
+    (async function () {
+      if (file) {
+        const formData = new FormData();
+        formData.append("person_name", `${name}`);
+        formData.append("password", `${password}`);
+        formData.append("photo", file, "photo");
 
-    if (!result.error) {
+        await Axios.post(`${BaseUrl}/register`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        navigate("/login");
+      } else {
+        await handleLogin(`${BaseUrl}/register`, name, password);
+        navigate("/login");
+      }
+    })();
+
+    /* const registerSuccess = () => {
+      if (file) {
+        res().then((data) => {
+          console.log(data.data.user_image_name);
+          localStorage.setItem("userImage", data.data.user_image_name);
+        });
+        return true;
+      } else {
+        res();
+        return false;
+      }
+    };*/
+    /*
+    if (registerSuccess()) {
       //Login User automatically
-      const secondResult = await (
-        await handleLoginAndResgister(`${BaseUrl}/login`, name, password)
-      ).json();
 
+      const secondResult = await handleLogin(
+        `${BaseUrl}/login`,
+        name,
+        password
+      );
+
+      console.log("Reg", secondResult);
       if (secondResult.accesstoken) {
         localStorage.setItem("userName", name);
+        //localStorage.setItem("userImage", imageTag);
         setUser({
           accesstoken: secondResult.accesstoken,
         });
         navigate("/");
       }
     } else {
-      setState({ message: result.error });
-    }
+      const thirdResult = await handleLogin(`${BaseUrl}/login`, name, password);
+
+      // console.log("REG line 83", thirdResult);
+      navigate("/");
+    }*/
   };
 
-  const handleChange = (e) => {
-    if (e.currentTarget.name === "name") {
-      setName(e.currentTarget.value.toUpperCase());
+  const handleChange = (event) => {
+    if (event.currentTarget.name === "name") {
+      setName(event.currentTarget.value.toUpperCase());
+    } else if (event.currentTarget.name === "password") {
+      setPassword(event.currentTarget.value);
     } else {
-      setPassword(e.currentTarget.value);
+      const blob = new Blob([event.target.files[0]], { type: "image/jpeg" });
+      setFile(blob);
     }
   };
   handleToolTip(
@@ -74,7 +116,12 @@ const Register = () => {
   return (
     <React.Fragment>
       <Navigation displayLogin={"dontDisplayLoginForm"} />
-      <form className="card mb-3" onSubmit={handleSubmit} id="register-form">
+      <form
+        className="card mb-3"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        id="register-form"
+      >
         <h3 style={{ textAlign: "center" }}>
           REGISTER
           <hr />
@@ -108,6 +155,16 @@ const Register = () => {
             placeholder="Password"
             required
             ref={passwordRef}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="photo">Add Photo</label>
+          <input
+            onChange={handleChange}
+            type="file"
+            name="photo"
+            id="photo"
+            accept="image/*"
           />
         </div>
         <button type="submit" className="btn btn-primary">

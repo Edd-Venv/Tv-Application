@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../App.js";
-import { GoPerson } from "react-icons/go";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
+
   const [name, setName] = useState("");
 
   useEffect(() => {
@@ -26,7 +26,19 @@ const UserLogo = (props) => {
           paddingLeft: "0.5rem",
         }}
       >
-        <GoPerson />
+        <img
+          id="logoImg"
+          style={{
+            width: "3vw",
+            borderTopLeftRadius: "20px",
+            borderTopRightRadius: "20px",
+            borderBottomLeftRadius: "20px",
+            borderBottomRightRadius: "20px",
+          }}
+          src={require(`../../images/users/${localStorage.getItem(
+            "userImage"
+          )}`)}
+        />
         {name}
       </i>
     </span>
