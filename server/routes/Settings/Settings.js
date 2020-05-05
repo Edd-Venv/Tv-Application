@@ -1,11 +1,20 @@
 const express = require("express");
-const router = express.Router();
 const tvShowsController = require("../../controllers/SettingsControllers/Settings.js");
+const userSetUpController = require("../../controllers/UserSetUpControllers/UserSetUp.js");
 
-router.patch("/settings/password", tvShowsController.changeUserPassWord);
+const router = express.Router();
 
-router.patch("/settings/name", tvShowsController.changeUserName);
+router.patch("/user/password", tvShowsController.changeUserPassWord);
+
+router.patch("/user/name", tvShowsController.changeUserName);
 
 router.delete("/user", tvShowsController.deleteUser);
+
+router.patch(
+  "/user/image",
+  userSetUpController.uploadUserPhoto,
+  userSetUpController.resizeUserPhoto,
+  tvShowsController.updateUserImage
+);
 
 module.exports = router;

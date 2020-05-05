@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+const path = require("path");
 const { hash, compare } = require("bcryptjs");
 const pool = require("../../database-connection/db.js");
 const { isAuth } = require("../../src/isAuth.js");
@@ -28,6 +29,17 @@ exports.changeUserNameModel = async (req) => {
     await pool.query(
       `UPDATE person SET person_name = '${req.body.new_name}' 
                 WHERE id_uid = '${userId}' AND person_name = '${req.body.old_name}'`
+    );
+  }
+};
+
+exports.updateUserImageModel = async (req) => {
+  const userId = isAuth(req);
+
+  if (userId !== null) {
+    await pool.query(
+      `UPDATE person SET person_image = '${req.file.filename}' 
+                WHERE id_uid = '${userId}'`
     );
   }
 };

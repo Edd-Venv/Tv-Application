@@ -18,10 +18,11 @@ const createRefreshToken = (userId) => {
 
 // Send tokens
 // ----------------------------------
-const sendAccessToken = (res, req, accesstoken) => {
-  res.send({
+const sendAccessToken = (res, req, accesstoken, userImage) => {
+  res.json({
     accesstoken,
     person_name: req.body.person_name,
+    userImage: userImage,
   });
 };
 
