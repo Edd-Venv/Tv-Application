@@ -13,7 +13,6 @@ const {
 
 exports.registerModel = async (req) => {
   const { person_name, password } = req.body;
-
   // 1. Check if the user exist
   const checkDB = await pool.query(
     `SELECT person_name FROM person WHERE person_name = '${person_name}'`
@@ -26,11 +25,28 @@ exports.registerModel = async (req) => {
   // 2. If not user exist already, hash the password
   const hashedPassword = await hash(password, 10);
 
-  // 3. Insert the user in database
-  await pool.query(
-    "INSERT INTO person (id_uid, person_name, password) VALUES($1, $2, $3)",
-    [uuid_generate.v4(), person_name, hashedPassword]
-  );
+  //3. Check if an image is attached then store to DB
+  if (req.file) {
+    const imageName = req.file.filename;
+
+    //Insert the user in database
+    await pool.query(
+      "INSERT INTO person (id_uid, person_name, password, person_image) VALUES($1, $2, $3, $4)",
+      [uuid_generate.v4(), person_name.toUpperCase(), hashedPassword, imageName]
+    );
+  } else if (!req.file) {
+    //Insert the user in database with default image
+    await pool.query(
+      "INSERT INTO person (id_uid, person_name, password, person_image) VALUES($1, $2, $3, $4)",
+      [
+        uuid_generate.v4(),
+        person_name.toUpperCase(),
+        hashedPassword,
+        "default.jpg",
+      ]
+    );
+    throw new Error("File Not found..", req.file);
+  }
 };
 
 exports.loginModel = async (req, res) => {
@@ -60,10 +76,12 @@ exports.loginModel = async (req, res) => {
     `UPDATE person SET refreshtoken = '${refreshtoken}'
                WHERE id_uid = '${user.id_uid}'`
   );
-
+  const userImage = await pool.query(
+    `SELECT person_image FROM person WHERE id_uid = '${user.id_uid}'`
+  );
   // 5. Send token. Refreshtoken as a cookie and accesstoken as a regular response
   sendRefreshToken(res, refreshtoken);
-  sendAccessToken(res, req, accesstoken);
+  sendAccessToken(res, req, accesstoken, userImage.rows[0].person_image);
 };
 
 exports.logOutModel = async (req, res) => {
