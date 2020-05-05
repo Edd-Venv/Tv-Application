@@ -55,7 +55,7 @@ function ChangeUserPhoto() {
           accept="image/*"
         />
       </div>
-      <button type="submit">Save</button>
+      <button type="submit">Save Photo</button>
     </form>
   );
 }
