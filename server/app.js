@@ -2,6 +2,8 @@ require("dotenv/config");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const helmet = require("helmet");
+const xss = require("xss-clean");
 const userSetUpRouter = require("./routes/UserSetUp/UserSetUp.js");
 const settingsRouter = require("./routes/Settings/Settings.js");
 const tvShowsUtilsRouter = require("./routes/TvShowsRoutes/Utils/Utils.js");
@@ -23,9 +25,20 @@ app.use(
   })
 );
 
+//Set http security headers
+app.use(helmet());
+
+//Data Sanitization against XSS
+app.use(xss());
+
 // Needed to be able to read body data
-app.use(express.json()); // to support JSON-encoded bodies
-app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
+// And to support JSON-encoded bodies
+app.use(express.json());
+
+// to support URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
+//Global Middlewares
 app.use(userSetUpRouter);
 app.use(settingsRouter);
 app.use(tvShowsUtilsRouter);

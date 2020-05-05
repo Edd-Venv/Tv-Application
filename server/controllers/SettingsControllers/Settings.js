@@ -19,12 +19,18 @@ exports.changeUserName = async (req, res) => {
       .json({ status: "error", error: "User Name Already Taken." });
   }
 };
-
+exports.updateUserImage = async (req, res) => {
+  try {
+    await Model.updateUserImageModel(req, res);
+  } catch (error) {
+    console.log(error);
+  }
+};
 exports.deleteUser = async (req, res) => {
   try {
     await Model.deleteUserModel(req);
     res.status(204).json({ status: "success", message: "User Deleted." });
   } catch (error) {
-    res.status(404).send({ status: "error", error: "User Not Deleted." });
+    res.status(404).json({ status: "error", error: "User Not Deleted." });
   }
 };

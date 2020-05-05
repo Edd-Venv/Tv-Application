@@ -10,7 +10,7 @@ function ChangeUserPwd(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await (
-      await fetch(`${BaseUrl}/settings/password`, {
+      await fetch(`${BaseUrl}/user/password`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
