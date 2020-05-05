@@ -13,7 +13,18 @@ create table show (
     id_uid UUID REFERENCES person
 )
 
-          
+create table music (
+    artist_id SERIAL PRIMARY KEY,
+    person_id UUID NOT NULL,
+    artist_image VARCHAR NOT NULL,
+    song_key BIGINT NOT NULL,
+    artist_name VARCHAR NOT NULL,
+    song_title VARCHAR NOT NULL,
+    album_title VARCHAR NOT NULL,
+    explicit_lyrics BOOLEAN NOT NULL,
+    song VARCHAR NOT NULL,
+    id_uid UUID REFERENCES person
+);      
           
          
 create table movie (
@@ -29,7 +40,7 @@ create table movie (
     movie_rating NUMERIC,
     movie_trailer VARCHAR NOT NULL,
     id_uid UUID REFERENCES person
-)
+);
 
 create table book (
   book_id SERIAL PRIMARY KEY,
@@ -49,6 +60,7 @@ create table person (
     person_name VARCHAR(50) NOT NULL,
     password VARCHAR(400) NOT NULL,
     refreshtoken VARCHAR,
+    person_image VARCHAR,
     UNIQUE(person_name),
     UNIQUE(refreshtoken)
 );

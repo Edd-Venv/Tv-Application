@@ -1,4 +1,7 @@
 /* eslint-disable camelcase */
+const path = require("path");
+const multer = require("multer");
+const sharp = require("sharp");
 const { verify } = require("jsonwebtoken");
 const pool = require("../../database-connection/db.js");
 
@@ -9,24 +12,73 @@ const {
 } = require("../../src/tokens.js");
 const Model = require("../../models/UserSetUpModel/UserSetUp.js");
 
-exports.register = async (req, res) => {
+const multerStorage = multer.memoryStorage();
+
+const multerFliter = (req, file, cb) => {
   try {
-    await Model.registerModel(req);
-    res.status(201).send({ status: "success", message: "User Created" });
-  } catch (err) {
-    res.status(404).send({ status: "error", error: `${err.message}` });
+    if (file.mimetype.startsWith("image")) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
+const upload = multer({ storage: multerStorage, fileFilter: multerFliter });
 
-exports.login = async (req, res) => {
+exports.uploadUserPhoto = upload.single("photo");
+
+exports.resizeUserPhoto = (req, res, next) => {
+  if (!req.file) {
+    res.json({ error: "File Not Recevied" });
+  } else if (req.file) {
+    try {
+      req.file.filename = `user-${req.body.person_name}-${Date.now()}.jpeg`;
+
+      sharp(req.file.buffer)
+        .resize(500, 500)
+        .toFormat("jpeg")
+        .jpeg({ quality: 90 })
+        .toFile(
+          path.resolve(
+            __dirname,
+            "../../../client",
+            `src/images/users/${req.file.filename}`
+          )
+        );
+      res.json({ user_image_name: req.file.filename });
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+  next();
+};
+
+exports.register = async (req, res, next) => {
+  try {
+    await Model.registerModel(req);
+
+    //res.status(201).json({ status: "success", message: "User Created" });
+  } catch (err) {
+    console.log("Error from UserSetpContro line 89", err);
+
+    //res.status(404).json({ status: "error", error: `${err.message}` });
+  }
+  next();
+};
+
+exports.login = async (req, res, next) => {
   try {
     await Model.loginModel(req, res);
+    next();
   } catch (err) {
     res.status(404).json({
       status: "error",
       error: `${err.message}`,
     });
   }
+  //return next();
 };
 
 exports.logOut = async (req, res) => {
@@ -76,12 +128,18 @@ exports.refreshToken = async (req, res) => {
       `UPDATE person SET refreshtoken = '${refreshtoken}'
              WHERE id_uid = '${id_uid}'`
     );
-
+    const userImage = await pool.query(
+      `SELECT person_image FROM person WHERE id_uid = '${payload.userId}'`
+    );
     //All Checks Out send new refreshtoken and accesstoken
     sendRefreshToken(res, refreshtoken);
     //const accesstoken = Model.registerModel(req, res);
 
-    return res.status(200).json({ status: "success", accesstoken });
+    return res.status(200).json({
+      status: "success",
+      userImage: userImage.rows[0].person_image,
+      accesstoken,
+    });
   } catch (err) {
     return res.status(404).json({ status: "success", message: err });
   }
