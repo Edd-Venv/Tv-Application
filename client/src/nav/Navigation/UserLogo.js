@@ -3,8 +3,9 @@ import { UserContext } from "../../App.js";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
-
   const [name, setName] = useState("");
+  const images = require.context(`../../images/users`, true);
+  let img = images("./" + localStorage.getItem("userImage"));
 
   useEffect(() => {
     if (localStorage.getItem("userName") && !user.accesstoken) setName("GUEST");
@@ -35,9 +36,7 @@ const UserLogo = (props) => {
             borderBottomLeftRadius: "20px",
             borderBottomRightRadius: "20px",
           }}
-          src={require(`../../images/users/${localStorage.getItem(
-            "userImage"
-          )}`)}
+          src={img}
         />
         {name}
       </i>
