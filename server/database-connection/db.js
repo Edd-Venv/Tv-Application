@@ -29,4 +29,15 @@ const http = require("http");
 
 http.createServer(server).listen(4010);
 
+
+ src={`${BaseUrl}/static/images/${localStorage.getItem("userImage")}`}
+
+  path.resolve(
+            __dirname,
+            "../../build",
+            `static/images/${req.file.filename}`
+          )
+
+
+  create a images folder in build/static
 */
