@@ -11,6 +11,7 @@ import MyMovies from "./movies/components/Movies/MyMovies.js";
 
 export const UserContext = React.createContext([]);
 export const BaseUrl = "http://localhost:4010";
+//"http://18.222.115.53:4010"
 
 function App() {
   const [user, setUser] = useState({});
