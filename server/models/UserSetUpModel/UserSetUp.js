@@ -42,7 +42,7 @@ exports.registerModel = async (req) => {
         uuid_generate.v4(),
         person_name.toUpperCase(),
         hashedPassword,
-        "default.jpg",
+        "default.jpeg",
       ]
     );
     throw new Error("File Not found..", req.file);

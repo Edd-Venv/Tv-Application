@@ -25,7 +25,7 @@ function App() {
     setUser({});
     if (localStorage.getItem("userName")) {
       localStorage.removeItem("userName");
-      localStorage.setItem("userImage", "default.jpg");
+      localStorage.setItem("userImage", "default.jpeg");
     }
     navigate("/");
   };
@@ -44,7 +44,7 @@ function App() {
       ).json();
 
       if (!result.accesstoken || !localStorage.getItem("userImage"))
-        localStorage.setItem("userImage", "default.jpg");
+        localStorage.setItem("userImage", "default.jpeg");
 
       if (result.accesstoken && !localStorage.getItem("userName"))
         logOutCallback();
