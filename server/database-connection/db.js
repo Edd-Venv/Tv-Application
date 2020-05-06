@@ -29,7 +29,7 @@ const http = require("http");
 
 http.createServer(server).listen(4010);
 
-
+ REMEMEBER TO create a images folder in build/static
  src={`${BaseUrl}/static/images/${localStorage.getItem("userImage")}`}
 
   path.resolve(
@@ -39,5 +39,5 @@ http.createServer(server).listen(4010);
           )
 
 
-  create a images folder in build/static
+  
 */
