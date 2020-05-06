@@ -29,14 +29,9 @@ const UserLogo = (props) => {
       >
         <img
           id="logoImg"
-          style={{
-            width: "3vw",
-            borderTopLeftRadius: "20px",
-            borderTopRightRadius: "20px",
-            borderBottomLeftRadius: "20px",
-            borderBottomRightRadius: "20px",
-          }}
-          src={img}
+          src={require(`../../images/users/${localStorage.getItem(
+            "userImage"
+          )}`)}
         />
         {name}
       </i>

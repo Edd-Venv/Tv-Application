@@ -32,22 +32,16 @@ function ChangeUserPhoto() {
 
   return (
     <form className="form" onSubmit={handleSubmit} autoComplete="off">
-      <div style={{ margin: "0 auto" }}>
+      <div>
         <img
-          id="logoImg"
-          style={{
-            width: "3vw",
-            borderTopLeftRadius: "20px",
-            borderTopRightRadius: "20px",
-            borderBottomLeftRadius: "20px",
-            borderBottomRightRadius: "20px",
-          }}
+          id="userImg"
           src={require(`../../images/users/${localStorage.getItem(
             "userImage"
           )}`)}
         />
         <label htmlFor="photo">Choose New Photo</label>
         <input
+          style={{ outline: "none" }}
           onChange={handleChange}
           type="file"
           name="photo"
