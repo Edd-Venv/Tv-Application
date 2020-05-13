@@ -46,6 +46,39 @@ img {
   width: 17vw;
   font-size: 1.2em;
 }
+
+#movie-input {
+  animation-name: bounce;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-delay: 4.3s;
+  animation-timing-function: ease-in;
+  backface-visibility: hidden;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(-6px);
+  }
+  25% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(0px);
+  }
+  70% {
+    transform: translateY(-2px);
+  }
+  80% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-6px);
+  }
+}
 #movie-input:hover {
   animation-name: movie-input-border-effect;
   animation-duration: 1.5s;
