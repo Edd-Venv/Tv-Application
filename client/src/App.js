@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Router, navigate } from "@reach/router";
 import Content from "./nav/Content/Content.js";
 import "./App.css";
+import ForgotPassword from "./nav/ForgotPassword/ForgotPassword.js";
+import ResetPassword from "./nav/ResetPassword/ResetPassword.js";
 import Login from "./nav/Login/Login.js";
 import Register from "./nav/Register/Register.js";
 import Movies from "./moviesApp.js";
@@ -74,6 +76,8 @@ function App() {
     <UserContext.Provider value={[user, setUser]}>
       <Router id="router">
         <Settings path="/settings" logOutCallback={logOutCallback} />
+        <ForgotPassword path="/forgotPassword" />
+        <ResetPassword path="/resetPassword/:token" />
         <Login path="/login" />
         <Register path="/register" />
         <Content path="/" loading={loading} logOutCallback={logOutCallback} />

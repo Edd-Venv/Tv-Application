@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-import { navigate } from "@reach/router";
+import { navigate, Link } from "@reach/router";
 import handleToolTip from "../Utils/tooltip.js";
 import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
@@ -113,6 +113,10 @@ const Login = (props) => {
               ref={passwordRef}
             />
           </div>
+          <Link to="/forgotPassword" style={{ color: "red" }}>
+            forgot your password?<span className="sr-only">(current)</span>
+          </Link>
+          <br />
           <button type="submit" className="btn btn-primary">
             LOGIN
           </button>
