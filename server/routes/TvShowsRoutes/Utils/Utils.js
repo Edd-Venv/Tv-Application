@@ -1,6 +1,5 @@
-const pool = require("../../../database-connection/db.js");
-const { isAuth } = require("../../../src/isAuth.js");
 const express = require("express");
+
 const router = express.Router();
 const tvShowsUtilsController = require("../../../controllers/TvShowControllers/Utils/Utils.js");
 

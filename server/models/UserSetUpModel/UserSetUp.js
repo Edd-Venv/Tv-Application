@@ -45,7 +45,6 @@ exports.registerModel = async (req) => {
         "default.jpeg",
       ]
     );
-    throw new Error("File Not found..", req.file);
   }
 };
 
@@ -93,50 +92,3 @@ exports.logOutModel = async (req, res) => {
     `UPDATE person SET refreshtoken = '' WHERE person_name = '${person_name}'`
   );
 };
-/*
-exports.refreshTokenModel = async (req, res) => {
-  const token = req.cookies.refreshtoken;
-  console.log(token);
-  // If we don't have a token in our request ask to relogin I think
-  if (!token)
-    return res.json({ status: "error", error: "token doesn't exist" });
-  // We have a token, let's verify it!
-  let payload = null;
-  try {
-    payload = verify(token, "EDWINRULESEVENMORE");
-  } catch (err) {
-    return res.status(404).json({ status: "error", error: err });
-  }
-
-  // token is valid, now check if user exists in dataBase
-  const checkDB = await pool.query(
-    `SELECT id_uid FROM person WHERE id_uid = '${payload.userId}'`
-  );
-  const doesUserExist = checkDB.rows[0].id_uid;
-  if (!doesUserExist) throw new Error("User Doesn't Exist In DataBase");
-
-  // user exists, check if refreshtoken exist on user in dataBase.
-  const checkRefreshToken = await pool.query(
-    `SELECT refreshtoken FROM person WHERE id_uid = '${payload.userId}'`
-  );
-
-  if (checkRefreshToken.rows[0].refreshtoken !== token)
-    throw new Error("Tokens Don't Match");
-
-  // token exist, create new Refresh And Accesstoken
-  const id_uid = doesUserExist;
-  const accesstoken = createAccessToken(id_uid);
-  const refreshtoken = createRefreshToken(id_uid);
-
-  //Update refreshtoken on user in dataBase
-  await pool.query(
-    `UPDATE person SET refreshtoken = '${refreshtoken}'
-             WHERE id_uid = '${id_uid}'`
-  );
-
-  //All Checks Out send new refreshtoken and accesstoken
-  sendRefreshToken(res, refreshtoken);
-
-  return accesstoken;
-};
-*/
