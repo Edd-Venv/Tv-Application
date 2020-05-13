@@ -1,4 +1,4 @@
-const handleLogin = async (url, name, password) => {
+const handleLoginAndRegister = async (url, name, password) => {
   const result = await (
     await fetch(url, {
       method: "POST",
@@ -10,4 +10,4 @@ const handleLogin = async (url, name, password) => {
   ).json();
   return result;
 };
-export default handleLogin;
+export default handleLoginAndRegister;

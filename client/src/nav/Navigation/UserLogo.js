@@ -4,8 +4,6 @@ import { UserContext } from "../../App.js";
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
   const [name, setName] = useState("");
-  const images = require.context(`../../images/users`, true);
-  let img = images("./" + localStorage.getItem("userImage"));
 
   useEffect(() => {
     if (localStorage.getItem("userName") && !user.accesstoken) setName("GUEST");
