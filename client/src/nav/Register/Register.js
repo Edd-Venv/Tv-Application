@@ -46,44 +46,6 @@ const Register = () => {
         navigate("/login");
       }
     })();
-
-    /* const registerSuccess = () => {
-      if (file) {
-        res().then((data) => {
-          console.log(data.data.user_image_name);
-          localStorage.setItem("userImage", data.data.user_image_name);
-        });
-        return true;
-      } else {
-        res();
-        return false;
-      }
-    };*/
-    /*
-    if (registerSuccess()) {
-      //Login User automatically
-
-      const secondResult = await handleLogin(
-        `${BaseUrl}/login`,
-        name,
-        password
-      );
-
-      console.log("Reg", secondResult);
-      if (secondResult.accesstoken) {
-        localStorage.setItem("userName", name);
-        //localStorage.setItem("userImage", imageTag);
-        setUser({
-          accesstoken: secondResult.accesstoken,
-        });
-        navigate("/");
-      }
-    } else {
-      const thirdResult = await handleLogin(`${BaseUrl}/login`, name, password);
-
-      // console.log("REG line 83", thirdResult);
-      navigate("/");
-    }*/
   };
 
   const handleChange = (event) => {
@@ -121,16 +83,14 @@ const Register = () => {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
         id="register-form"
+        autoComplete="off"
       >
-        <h3 style={{ textAlign: "center" }}>
-          REGISTER
-          <hr />
-        </h3>
+        <h3 style={{ textAlign: "center" }}>REGISTER</h3>
         <div className="form-group">
-          <label htmlFor="name">USER NAME</label>
+          <label htmlFor="name"></label>
           <input
             id="register-user-name-input"
-            className="form-control"
+            className="register-inputs form-control"
             value={name}
             onChange={handleChange}
             type="text"
@@ -144,9 +104,9 @@ const Register = () => {
           <div />
         </div>
         <div className="form-group">
-          <label htmlFor="password">PASSWORD</label>
+          <label htmlFor="password"></label>
           <input
-            className="form-control"
+            className="register-inputs form-control"
             value={password}
             onChange={handleChange}
             type="password"
@@ -158,14 +118,17 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="photo">Add Photo</label>
-          <input
-            onChange={handleChange}
-            type="file"
-            name="photo"
-            id="photo"
-            accept="image/*"
-          />
+          <label htmlFor="photo" className="custom-file-upload">
+            Add Photo ( Optional )
+            <input
+              onChange={handleChange}
+              type="file"
+              name="photo"
+              id="photo"
+              accept="image/*"
+              placeholder="test"
+            />
+          </label>
         </div>
         <button type="submit" className="btn btn-primary">
           REGISTER

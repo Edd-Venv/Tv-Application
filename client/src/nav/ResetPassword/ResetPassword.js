@@ -4,10 +4,10 @@ import { navigate } from "@reach/router";
 import handleToolTip from "../Utils/tooltip.js";
 import { BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
-import "../Login/Login.css";
+import "./ResetPassword.css";
 
 const ResetPassword = (props) => {
-  const [name, setName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [state, setState] = useState({ message: "" });
   const [password, setPassword] = useState("");
   const newPasswordRef = useRef(null);
@@ -21,33 +21,37 @@ const ResetPassword = (props) => {
     if (event.key === "Enter") emailRef.current.focus();
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const token = window.location.pathname.split("/")[2];
-    const result = await (
-      await fetch(`${BaseUrl}/resetPassword/${token}`, {
-        method: "PATCH",
-        credentials: "include", // Needed to include the cookie
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          password,
-        }),
-      })
-    ).json();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    if (result.status === "success") {
-      navigate("/login");
-    } else if (result.status === "error") {
-      setState({ message: result.error });
+    if (confirmPassword !== password)
+      setState({ message: "Passwords do not match!" });
+    else {
+      const token = window.location.pathname.split("/")[2];
+      const result = await (
+        await fetch(`${BaseUrl}/resetPassword/${token}`, {
+          method: "PATCH",
+          credentials: "include", // Needed to include the cookie
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            password,
+          }),
+        })
+      ).json();
+
+      if (result.status === "success") {
+        navigate("/login");
+      } else if (result.status === "error") {
+        setState({ message: result.error });
+      }
     }
   };
 
-  const handleChange = (e) => {
-    if (e.target.name === "password") {
-      setPassword(e.target.value);
-    }
+  const handleChange = (event) => {
+    if (event.target.name === "password") setPassword(event.target.value);
+    else setConfirmPassword(event.target.value);
   };
 
   handleToolTip(
@@ -77,26 +81,36 @@ const ResetPassword = (props) => {
           id="reset-password-form"
         >
           <div className="form-group">
-            <label htmlFor="password">New Password</label>
-            <input
-              id="reset-password-user-name-input"
-              className="form-control"
-              value={password}
-              onChange={handleChange}
-              type="password"
-              name="password"
-              placeholder="New Password"
-              required
-              ref={newPasswordRef}
-              onKeyDown={firstKeyDown}
-              style={{ fontFamily: "Roboto Condensed, sans-serif" }}
-            />
+            <h3 style={{ textAlign: "center" }}>NEW PASSWORD</h3>
+            <div className="form-group">
+              <label htmlFor="password"></label>
+              <input
+                id="reset-password-user-name-input"
+                className="reset-password-input form-control"
+                value={password}
+                onChange={handleChange}
+                type="password"
+                name="password"
+                placeholder="New Password"
+                required
+                ref={newPasswordRef}
+                onKeyDown={firstKeyDown}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="reset-password-input form-control"
+                value={confirmPassword}
+                onChange={handleChange}
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
           </div>
-          <div />
-
-          <br />
           <button type="submit" className="btn btn-primary">
-            Send
+            SEND
           </button>
         </form>
       </div>
