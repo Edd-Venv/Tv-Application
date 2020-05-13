@@ -14,14 +14,15 @@ exports.getMyMovies = async (req, res) => {
     const movies = await Model.getMyMoviesModel(req, res);
     res.status(200).json({ status: "success", data: movies });
   } catch (err) {
-    res.redirect("http://18.222.115.53:4010/login");
+    const url = `${req.protocol}://${req.get("host")}/login`;
+    res.redirect(url);
   }
 };
 
 exports.deleteSavedMovie = async (req, res) => {
   try {
     await Model.deleteSavedMovieModel(req);
-    res.status(200).json({
+    res.status(202).json({
       status: "success",
       message: `${req.body.movie_title} Deleted.`,
     });
