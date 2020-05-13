@@ -1,20 +1,24 @@
 const express = require("express");
-const tvShowsController = require("../../controllers/SettingsControllers/Settings.js");
+const settingsController = require("../../controllers/SettingsControllers/Settings.js");
 const userSetUpController = require("../../controllers/UserSetUpControllers/UserSetUp.js");
 
 const router = express.Router();
 
-router.patch("/user/password", tvShowsController.changeUserPassWord);
+router.post("/forgotPassword", settingsController.forgotPassword);
 
-router.patch("/user/name", tvShowsController.changeUserName);
+router.patch("/resetPassword/:token", settingsController.resetPassword);
 
-router.delete("/user", tvShowsController.deleteUser);
+router.patch("/user/password", settingsController.changeUserPassWord);
+
+router.patch("/user/name", settingsController.changeUserName);
+
+router.delete("/user", settingsController.deleteUser);
 
 router.patch(
   "/user/image",
   userSetUpController.uploadUserPhoto,
   userSetUpController.resizeUserPhoto,
-  tvShowsController.updateUserImage
+  settingsController.updateUserImage
 );
 
 module.exports = router;

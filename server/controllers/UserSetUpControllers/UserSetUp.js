@@ -31,7 +31,7 @@ exports.uploadUserPhoto = upload.single("photo");
 
 exports.resizeUserPhoto = (req, res, next) => {
   if (!req.file) {
-    res.json({ error: "File Not Recevied" });
+    console.log("Registered without Photo.");
   } else if (req.file) {
     try {
       req.file.filename = `user-${req.body.person_name}-${Date.now()}.jpeg`;
@@ -47,7 +47,7 @@ exports.resizeUserPhoto = (req, res, next) => {
             `src/images/users/${req.file.filename}`
           )
         );
-      res.json({ user_image_name: req.file.filename });
+      //res.json({ user_image_name: req.file.filename });
     } catch (error) {
       console.log("error", error);
     }
@@ -55,17 +55,14 @@ exports.resizeUserPhoto = (req, res, next) => {
   next();
 };
 
-exports.register = async (req, res, next) => {
+exports.register = async (req, res) => {
   try {
     await Model.registerModel(req);
 
-    //res.status(201).json({ status: "success", message: "User Created" });
-  } catch (err) {
-    console.log("Error from UserSetpContro line 89", err);
-
-    //res.status(404).json({ status: "error", error: `${err.message}` });
+    res.status(201).json({ status: "success", message: "User Created" });
+  } catch (error) {
+    res.status(404).json({ status: "error", error: error.message });
   }
-  next();
 };
 
 exports.login = async (req, res, next) => {
@@ -78,7 +75,6 @@ exports.login = async (req, res, next) => {
       error: `${err.message}`,
     });
   }
-  //return next();
 };
 
 exports.logOut = async (req, res) => {
