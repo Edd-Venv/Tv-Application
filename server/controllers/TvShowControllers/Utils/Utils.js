@@ -17,7 +17,8 @@ exports.getMyShows = async (req, res) => {
       data: shows,
     });
   } catch (err) {
-    res.redirect("http://18.222.115.53:4010/login");
+    const url = `${req.protocol}://${req.get("host")}/login`;
+    res.redirect(url);
   }
 };
 
