@@ -76,17 +76,19 @@ const Login = (props) => {
     <React.Fragment>
       <Navigation />
       <div className={displayLogin}>
-        <form className="card mb-3" onSubmit={handleSubmit} id="login-form">
-          <h3 style={{ textAlign: "center" }}>
-            LOGIN
-            <hr />
-          </h3>
+        <form
+          className="card mb-3"
+          onSubmit={handleSubmit}
+          id="login-form"
+          autoComplete="off"
+        >
+          <h3 style={{ textAlign: "center" }}>LOGIN</h3>
 
           <div className="form-group">
-            <label htmlFor="name">USER NAME</label>
+            <label htmlFor="name"></label>
             <input
               id="login-user-name-input"
-              className="form-control"
+              className="login-inputs form-control"
               value={name}
               onChange={handleChange}
               type="text"
@@ -100,9 +102,9 @@ const Login = (props) => {
           </div>
           <div />
           <div className="form-group">
-            <label htmlFor="password">PASSWORD</label>
+            <label htmlFor="password"></label>
             <input
-              className="form-control"
+              className="login-inputs form-control"
               value={password}
               onChange={handleChange}
               type="password"
@@ -113,8 +115,8 @@ const Login = (props) => {
               ref={passwordRef}
             />
           </div>
-          <Link to="/forgotPassword" style={{ color: "red" }}>
-            forgot your password?<span className="sr-only">(current)</span>
+          <Link to="/forgotPassword" id="forgot-password-link">
+            Forgot your password?<span className="sr-only">(current)</span>
           </Link>
           <br />
           <button type="submit" className="btn btn-primary">
