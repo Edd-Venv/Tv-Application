@@ -2,25 +2,57 @@
   width: 30%;
   margin: 0 auto;
   font: 2rem;
-  background-color: rgb(102, 100, 100);
+  background-color: transparent;
   font-family: "Roboto Condensed", sans-serif;
 }
-
+/*id="settings-image"*/
 @media (min-width: 320px) {
   .form {
-    width: 80vw;
+    width: 72vw;
     margin: 0 auto;
     font: 2rem;
     margin-top: 5%;
   }
+  .settings-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .settings-image {
+    width: 40vw;
+    margin: 0 auto;
+    margin-left: 7vw;
+  }
+  .settings-form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .settings-button {
+    align-self: auto;
+  }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .form {
-    width: 50vw;
+    width: 30vw;
     margin: 0 auto;
     font: 2rem;
     margin-top: 5%;
+  }
+  .settings-button {
+    align-self: auto;
+  }
+  .settings-flex-container {
+    align-items: baseline;
+  }
+
+  .settings-form {
+    display: inline;
+    flex-wrap: wrap;
+    margin-right: 12vw;
+  }
+  .settings-image {
+    margin: 0 auto;
+    width: min-content;
   }
 }
 
@@ -29,7 +61,22 @@
     width: 30vw;
     margin: 0 auto;
     font: 2rem;
-    margin-top: 5%;
+    margin-top: -5%;
+  }
+  .settings-flex-container {
+    width: 70vw;
+    margin-left: 26vw;
+  }
+  .settings-form {
+    margin-right: 12vw;
+  }
+  .settings-image {
+    display: inline;
+    margin: 0 auto;
+    width: min-content;
+  }
+  #settings-input {
+    width: 25vw;
   }
 }
 

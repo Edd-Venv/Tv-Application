@@ -28,14 +28,31 @@ function Settings(props) {
   return (
     <React.Fragment>
       <Navigation logOutCallback={props.logOutCallback} />
-      <ChangeUserPhoto />
-      <ChangeUserName />
-      <ChangeUserPwd />
-      <h3 style={{ color: "white" }}>DELETE PROFILE</h3>
-      <button className="btn btn-danger" onClick={deleteUser}>
-        DELETE USER
-        <GoTrashcan />
-      </button>
+      <h3
+        style={{
+          fontFamily: "Oswald, sans-serif",
+          textAlign: "center",
+          color: "white",
+        }}
+      >
+        ACCOUNT SETTINGS
+      </h3>
+      <div className="settings-flex-container">
+        <div className="settings-image">
+          <ChangeUserPhoto />
+        </div>
+        <div className="settings-form">
+          <ChangeUserName />
+          <ChangeUserPwd />
+          <button
+            className="settings-button btn btn-danger"
+            onClick={deleteUser}
+          >
+            DELETE USER
+            <GoTrashcan />
+          </button>
+        </div>
+      </div>
     </React.Fragment>
   );
 }
