@@ -1,4 +1,4 @@
-input[type="file"] {
+.register-file-input[type="file"] {
   display: none;
 }
 .custom-file-upload {

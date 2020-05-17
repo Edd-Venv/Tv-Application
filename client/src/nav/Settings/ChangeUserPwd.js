@@ -38,7 +38,7 @@ function ChangeUserPwd(props) {
   return (
     <form className="card mb-3 form" onSubmit={handleSubmit} autoComplete="off">
       <div className="form-group">
-        <h3
+        <h4
           style={{
             fontFamily: "Oswald, sans-serif",
             textAlign: "center",
@@ -46,33 +46,39 @@ function ChangeUserPwd(props) {
           }}
         >
           CHANGE PASSWORD
-        </h3>
-        <label htmlFor="old password">OLD PASSWORD</label>
-        <input
-          className="form-control"
-          value={oldPwd}
-          placeholder="Old Password"
-          type="password"
-          onChange={handleInput}
-          name="old password"
-          required
-        />
+        </h4>
+        <div style={{ display: "flex" }}>
+          <label htmlFor="old password">OLD PASSWORD</label>
+          <input
+            id="settings-input"
+            className="form-control"
+            value={oldPwd}
+            placeholder="******"
+            type="password"
+            onChange={handleInput}
+            name="old password"
+            required
+          />
+        </div>
       </div>
       <div className="form-group">
-        <label htmlFor="new password">NEW PASSWORD</label>
-        <input
-          className="form-control"
-          name="new password"
-          value={newPwd}
-          placeholder="New Password"
-          type="password"
-          onChange={handleInput}
-          required
-        />
+        <div style={{ display: "flex" }}>
+          <label htmlFor="new password">NEW PASSWORD</label>
+          <input
+            id="settings-input"
+            className="form-control"
+            name="new password"
+            value={newPwd}
+            placeholder="******"
+            type="password"
+            onChange={handleInput}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          SUBMIT
+        </button>
       </div>
-      <button type="submit" className="btn btn-primary">
-        SUBMIT
-      </button>
     </form>
   );
 }
