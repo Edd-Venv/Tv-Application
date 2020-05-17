@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
   margin-top: 3%;
+  margin-left: 20%;
 }
 
 #my-shows-item:hover {

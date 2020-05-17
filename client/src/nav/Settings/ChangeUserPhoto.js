@@ -21,6 +21,7 @@ function ChangeUserPhoto() {
             authorization: `Bearer ${user.accesstoken}`,
           },
         });
+        setFile(null);
       }
     })();
   };
@@ -31,24 +32,21 @@ function ChangeUserPhoto() {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit} autoComplete="off">
-      <div>
-        <img
-          id="userImg"
-          src={require(`../../images/users/${localStorage.getItem(
-            "userImage"
-          )}`)}
-        />
-        <label htmlFor="photo">Choose New Photo</label>
-        <input
-          style={{ outline: "none" }}
-          onChange={handleChange}
-          type="file"
-          name="photo"
-          id="photo"
-          accept="image/*"
-        />
-      </div>
+    <form className="settings-image" onSubmit={handleSubmit} autoComplete="off">
+      <img
+        id="userImg"
+        src={require(`../../images/users/${localStorage.getItem("userImage")}`)}
+      />
+      <label htmlFor="photo"></label>
+      <input
+        style={{ outline: "none" }}
+        onChange={handleChange}
+        type="file"
+        name="photo"
+        id="photo"
+        accept="image/*"
+      />
+
       <button type="submit">Save Photo</button>
     </form>
   );
