@@ -119,8 +119,9 @@ const Register = () => {
         </div>
         <div className="form-group">
           <label htmlFor="photo" className="custom-file-upload">
-            Add Photo ( Optional )
+            Click To Add Photo ( Optional )
             <input
+              className="register-file-input"
               onChange={handleChange}
               type="file"
               name="photo"

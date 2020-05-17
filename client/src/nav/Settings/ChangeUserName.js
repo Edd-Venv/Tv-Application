@@ -25,7 +25,6 @@ function ChangeUserName(props) {
     ).json();
 
     if (!result.error) {
-      console.log(result.message);
       props.logOutCallback();
     } else {
       console.log(result.error);
@@ -41,7 +40,7 @@ function ChangeUserName(props) {
   return (
     <form onSubmit={handleSubmit} className="card mb-3 form" autoComplete="off">
       <div className="form-group">
-        <h3
+        <h4
           style={{
             fontFamily: "Oswald, sans-serif",
             textAlign: "center",
@@ -49,33 +48,39 @@ function ChangeUserName(props) {
           }}
         >
           CHANGE USER NAME
-        </h3>
-        <label htmlFor="old Name">OLD USERNAME</label>
-        <input
-          className="form-control"
-          value={oldName}
-          type="text/number"
-          name="old Name"
-          placeholder="Old Name"
-          onChange={handleInput}
-          required
-        />
+        </h4>
+        <div style={{ display: "flex" }}>
+          <label htmlFor="old Name">OLD USERNAME</label>
+          <input
+            id="settings-input"
+            className="form-control"
+            value={oldName}
+            type="text/number"
+            name="old Name"
+            placeholder="Old Name"
+            onChange={handleInput}
+            required
+          />
+        </div>
       </div>
       <div className="form-group">
-        <label htmlFor="new Name">NEW USERNAME</label>
-        <input
-          className="form-control"
-          value={newName}
-          type="text/number"
-          name="new Name"
-          placeholder="New Name"
-          onChange={handleInput}
-          required
-        />
+        <div style={{ display: "flex" }}>
+          <label htmlFor="new Name">NEW USERNAME</label>
+          <input
+            id="settings-input"
+            className="form-control"
+            value={newName}
+            type="text/number"
+            name="new Name"
+            placeholder="New Name"
+            onChange={handleInput}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          SUBMIT
+        </button>
       </div>
-      <button type="submit" className="btn btn-primary">
-        SUBMIT
-      </button>
     </form>
   );
 }
