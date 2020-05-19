@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import "./Movies.css";
+import PropTypes from "prop-types";
 import { MovieContext } from "../../contexts/movieContext";
 
 function Movie() {
@@ -35,5 +36,8 @@ function Movie() {
     </div>
   );
 }
-
+Movie.propTypes = {
+  data: PropTypes.array.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+};
 export default Movie;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Movies.css";
 
 const OneMovie = (props) => {
@@ -71,5 +72,9 @@ const OneMovie = (props) => {
       })}
     </div>
   );
+};
+OneMovie.propTypes = {
+  deleteMovie: PropTypes.func.isRequired,
+  content: PropTypes.array,
 };
 export default React.memo(OneMovie);
