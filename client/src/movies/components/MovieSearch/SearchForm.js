@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const SearchForm = React.memo((props) => {
-  const [currentText, setText] = useState("");
+  const [currentText, setText] = React.useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();

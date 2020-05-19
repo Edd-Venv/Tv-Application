@@ -14,10 +14,15 @@ const setUp = (props = {}) => {
 };
 
 describe("MOVIES APP, SEARCHFORM COMPONENT", () => {
+  let mockSetText = jest.fn();
   let wrapper;
+
   beforeEach(() => {
-    wrapper = setUp({ logOutCallback: () => {} });
+    mockSetText.mockClear();
+    React.useState = jest.fn(() => ["", mockSetText]);
+    wrapper = setUp();
   });
+
   it("RENDERS WITHOUT ERROR", () => {
     const searchFormComponent = findByTestAttr(
       wrapper,
@@ -25,9 +30,25 @@ describe("MOVIES APP, SEARCHFORM COMPONENT", () => {
     );
     expect(searchFormComponent.length).toBe(1);
   });
+
   it("DOES NOT THROW WARNING WITH EXPECTED PROPS", () => {
     const expectedProps = { onAddSearch: () => {} };
     const propError = checkProps(SearchForm, expectedProps);
     expect(propError).toBeUndefined();
   });
+
+  it("SHOULD UPDATE STATE WITH VALUE OF INPUT BOX UNPON CHANGE", () => {
+    const inputBox = findByTestAttr(wrapper, "input-box");
+    const mockEvent = { target: { value: "venom" } };
+    inputBox.simulate("change", mockEvent);
+
+    expect(mockSetText).toHaveBeenCalledWith("venom");
+  });
+
+  /*it("SHOULD CLEAR INPUT FIELD UPON SUBMIT BUTTON CLICK", () => {
+    const submitButton = findByTestAttr(wrapper, "search-form");
+    submitButton.simulate("click", { preventDefault() {} });
+
+    expect(mockSetText).toHaveBeenCalledWith("");
+  });*/
 });
