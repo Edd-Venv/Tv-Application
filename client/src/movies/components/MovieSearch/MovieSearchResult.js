@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { UserContext, BaseUrl } from "../../../App.js";
 import MovieTrailer from "./MovieTrailer.js";
 import FetalMovieSearchError from "./FetalMovieSearchError.js";
+import PropTypes from "prop-types";
 import "./MovieSearchResult.css";
 
 const MovieSearchResult = (props) => {
@@ -181,4 +182,13 @@ const MovieSearchResult = (props) => {
   );
 };
 
+MovieSearchResult.propTypes = {
+  Movie: PropTypes.object.isRequired,
+  exists: PropTypes.string,
+  trailer: PropTypes.string.isRequired,
+  handleTrailerPlayButton: PropTypes.func.isRequired,
+  handleTrailerCloseButton: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+};
 export default MovieSearchResult;

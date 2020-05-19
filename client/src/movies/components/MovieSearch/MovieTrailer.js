@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./MovieSearchResult.css";
 
 const MovieTrailer = (props) => {
@@ -21,5 +22,9 @@ const MovieTrailer = (props) => {
       </div>
     </div>
   );
+};
+MovieTrailer.propTypes = {
+  trailer: PropTypes.string.isRequired,
+  handleTrailerCloseButton: PropTypes.func.isRequired,
 };
 export default MovieTrailer;
