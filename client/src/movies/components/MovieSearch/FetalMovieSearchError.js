@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./MovieSearch.css";
 
 const FetalMovieSearchError = (props) => {
@@ -19,5 +20,7 @@ const FetalMovieSearchError = (props) => {
     </React.Fragment>
   );
 };
-
+FetalMovieSearchError.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+};
 export default FetalMovieSearchError;
