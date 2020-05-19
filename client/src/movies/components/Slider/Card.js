@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./MovieSlider.css";
 
 const MovieCarouselCard = (props) => {
@@ -32,4 +33,8 @@ const MovieCarouselCard = (props) => {
   );
 };
 
+MovieCarouselCard.propTypes = {
+  data: PropTypes.object.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};
 export default MovieCarouselCard;

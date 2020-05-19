@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext, BaseUrl } from "../../../App.js";
 import Navigation from "../../../nav/Navigation/Navigation.js";
 import OneMovie from "./oneMovie.js";
+import PropTypes from "prop-types";
 import "./Movies.css";
 
 const MyMovies = (props) => {
@@ -169,8 +170,12 @@ const MyMovies = (props) => {
           </div>
         </React.Fragment>
       )}
+      <div data-test="my-movies-component" />
     </React.Fragment>
   );
 };
 
+MyMovies.propTypes = {
+  logOutCallback: PropTypes.func.isRequired,
+};
 export default MyMovies;
