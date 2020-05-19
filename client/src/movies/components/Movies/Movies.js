@@ -31,6 +31,7 @@ function Movie() {
           })}
         </React.Fragment>
       )}
+      <div data-test="movie-component" />
     </div>
   );
 }
