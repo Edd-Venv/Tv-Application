@@ -57,7 +57,7 @@ function ChangeUserName(props) {
             value={oldName}
             type="text/number"
             name="old Name"
-            placeholder="Old Name"
+            placeholder="Old User Name"
             onChange={handleInput}
             required
           />
@@ -72,7 +72,7 @@ function ChangeUserName(props) {
             value={newName}
             type="text/number"
             name="new Name"
-            placeholder="New Name"
+            placeholder="New User Name"
             onChange={handleInput}
             required
           />

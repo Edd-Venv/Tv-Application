@@ -72,6 +72,7 @@ function Body() {
           </React.Fragment>
         )}
       </div>
+      <div data-test="body-component" />
     </React.Fragment>
   );
 }
