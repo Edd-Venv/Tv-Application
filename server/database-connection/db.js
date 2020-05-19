@@ -2,10 +2,10 @@ const Pool = require("pg").Pool;
 
 const pool = new Pool({
   user: "postgres",
-  password: "050993Aurum",
-  host: "booksdb.cu7acqeogeq9.us-east-2.rds.amazonaws.com",
+  password: "0509",
+  host: "localhost",
   port: 5432,
-  database: "booksdb",
+  database: "db",
 });
 module.exports = pool;
 /*
@@ -19,7 +19,6 @@ module.exports = pool;
 
   const path = require("path");
 const http = require("http");
-const express = require("express");
 
   if (true) {
   app.use(express.static("build"));
@@ -31,8 +30,11 @@ const express = require("express");
 http.createServer(app).listen(4010);
 
  REMEMEBER TO create a images folder in build/static
+
+ ADD TO CLIENT SIDE NAVIGATION/USERLOGO AND SETTINGS/CHANGEUSERPHOTO
  src={`${BaseUrl}/static/images/${localStorage.getItem("userImage")}`}
 
+ ADD TO CONTROLLER/USERSETUP
   path.resolve(
             __dirname,
             "../../build",
