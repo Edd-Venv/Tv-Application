@@ -72,7 +72,3 @@ const MovieSlider = () => {
 };
 
 export default MovieSlider;
-/*
-<CarouselCard data={state} handleClose={handleClose} />
- <video src={data.yUrl} className="img-thumbnail" />
-*/

@@ -39,7 +39,7 @@ const Register = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        console.log(register.data);
+        console.log(register.data.status);
         if (register.data.status === "success") navigate("/login");
       } else {
         const register = await (
