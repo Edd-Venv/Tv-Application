@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { UserContext, BaseUrl } from "../../App.js";
 import { navigate } from "@reach/router";
-import handleLogin from "../Utils/RegisterFunc.js";
+import handleLoginAndRegister from "../Utils/RegisterFunc.js";
 import handleToolTip from "../Utils/tooltip.js";
 import Navigation from "../Navigation/Navigation";
 import Axios from "axios";
@@ -34,16 +34,36 @@ const Register = () => {
         formData.append("password", `${password}`);
         formData.append("photo", file, "photo");
 
-        await Axios.post(`${BaseUrl}/register`, formData, {
+        const register = await Axios.post(`${BaseUrl}/register`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
-
-        navigate("/login");
+        console.log(register.data);
+        if (register.data.status === "success") navigate("/login");
       } else {
-        await handleLogin(`${BaseUrl}/register`, name, password);
-        navigate("/login");
+        const register = await (
+          await handleLoginAndRegister(`${BaseUrl}/register`, name, password)
+        ).json();
+
+        if (register.status === "error") {
+          setState({ message: register.error });
+        } else if (register.status === "success") {
+          const result = await (
+            await handleLoginAndRegister(`${BaseUrl}/login`, name, password)
+          ).json();
+
+          if (result.accesstoken) {
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userImage", result.userImage);
+            setUser({
+              accesstoken: result.accesstoken,
+            });
+            navigate("/");
+          } else {
+            setState({ message: result.error });
+          }
+        }
       }
     })();
   };
