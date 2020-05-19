@@ -11,7 +11,7 @@ const setUp = (props = {}) => {
   return shallow(<App {...props} />);
 };
 
-describe("APP TESTS", () => {
+describe("APP COMPONENT", () => {
   it("RENDERS WITHOUT CRASHING", () => {
     const wrapper = setUp();
     const appComponent = findByTestAttr(wrapper, "component-app");

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const SearchForm = React.memo((props) => {
   const [currentText, setText] = useState("");
@@ -15,7 +16,7 @@ const SearchForm = React.memo((props) => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <div className="movie-input-container" id="movie-input">
-        <button id="MovieSearchButton" type="submit">
+        <button id="MovieSearchButton" data-test="submit-button" type="submit">
           <i className="fas fa-search" />
         </button>
         <input
@@ -34,10 +35,16 @@ const SearchForm = React.memo((props) => {
           value={currentText}
           placeholder="Movie Title"
           required
+          data-test="input-box"
           style={{ fontFamily: "Roboto Condensed, sans-serif" }}
         />
       </div>
+      <div data-test="search-form-component" />
     </form>
   );
 });
+
+SearchForm.propTypes = {
+  onAddSearch: PropTypes.func.isRequired,
+};
 export default SearchForm;
