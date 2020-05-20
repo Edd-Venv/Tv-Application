@@ -52,8 +52,7 @@ function ChangeUserName(props) {
         <div style={{ display: "flex" }}>
           <label htmlFor="old Name">OLD USERNAME</label>
           <input
-            id="settings-input"
-            className="form-control"
+            className="settings-input form-control"
             value={oldName}
             type="text/number"
             name="old Name"
@@ -67,8 +66,7 @@ function ChangeUserName(props) {
         <div style={{ display: "flex" }}>
           <label htmlFor="new Name">NEW USERNAME</label>
           <input
-            id="settings-input"
-            className="form-control"
+            className="settings-input form-control"
             value={newName}
             type="text/number"
             name="new Name"

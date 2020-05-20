@@ -50,8 +50,7 @@ function ChangeUserPwd(props) {
         <div style={{ display: "flex" }}>
           <label htmlFor="old password">OLD PASSWORD</label>
           <input
-            id="settings-input"
-            className="form-control"
+            className="settings-input form-control"
             value={oldPwd}
             placeholder="******"
             type="password"
@@ -65,8 +64,7 @@ function ChangeUserPwd(props) {
         <div style={{ display: "flex" }}>
           <label htmlFor="new password">NEW PASSWORD</label>
           <input
-            id="settings-input"
-            className="form-control"
+            className="settings-input form-control"
             name="new password"
             value={newPwd}
             placeholder="******"

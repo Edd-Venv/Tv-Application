@@ -75,7 +75,7 @@
     margin: 0 auto;
     width: min-content;
   }
-  #settings-input {
+  .settings-input {
     width: 25vw;
   }
 }
