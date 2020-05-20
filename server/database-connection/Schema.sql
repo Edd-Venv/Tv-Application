@@ -61,6 +61,8 @@ create table person (
     password VARCHAR(400) NOT NULL,
     refreshtoken VARCHAR,
     person_image VARCHAR,
+    password_reset_token VARCHAR,
+    password_reset_expires NUMERIC,
     UNIQUE(person_name),
     UNIQUE(refreshtoken)
 );
