@@ -42,16 +42,20 @@ const Register = () => {
         console.log(register.data.status);
         if (register.data.status === "success") navigate("/login");
       } else {
-        const register = await (
-          await handleLoginAndRegister(`${BaseUrl}/register`, name, password)
-        ).json();
+        const register = await handleLoginAndRegister(
+          `${BaseUrl}/register`,
+          name,
+          password
+        );
 
         if (register.status === "error") {
           setState({ message: register.error });
         } else if (register.status === "success") {
-          const result = await (
-            await handleLoginAndRegister(`${BaseUrl}/login`, name, password)
-          ).json();
+          const result = await handleLoginAndRegister(
+            `${BaseUrl}/login`,
+            name,
+            password
+          );
 
           if (result.accesstoken) {
             localStorage.setItem("userName", name);

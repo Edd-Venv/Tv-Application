@@ -58,7 +58,6 @@ exports.resizeUserPhoto = (req, res, next) => {
 exports.register = async (req, res) => {
   try {
     await Model.registerModel(req);
-
     res.status(201).json({ status: "success", message: "User Created" });
   } catch (error) {
     res.status(404).json({ status: "error", error: error.message });
