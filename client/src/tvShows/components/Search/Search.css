@@ -12,6 +12,17 @@
   background-color: rgb(0, 0, 0); /* Fallback color */
   min-width: 60px;
 }
+/*
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+  pointer-events: none;
+  display: none;
+*/
 /* Modal Content (image) */
 .modal-content {
   margin: auto;
@@ -69,8 +80,9 @@
 
 .error-paragraph {
   color: white;
-  font-size: 2.2rem;
-  margin-left: 38%;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto;
 }
 
 img {
@@ -183,7 +195,14 @@ img {
   font-size: 1em;
   display: inline;
 }
-
+@keyframes errAnimation {
+  from {
+    transform: translateY(-1px);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
 /*From a minimum width and bigger*/
 @media (min-width: 320px) {
   .show-input-container {
@@ -197,6 +216,18 @@ img {
     width: 51vw;
     transform: translate(1px, -5px);
   }
+  .tv-show-error-paragraph {
+    color: white;
+    font-size: 1.9rem;
+    text-align: center;
+    margin: 0 auto;
+    animation-name: errAnimation;
+    animation-duration: 4.5s;
+    animation-timing-function: linear;
+  }
+  .tv-show-error-paragraph:hover {
+    animation-play-state: paused;
+  }
 }
 
 @media (min-width: 425px) {
@@ -208,12 +239,15 @@ img {
     transform: translate(1px, -5px);
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .show-input-container {
     font-size: 1.3rem;
   }
   .show-input-style {
     width: 43vw;
+  }
+  .tv-show-error-paragraph {
+    font-size: 1.9rem;
   }
 }
 
@@ -229,6 +263,9 @@ img {
     width: 26vw;
     transform: translate(1px, -5px);
     transition: transform 0.3s linear;
+  }
+  .tv-show-error-paragraph {
+    font-size: 2rem;
   }
 }
 @media (min-width: 1440px) {
