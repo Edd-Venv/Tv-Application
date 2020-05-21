@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import FetalSearchError from "./FetalSearchError.js";
 import "./SearchResult.css";
-import PartialSearchError from "./PatialSearchError.js";
 import { UserContext, BaseUrl } from "../../../App.js";
 import Trailer from "./SearchResultTrailer.js";
 
@@ -80,11 +80,9 @@ function SearchResult(props) {
         showTrailer={showTrailer}
         handleTrailerCloseButton={handleTrailerCloseButton}
       />
-      <div id="search-result-modal">
+      <div id="search-result-modal" onClick={handleClose}>
         <div className="search-container">
-          {(showTrailer === "" && !teaser) ||
-          (isLoaded === false && data === undefined) ||
-          !image ? (
+          {isLoaded === false || image.original === "" ? (
             <div
               className="spinner-grow text-dark"
               role="status"
@@ -92,6 +90,9 @@ function SearchResult(props) {
             >
               <span className="sr-only">Loading...</span>
             </div>
+          ) : (data.exists === null && isLoaded === true) ||
+            image.original === null ? (
+            <FetalSearchError handleClose={handleClose} />
           ) : (
             <div
               className=" tv-search-result-card card mb-3"
@@ -115,84 +116,80 @@ function SearchResult(props) {
                   />
                 </svg>
               </span>
-              {image === null ? (
-                <PartialSearchError data={data} summary={summary} />
-              ) : (
-                <React.Fragment>
-                  <div className="row no-gutters">
-                    <div className="col-md-4">
-                      <div className="show-image"></div>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="card-body" id="search-result-font">
-                        <h2 className="card-title">{data.name}</h2>
-                        <hr />
-                        <div className="card-text">
-                          <p>
-                            {" "}
-                            <big>Description:</big>
-                            {summary
+              <React.Fragment>
+                <div className="row no-gutters">
+                  <div className="col-md-4">
+                    <div className="show-image"></div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body" id="search-result-font">
+                      <h2 className="card-title">{data.name}</h2>
+                      <hr />
+                      <div className="card-text">
+                        <p>
+                          {" "}
+                          <big>Description:</big>
+                          {summary
+                            .replace(/<p>/g, " ")
+                            .replace(/<b>/g, " ")
+                            .replace(/p>/g, " ")
+                            .replace(/</g, " ")
+                            .replace(/i>/g, " ")
+                            .replace(/b>/g, " ")
+                            .substring(0, 250)}
+                          .
+                        </p>
+                        <p>
+                          <big>Premiered: </big>
+                          {data.premiered}{" "}
+                        </p>
+                        <p>
+                          <big>Runtime: </big>
+                          {data.runtime} min's
+                        </p>
+                        <p>
+                          <big>Rating: </big>
+                          {data.rating.average}
+                        </p>
+                        <button
+                          className="btn btn-primary"
+                          id="tv-show-search-result-button"
+                          onClick={saveShow.bind(this, [
+                            data.id,
+                            data.name,
+                            data.runtime,
+                            data.status,
+                            data.premiered,
+                            data.genres[0],
+                            data.rating.average,
+                            data.summary
                               .replace(/<p>/g, " ")
                               .replace(/<b>/g, " ")
                               .replace(/p>/g, " ")
                               .replace(/</g, " ")
                               .replace(/i>/g, " ")
                               .replace(/b>/g, " ")
-                              .substring(0, 250)}
-                            .
-                          </p>
-                          <p>
-                            <big>Premiered: </big>
-                            {data.premiered}{" "}
-                          </p>
-                          <p>
-                            <big>Runtime: </big>
-                            {data.runtime} min's
-                          </p>
-                          <p>
-                            <big>Rating: </big>
-                            {data.rating.average}
-                          </p>
+                              .substring(0, 100),
+                            data.image.original,
+                          ])}
+                        >
+                          {state.message === "" ? "Save" : state.message}
+                        </button>
+                        <br />
+                        {exists === "unknown" ? null : (
                           <button
-                            className="btn btn-primary"
-                            id="tv-show-search-result-button"
-                            onClick={saveShow.bind(this, [
-                              data.id,
-                              data.name,
-                              data.runtime,
-                              data.status,
-                              data.premiered,
-                              data.genres[0],
-                              data.rating.average,
-                              data.summary
-                                .replace(/<p>/g, " ")
-                                .replace(/<b>/g, " ")
-                                .replace(/p>/g, " ")
-                                .replace(/</g, " ")
-                                .replace(/i>/g, " ")
-                                .replace(/b>/g, " ")
-                                .substring(0, 100),
-                              data.image.original,
-                            ])}
+                            className="btn btn-dark"
+                            onClick={handleTrailerPlayButton}
                           >
-                            {state.message === "" ? "Save" : state.message}
+                            Watch Trailer
+                            <i className="fab fa-google-play" />
                           </button>
-                          <br />
-                          {exists === "unknown" ? null : (
-                            <button
-                              className="btn btn-dark"
-                              onClick={handleTrailerPlayButton}
-                            >
-                              Watch Trailer
-                              <i className="fab fa-google-play" />
-                            </button>
-                          )}
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>
-                </React.Fragment>
-              )}
+                </div>
+              </React.Fragment>
             </div>
           )}
         </div>
@@ -203,6 +200,23 @@ function SearchResult(props) {
 
 export default SearchResult;
 /*
+
+(showTrailer === "" && !teaser) ||
+            (data === undefined && isLoaded === true) ||
+            image === null ? (
+            <FetalSearchError handleClose={handleClose} />
+          ) :
+
+
+isLoaded === false ? (
+            <div
+              className="spinner-grow text-dark"
+              role="status"
+              style={{ margin: "0 auto" }}
+            >
+              <span className="sr-only">Loading...</span>
+            </div>
+          ) : 
 
 <div className="col-md-4">
                       <div className="show-image">

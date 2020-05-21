@@ -26,6 +26,7 @@ function Search() {
     document.getElementById("show-trailer").style.display = "none";
     document.getElementById("search-result-modal").style.zIndex = 1;
   };
+
   const onAddSearch = (text) => {
     (async function fetchData() {
       await fetch(`${BaseUrl}/search`, {
@@ -41,6 +42,18 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
+          if (Data.data[0][0] === undefined)
+            return setState({
+              initialState: {
+                data: { image: { orginal: null }, summary: null, exists: null },
+                isLoaded: true,
+                showTrailer: "",
+                Test: "",
+                teaser: "",
+                display: "show",
+                image: null,
+              },
+            });
           setState({
             initialState: {
               data: Data.data[0][0].show,
