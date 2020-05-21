@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const SearchForm = React.memo((props) => {
   const [currentText, setText] = useState("");
@@ -39,4 +40,7 @@ const SearchForm = React.memo((props) => {
     </form>
   );
 });
+SearchForm.propTypes = {
+  onAddSearch: PropTypes.func.isRequired,
+};
 export default SearchForm;

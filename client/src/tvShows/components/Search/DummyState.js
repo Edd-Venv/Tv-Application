@@ -6,7 +6,7 @@ export const initialState = {
     name: "The Tom and Jerry Show",
     type: "Animation",
     language: "English",
-    genres: (2)[("Comedy", "Children")],
+    genres: [[("Comedy", "Children")]],
     status: "Running",
     runtime: 30,
     premiered: "2014-04-09",
@@ -18,13 +18,13 @@ export const initialState = {
     webChannel: null,
     externals: { tvrage: 41747, thetvdb: 280446, imdb: "tt3559124" },
     image: {
-      original: ""
+      original: "",
     },
     summary: "<p>The famous cat and mouse duo is back in an all-new series",
     updated: 1573583964,
-    _links: { self: { href: "http://api.tvmaze.com/shows/4296" } }
+    _links: { self: { href: "http://api.tvmaze.com/shows/4296" } },
   },
   display: "hide",
   Test: "show",
-  showTrailer: ""
+  showTrailer: "",
 };
