@@ -24,7 +24,7 @@ const MovieTrailer = (props) => {
   );
 };
 MovieTrailer.propTypes = {
-  trailer: PropTypes.string.isRequired,
+  trailer: PropTypes.string,
   handleTrailerCloseButton: PropTypes.func.isRequired,
 };
 export default MovieTrailer;

@@ -85,7 +85,7 @@ const MyMovies = (props) => {
         <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You Don't Have Movies Saved.
         </h2>
-      ) : user.accesstoken && content[0].length <= 2 ? (
+      ) : user.accesstoken && content[0].length === 1 ? (
         <OneMovie deleteMovie={deleteMovie} content={content} />
       ) : (
         <React.Fragment>
@@ -111,12 +111,14 @@ const MyMovies = (props) => {
               style={{ fontFamily: "Roboto Condensed, sans-serif" }}
             />
           </div>
+          <p id="sorted-text" style={{ color: "grey" }}>
+            <small>Alphabetically Sorted</small>
+          </p>
           <div className="my-movies-container">
             {filteredMovies.map((info) => {
               return (
                 <div
-                  className="card mb-3"
-                  style={{ width: "85%" }}
+                  className="my-movies-card card mb-3"
                   id="my-movies-item"
                   key={info.movie_key}
                 >
