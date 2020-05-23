@@ -46,8 +46,9 @@ const BodyCard = (props) => {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
-        document.getElementById("body-button").style.backgroundColor =
-          "#337ab7";
+        if (document.getElementById("body-button"))
+          document.getElementById("body-button").style.backgroundColor =
+            "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
