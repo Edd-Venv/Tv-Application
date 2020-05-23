@@ -10,7 +10,7 @@ const SearchForm = React.memo((props) => {
     setText("");
     document.getElementById("input-area").blur();
     document.getElementById("search-result-modal").style.display = "block";
-    document.getElementById("slider").style.display = "none";
+    document.getElementById("slider").style.zIndex = -1;
   };
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
