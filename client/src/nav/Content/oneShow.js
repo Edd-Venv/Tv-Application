@@ -7,11 +7,7 @@ const OneShow = (props) => {
     <div className="one-show-container">
       {content[0].map((info) => {
         return (
-          <div
-            className="card mb-3"
-            style={{ width: "60%", fontSize: "2.5rem" }}
-            key={info.show_key}
-          >
+          <div className="one-show-card card mb-3" key={info.show_key}>
             <div className="row no-gutters">
               <div className="one-show-image-container">
                 <img
@@ -27,34 +23,22 @@ const OneShow = (props) => {
                     {info.show_title}
                   </h2>
                   <div className="one-show-card-font">
-                    <p
-                      className="card-text"
-                      style={{ fontSize: "1.8rem", width: "100%" }}
-                    >
+                    <p className="card-text">
                       <strong>Summary : </strong>{" "}
                       {info.show_summary
                         .substring(3, 80)
                         .replace(/<p>/g, " ")
                         .replace(/<b>/g, " ")}
                     </p>
-                    <p
-                      className="card-text"
-                      style={{ fontSize: "1.8rem", width: "100%" }}
-                    >
+                    <p className="card-text">
                       <strong>Premier Date : </strong>
                       {info.show_premiered}
                     </p>
-                    <p
-                      className="card-text"
-                      style={{ fontSize: "1.8rem", width: "100%" }}
-                    >
+                    <p className="card-text">
                       <strong>Rating : </strong>
                       {info.show_rating}
                     </p>
-                    <p
-                      className="card-text"
-                      style={{ fontSize: "1.8rem", width: "100%" }}
-                    >
+                    <p className="card-text">
                       <strong>Genre : </strong>
                       {info.show_genre}
                     </p>
