@@ -12,6 +12,7 @@ const MovieSearchResult = (props) => {
     trailer,
     handleTrailerPlayButton,
     handleTrailerCloseButton,
+    handleCloseErrorBackDrop,
     handleClose,
     isLoaded,
   } = props;
@@ -73,111 +74,116 @@ const MovieSearchResult = (props) => {
         trailer={trailer}
         handleTrailerCloseButton={handleTrailerCloseButton}
       />
-      <div id="movie-model">
-        {isLoaded === false || Movie.DummyData ? (
-          <div className="movie-container">
-            <div
-              className="spinner-grow text-dark"
-              role="status"
-              style={{ margin: "0 auto" }}
-            >
-              <span className="sr-only">Loading...</span>
+      <div id="movie-error-back-drop" onClick={handleCloseErrorBackDrop} />
+      {Movie.Status === "Not found!" && isLoaded === true ? (
+        <FetalMovieSearchError
+          handleCloseErrorBackDrop={handleCloseErrorBackDrop}
+        />
+      ) : (
+        <div id="movie-model">
+          {isLoaded === false || Movie.DummyData ? (
+            <div className="movie-container">
+              <div
+                className="spinner-grow text-dark"
+                role="status"
+                style={{ margin: "0 auto" }}
+              >
+                <span className="sr-only">Loading...</span>
+              </div>
             </div>
-          </div>
-        ) : Movie.Poster === "N/A" || Movie.Error ? (
-          <FetalMovieSearchError handleClose={handleClose} />
-        ) : (
-          <div className="movie-search-container" key={Movie.imdbID}>
-            <div
-              className="movie-search-result-card card mb-3"
-              style={{
-                backgroundImage: `url(${Movie.Poster})`,
-              }}
-            >
-              <span onClick={handleClose} className="close-card-button">
-                <svg
-                  className="bi bi-x-square-fill"
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm9.854 4.854a.5.5 0 00-.708-.708L8 7.293 4.854 4.146a.5.5 0 10-.708.708L7.293 8l-3.147 3.146a.5.5 0 00.708.708L8 8.707l3.146 3.147a.5.5 0 00.708-.708L8.707 8l3.147-3.146z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-              <div className="row no-gutters">
-                <div className="col-md-4">
-                  <div id="movie-image"></div>
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body" id="movie-search-result-font">
-                    <h3 className="card-title">
-                      {Movie.Title}
-                      <hr />
-                    </h3>
-                    <div
-                      className="card-text"
-                      id="movie-search-result-font-size"
-                    >
-                      <p>
-                        <big>Summary: </big>
-                        {Movie.Plot}
-                      </p>
-                      <p>
-                        <big>Genre: </big>
-                        {Movie.Genre}.
-                      </p>
-                      <p>
-                        <big>Release Date: </big>
-                        {Movie.Released}
-                      </p>
-                      <p>
-                        <big>Run time: </big>
-                        {Movie.Runtime}'s
-                      </p>
-                      <p>
-                        <big>Rating:</big> {Movie.imdbRating}
-                      </p>
-                      <button
-                        className="btn btn-primary"
-                        id="movie-button"
-                        onClick={saveMovie.bind(this, [
-                          Movie.Poster,
-                          Movie.Title,
-                          Movie.Plot,
-                          Movie.Genre,
-                          Movie.Released,
-                          Movie.Runtime,
-                          Movie.imdbRating,
-                          Movie.imdbID,
-                          trailer,
-                        ])}
+          ) : (
+            <div className="movie-search-container" key={Movie.imdbID}>
+              <div
+                className="movie-search-result-card card mb-3"
+                style={{
+                  backgroundImage: `url(${Movie.Poster})`,
+                }}
+              >
+                <span onClick={handleClose} className="close-card-button">
+                  <svg
+                    className="bi bi-x-square-fill"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm9.854 4.854a.5.5 0 00-.708-.708L8 7.293 4.854 4.146a.5.5 0 10-.708.708L7.293 8l-3.147 3.146a.5.5 0 00.708.708L8 8.707l3.146 3.147a.5.5 0 00.708-.708L8.707 8l3.147-3.146z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <div className="row no-gutters">
+                  <div className="col-md-4">
+                    <div id="movie-image"></div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body" id="movie-search-result-font">
+                      <h3 className="card-title">
+                        {Movie.Title}
+                        <hr />
+                      </h3>
+                      <div
+                        className="card-text"
+                        id="movie-search-result-font-size"
                       >
-                        {state.message === "" ? "Save" : state.message}
-                      </button>
-                      <br />
-                      {exists === "unknown" ? null : (
+                        <p>
+                          <big>Summary: </big>
+                          {Movie.Plot}
+                        </p>
+                        <p>
+                          <big>Genre: </big>
+                          {Movie.Genre}.
+                        </p>
+                        <p>
+                          <big>Release Date: </big>
+                          {Movie.Released}
+                        </p>
+                        <p>
+                          <big>Run time: </big>
+                          {Movie.Runtime}'s
+                        </p>
+                        <p>
+                          <big>Rating:</big> {Movie.imdbRating}
+                        </p>
                         <button
-                          className="btn btn-dark"
-                          onClick={handleTrailerPlayButton}
+                          className="btn btn-primary"
+                          id="movie-button"
+                          onClick={saveMovie.bind(this, [
+                            Movie.Poster,
+                            Movie.Title,
+                            Movie.Plot,
+                            Movie.Genre,
+                            Movie.Released,
+                            Movie.Runtime,
+                            Movie.imdbRating,
+                            Movie.imdbID,
+                            trailer,
+                          ])}
                         >
-                          Watch Trailer
-                          <i className="fab fa-google-play" />
+                          {state.message === "" ? "Save" : state.message}
                         </button>
-                      )}
+                        <br />
+                        {exists === "unknown" ? null : (
+                          <button
+                            className="btn btn-dark"
+                            onClick={handleTrailerPlayButton}
+                          >
+                            Watch Trailer
+                            <i className="fab fa-google-play" />
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </React.Fragment>
   );
 };
@@ -185,9 +191,10 @@ const MovieSearchResult = (props) => {
 MovieSearchResult.propTypes = {
   Movie: PropTypes.object.isRequired,
   exists: PropTypes.string,
-  trailer: PropTypes.string.isRequired,
+  trailer: PropTypes.string,
   handleTrailerPlayButton: PropTypes.func.isRequired,
   handleTrailerCloseButton: PropTypes.func.isRequired,
+  handleCloseErrorBackDrop: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   isLoaded: PropTypes.bool.isRequired,
 };

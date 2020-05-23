@@ -13,19 +13,40 @@ function Search() {
       data: initialState,
     });
 
-    document.getElementById("movie-slider").style.display = "block";
+    document.getElementById("movie-slider").style.zIndex = 0;
     document.getElementById("movie-model").style.display = "none";
   };
   const handleTrailerPlayButton = () => {
     document.getElementById("Iframe").src = state.data.MovieTrailer;
     document.getElementById("movie-trailer").style.display = "block";
-    document.getElementById("movie-model").style.zIndex = 0;
+    document.getElementById("movie-model").style.zIndex = 1;
   };
 
   const handleTrailerCloseButton = () => {
     document.getElementById("Iframe").src = "";
     document.getElementById("movie-trailer").style.display = "none";
-    document.getElementById("movie-model").style.zIndex = 1;
+    document.getElementById("movie-model").style.zIndex = 2;
+  };
+
+  const handleErrorBackDrop = () => {
+    document
+      .getElementById("movie-error-back-drop")
+      .classList.toggle("visible");
+  };
+
+  const handleCloseErrorBackDrop = () => {
+    setState({
+      data: initialState,
+    });
+    document.getElementById("movie-slider").style.zIndex = 0;
+    if (
+      document
+        .getElementById("movie-error-back-drop")
+        .classList.toggle("visible")
+    )
+      document
+        .getElementById("movie-error-back-drop")
+        .classList.toggle("visible");
   };
   const onAddSearch = (text) => {
     (async function fetchData() {
@@ -42,6 +63,20 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
+          if (
+            Data.data[0].Error === "Movie not found!" ||
+            Data.data[0].Poster === "N/A"
+          ) {
+            handleErrorBackDrop();
+            return setState({
+              data: {
+                isLoaded: true,
+                Movie: { Status: "Not found!" },
+                MovieTrailer: "",
+                Test: "",
+              },
+            });
+          }
           setState({
             data: {
               isLoaded: true,
@@ -62,12 +97,14 @@ function Search() {
       <SearchForm onAddSearch={onAddSearch} />
       <br />
       <MovieSearchResult
+        isLoaded={state.data.isLoaded}
         Movie={state.data.Movie}
         exists={state.data.Test}
         trailer={state.data.MovieTrailer}
         handleClose={handleClose}
         handleTrailerPlayButton={handleTrailerPlayButton}
         handleTrailerCloseButton={handleTrailerCloseButton}
+        handleCloseErrorBackDrop={handleCloseErrorBackDrop}
       />
       <br />
     </React.Fragment>
