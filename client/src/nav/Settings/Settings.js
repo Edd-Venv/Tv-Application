@@ -39,7 +39,7 @@ function Settings(props) {
       </h3>
       <div className="settings-flex-container">
         <div className="settings-image">
-          <ChangeUserPhoto />
+          <ChangeUserPhoto logOutCallback={props.logOutCallback} />
         </div>
         <div className="settings-form">
           <ChangeUserName />

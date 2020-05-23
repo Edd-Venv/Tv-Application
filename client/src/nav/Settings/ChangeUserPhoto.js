@@ -3,7 +3,7 @@ import { UserContext, BaseUrl } from "../../App.js";
 import Axios from "axios";
 import "./Settings.css";
 
-function ChangeUserPhoto() {
+function ChangeUserPhoto(props) {
   const [user] = useContext(UserContext);
   const [file, setFile] = useState(null);
 
@@ -22,6 +22,7 @@ function ChangeUserPhoto() {
           },
         });
         setFile(null);
+        props.logOutCallback();
       }
     })();
   };
