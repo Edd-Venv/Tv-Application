@@ -12,7 +12,7 @@ function Search() {
       initialState,
     });
     document.getElementById("search-result-modal").style.display = "none";
-    document.getElementById("slider").style.display = "block";
+    document.getElementById("slider").style.zIndex = 0;
   };
 
   const handleTrailerPlayButton = () => {
@@ -25,6 +25,27 @@ function Search() {
     document.querySelector("iframe").src = "";
     document.getElementById("show-trailer").style.display = "none";
     document.getElementById("search-result-modal").style.zIndex = 1;
+  };
+
+  const handleErrorBackDrop = () => {
+    document
+      .getElementById("tv-show-error-back-drop")
+      .classList.toggle("visible");
+  };
+
+  const handleCloseErrorBackDrop = () => {
+    setState({
+      initialState,
+    });
+    document.getElementById("slider").style.zIndex = 0;
+    if (
+      document
+        .getElementById("tv-show-error-back-drop")
+        .classList.toggle("visible")
+    )
+      document
+        .getElementById("tv-show-error-back-drop")
+        .classList.toggle("visible");
   };
 
   const onAddSearch = (text) => {
@@ -42,7 +63,8 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
-          if (Data.data[0][0] === undefined)
+          if (Data.data[0][0] === undefined) {
+            handleErrorBackDrop();
             return setState({
               initialState: {
                 data: { image: { orginal: null }, summary: null, exists: null },
@@ -54,6 +76,7 @@ function Search() {
                 image: null,
               },
             });
+          }
           setState({
             initialState: {
               data: Data.data[0][0].show,
@@ -89,6 +112,7 @@ function Search() {
         handleClose={handleClose}
         handleTrailerPlayButton={handleTrailerPlayButton}
         handleTrailerCloseButton={handleTrailerCloseButton}
+        handleCloseErrorBackDrop={handleCloseErrorBackDrop}
       />
     </React.Fragment>
   );

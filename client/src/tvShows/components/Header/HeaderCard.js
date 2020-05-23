@@ -47,8 +47,9 @@ const HeaderCard = (props) => {
   useEffect(() => {
     if (state.message !== "") {
       setTimeout(() => {
-        document.getElementById("header-button").style.backgroundColor =
-          "#337ab7";
+        if (document.getElementById("header-button"))
+          document.getElementById("header-button").style.backgroundColor =
+            "#337ab7";
         setState({ message: "" });
       }, 3000);
     }
