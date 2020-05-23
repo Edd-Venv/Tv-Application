@@ -3,24 +3,25 @@ import PropTypes from "prop-types";
 import "./MovieSearch.css";
 
 const FetalMovieSearchError = (props) => {
+  setTimeout(() => {
+    props.handleCloseErrorBackDrop();
+  }, 4000);
+
   return (
     <React.Fragment>
-      <div className="error-div">
-        <div className="error-paragraph">
-          Sorry Movie Not In DataBase{" "}
-          <div
-            style={{ display: "inline" }}
-            onClick={props.handleClose}
-            id="error-close-button"
-          >
-            ×
-          </div>{" "}
-        </div>
-      </div>
+      <p className="tv-error-paragraph">
+        Sorry Movie Not In DataBase{" "}
+        <span
+          onClick={props.handleCloseErrorBackDrop}
+          style={{ color: "red", cursor: "pointer" }}
+        >
+          ×
+        </span>{" "}
+      </p>
     </React.Fragment>
   );
 };
 FetalMovieSearchError.propTypes = {
-  handleClose: PropTypes.func.isRequired,
+  handleCloseErrorBackDrop: PropTypes.func.isRequired,
 };
 export default FetalMovieSearchError;

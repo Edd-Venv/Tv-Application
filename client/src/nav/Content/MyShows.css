@@ -1,8 +1,22 @@
-.my-shows-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
-  margin-top: 3%;
-  margin-left: 20%;
+@keyframes slide-in-slide-out {
+  0% {
+    transform: translateX(-120px);
+  }
+  50% {
+    transform: translateX(130px);
+  }
+  100% {
+    transform: translateX(-120px);
+    color: transparent;
+  }
+}
+#sorted-text {
+  animation-name: slide-in-slide-out;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  margin-left: -120px;
+  width: 60vw;
 }
 
 #my-shows-item:hover {
@@ -15,43 +29,51 @@
 @media (min-width: 320px) {
   .my-shows-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-    margin-left: 3%;
+    grid-template-columns: repeat(auto-fit, minmax(37rem, 1fr));
+    margin-left: 6.5%;
   }
   .my-shows-image-container {
     max-width: 25%;
     margin-left: 4.5%;
+  }
+  .my-shows-card {
+    width: 75%;
   }
   .my-shows-card-font {
     font-size: 1.5rem;
     margin-left: 1%;
   }
 }
+@media (min-width: 375px) {
+  .my-shows-container {
+    margin-left: 14%;
+  }
+}
 @media (min-width: 425px) {
   .my-shows-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-    margin-left: 15%;
+    margin-left: 15.5%;
   }
   .my-shows-image-container {
     max-width: 25%;
     margin-left: 4%;
   }
+
   .my-shows-card-font {
     font-size: 1.5rem;
     margin-left: 1%;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .my-shows-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-    margin-left: 2%;
+    margin-left: 18%;
   }
   .my-shows-image-container {
     max-width: 25%;
-    margin-left: 4%;
+    margin-left: 2.5%;
+  }
+  .my-shows-card {
+    width: 74%;
   }
   .my-shows-card-font {
     font-size: 1.5rem;
@@ -61,14 +83,13 @@
 
 @media (min-width: 1024px) {
   .my-shows-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-    margin-left: 2%;
+    margin-left: 11%;
   }
   .my-shows-image-container {
     max-width: 25%;
-    margin-left: 3%;
+    margin-left: 3.5%;
   }
+
   .my-shows-card-font {
     font-size: 1.6rem;
     margin-left: 1%;
@@ -76,10 +97,10 @@
 }
 @media (min-width: 1200px) {
   .my-shows-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-    margin-left: 2%;
+    grid-template-columns: repeat(auto-fit, minmax(47rem, 1fr));
+    margin-left: 10%;
   }
+
   .my-shows-image-container {
     max-width: 25%;
     margin-left: 3.5%;
