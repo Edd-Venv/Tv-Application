@@ -37,7 +37,7 @@ function Movie() {
   );
 }
 Movie.propTypes = {
-  data: PropTypes.array.isRequired,
-  isLoaded: PropTypes.bool.isRequired,
+  data: PropTypes.array,
+  isLoaded: PropTypes.bool,
 };
 export default Movie;
