@@ -117,12 +117,14 @@ const MyShows = (props) => {
               value={currentFilterText}
             />
           </div>
+          <p id="sorted-text" style={{ color: "grey" }}>
+            <small>Alphabetically Sorted</small>
+          </p>
           <div className="my-shows-container">
             {filteredShows.map((info) => {
               return (
                 <div
-                  className="card mb-3"
-                  style={{ width: "80%" }}
+                  className="my-shows-card card mb-3"
                   id="my-shows-item"
                   key={info.show_key}
                 >
