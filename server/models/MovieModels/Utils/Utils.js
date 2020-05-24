@@ -4,7 +4,6 @@ const { isAuth } = require("../../../src/isAuth.js");
 exports.saveMovieModel = async (req, res, next) => {
   const userId = isAuth(req);
   if (userId !== null) {
-    //Check If Movie is Already Saved
     const checkDB = await pool.query(
       `SELECT * FROM movie WHERE movie_key = '${req.body.movie_key}'
                  AND person_id = '${userId}'`
@@ -67,14 +66,5 @@ exports.getMyMoviesModel = async (req) => {
     });
 
     return sortedMovies;
-  }
-};
-exports.deleteSavedMovieModel = async (req) => {
-  const userId = isAuth(req);
-  if (userId !== null) {
-    await pool.query(
-      `DELETE FROM movie WHERE movie_key = '${req.body.movie_key}'
-                 AND person_id = '${userId}'`
-    );
   }
 };
