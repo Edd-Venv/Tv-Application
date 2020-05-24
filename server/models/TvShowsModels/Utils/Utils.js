@@ -69,13 +69,3 @@ exports.getMyShowsModel = async (req) => {
     return sortedShows;
   }
 };
-
-exports.deleteSavedShowModel = async (req) => {
-  const userId = isAuth(req);
-  if (userId !== null) {
-    await pool.query(
-      `DELETE FROM show WHERE show_key = '${req.body.show_key}'
-                   AND person_id = '${userId}'`
-    );
-  }
-};
