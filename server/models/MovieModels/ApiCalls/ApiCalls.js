@@ -2,14 +2,12 @@ const fetch = require("node-fetch");
 
 exports.getMovieApiDataModel = async () => {
   try {
-    const movieApi1 =
-      "https://www.omdbapi.com/?t=Bohemian Rhapsody&apikey=728de06e";
-    const movieApi2 =
-      "https://www.omdbapi.com/?t=A Star Is Born&apikey=728de06e";
+    const movieApi1 = "https://www.omdbapi.com/?t=Bohemian Rhapsody";
+    const movieApi2 = "https://www.omdbapi.com/?t=A Star Is Born&";
     const movieApi3 =
-      "https://www.omdbapi.com/?t=Fantastic Beasts: The Crimes Of Grindelwald&apikey=728de06e";
+      "https://www.omdbapi.com/?t=Fantastic Beasts: The Crimes Of Grindelwald";
     const movieApi4 =
-      "https://www.omdbapi.com/?t=Jurassic World: Fallen Kingdom&apikey=728de06e";
+      "https://www.omdbapi.com/?t=Jurassic World: Fallen Kingdom";
     const result1 = await (await fetch(movieApi1)).json();
     const result2 = await (await fetch(movieApi2)).json();
     const result3 = await (await fetch(movieApi3)).json();

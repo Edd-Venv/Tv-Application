@@ -13,18 +13,6 @@ create table show (
     id_uid UUID REFERENCES person
 )
 
-create table music (
-    artist_id SERIAL PRIMARY KEY,
-    person_id UUID NOT NULL,
-    artist_image VARCHAR NOT NULL,
-    song_key BIGINT NOT NULL,
-    artist_name VARCHAR NOT NULL,
-    song_title VARCHAR NOT NULL,
-    album_title VARCHAR NOT NULL,
-    explicit_lyrics BOOLEAN NOT NULL,
-    song VARCHAR NOT NULL,
-    id_uid UUID REFERENCES person
-);      
           
          
 create table movie (
@@ -42,18 +30,6 @@ create table movie (
     id_uid UUID REFERENCES person
 );
 
-create table book (
-  book_id SERIAL PRIMARY KEY,
-  person_id UUID NOT NULL,
-  book_image VARCHAR NOT NULL,
-  book_key BIGINT NOT NULL,
-  book_title VARCHAR NOT NULL,
-  book_author VARCHAR NOT NULL,
-  book_price NUMERIC NOT NULL,
-  book_currencyCode VARCHAR NOT NULL,
-  book_pages BIGINT NOT NULL,
-  id_uid UUID REFERENCES person
-)
 
 create table person (
     id_uid UUID PRIMARY KEY NOT NULL,
