@@ -91,9 +91,6 @@ function Search() {
 
   return (
     <React.Fragment>
-      <br />
-      <br />
-      <br />
       <SearchForm onAddSearch={onAddSearch} />
       <br />
       <MovieSearchResult
