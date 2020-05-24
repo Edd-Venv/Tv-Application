@@ -10,13 +10,7 @@ function Movies(props) {
     <React.Fragment>
       <Navigation logOutCallback={props.logOutCallback} />
       <MovieContextProvider>
-        <div
-          style={{
-            maxWidth: "1000px",
-            minWidth: "50%",
-            margin: "0 auto",
-          }}
-        >
+        <div>
           {" "}
           <br />
           <MovieSlider />
