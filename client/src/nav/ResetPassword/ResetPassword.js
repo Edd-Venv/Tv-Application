@@ -60,17 +60,6 @@ const ResetPassword = (props) => {
     "reset-password-form"
   );
 
-  useEffect(() => {
-    if (document.getElementById("reset-password-tool-tip")) {
-      const setToolTip = document.getElementById("reset-password-tool-tip");
-      if (state.message !== "") setToolTip.textContent = state.message;
-
-      setTimeout(() => {
-        setToolTip.textContent = "";
-      }, 3000);
-    }
-  }, [state.message]);
-
   return (
     <React.Fragment>
       <Navigation />
