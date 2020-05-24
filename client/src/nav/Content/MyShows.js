@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
-import OneShow from "./oneShow.js";
+
 import "./MyShows.css";
 
 const MyShows = (props) => {
@@ -24,29 +24,10 @@ const MyShows = (props) => {
   }
 
   useEffect(() => {
-    //fetch Data at Initialization
     fetchShows();
   }, [user]);
 
-  async function deleteShow(Args) {
-    try {
-      if (user.accesstoken)
-        await fetch(`${BaseUrl}/MyShows`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${user.accesstoken}`,
-          },
-          body: JSON.stringify({
-            show_title: Args[0],
-            show_key: Args[1],
-          }),
-        });
-      fetchShows();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
 
   const filteredShows = !currentFilterText
     ? content[0]
@@ -72,28 +53,7 @@ const MyShows = (props) => {
         >
           YOU NEED TO LOGIN.
         </h2>
-      ) : user.accesstoken && content[0] === undefined ? (
-        <div
-          className="spinner-grow text-dark"
-          role="status"
-          style={{ margin: "auto" }}
-        >
-          <span className="sr-only">Loading...</span>
-        </div>
-      ) : user.accesstoken && content[0].length === 0 ? (
-        <h2
-          style={{
-            fontFamily: "Roboto Condensed, sans-serif",
-            textAlign: "center",
-            fontWeight: "bold",
-            color: "white",
-          }}
-        >
-          You Don't Have Shows Saved.
-        </h2>
-      ) : user.accesstoken && content[0].length === 1 ? (
-        <OneShow content={content} deleteShow={deleteShow} />
-      ) : (
+      ) : 
         <React.Fragment>
           <div className="show-input-container" id="show-input">
             <button id="SearchButton" type="submit">
@@ -117,9 +77,7 @@ const MyShows = (props) => {
               value={currentFilterText}
             />
           </div>
-          <p id="sorted-text" style={{ color: "grey" }}>
-            <small>Alphabetically Sorted</small>
-          </p>
+        
           <div className="my-shows-container">
             {filteredShows.map((info) => {
               return (
