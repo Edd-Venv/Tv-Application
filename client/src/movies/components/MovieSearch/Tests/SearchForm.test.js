@@ -45,10 +45,10 @@ describe("MOVIES APP, SEARCHFORM COMPONENT", () => {
     expect(mockSetText).toHaveBeenCalledWith("venom");
   });
 
-  /*it("SHOULD CLEAR INPUT FIELD UPON SUBMIT BUTTON CLICK", () => {
+  it("SHOULD CLEAR INPUT FIELD UPON SUBMIT BUTTON CLICK", () => {
     const submitButton = findByTestAttr(wrapper, "search-form");
     submitButton.simulate("click", { preventDefault() {} });
 
     expect(mockSetText).toHaveBeenCalledWith("");
-  });*/
+  });
 });
