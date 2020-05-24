@@ -11,25 +11,8 @@ function TvShows(props) {
     <React.Fragment>
       <Navigation path="/" logOutCallback={props.logOutCallback} />
       <TvContextProvider>
-        <div
-          style={{
-            maxWidth: "1000px",
-            minWidth: "50%",
-            margin: "0 auto",
-          }}
-        >
-          <h2
-            style={{
-              textAlign: "center",
-              fontSize: "1.5em",
-              fontWeight: "bolder",
-              color: "white",
-              letterSpacing: "0.1rem",
-              fontFamily: "Oswald, sans-serif",
-            }}
-          >
-            TRENDING SHOWS
-          </h2>
+        <div>
+          <h2>TRENDING SHOWS</h2>
           <Header />
           <br />
           <Body />
